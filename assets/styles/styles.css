@@ -178,6 +178,10 @@
   .scrolled .header {
     --background-color: #ff0000;
   }
+
+  .logo-nav{
+    height: 2.5rem;
+  }
   
   /*--------------------------------------------------------------
   # Navigation Menu
