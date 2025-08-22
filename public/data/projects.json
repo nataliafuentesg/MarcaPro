@@ -1,0 +1,169 @@
+{
+    "logos": [
+      { "name": "Eventex", "logo": "/assets/images/logos/eventex.svg" },
+      { "name": "Pet Station", "logo": "/assets/images/logos/petstation.svg" },
+      { "name": "CanBridge", "logo": "/assets/images/logos/canbridge.svg" }
+    ],
+    "projects": [
+      {
+        "id": "valkha",
+        "name": "Valkha",
+        "thumb": "/assets/images/projects/valkha/cover.jpg",
+        "gallery": [
+          "/assets/images/projects/valkha/1.jpg",
+          "/assets/images/projects/valkha/2.jpg"
+        ],
+        "category": ["branding", "ecommerce", "web"],
+        "stack": ["Branding", "Vue 3", "Spring Boot", "Stripe"],
+        "links": {
+          "live": "https://valkha.com/",
+          "github": "",
+          "instagram": "https://instagram.com/valkha"
+        },
+        "summary": "Complete brand identity and ecommerce platform with Stripe payments.",
+        "caseStudy": {
+          "challenge": "Build a full brand identity and launch an international e-commerce platform with secure online payments.",
+          "solutions": [
+            "Branding design including logo, colors, and brand guide",
+            "E-commerce development using Vue 3 + Spring Boot",
+            "Stripe integration for USD transactions"
+          ],
+          "results": "Brand ready for international expansion with a fully functional online store.",
+          "tags": ["Branding", "E-commerce", "Stripe"]
+        }
+      },
+      {
+        "id": "tasca",
+        "name": "Tasca Restaurant",
+        "thumb": "/assets/images/projects/tasca/cover.jpg",
+        "gallery": [
+          "/assets/images/projects/tasca/1.jpg",
+          "/assets/images/projects/tasca/2.jpg"
+        ],
+        "category": ["web", "marketing"],
+        "stack": ["Social Media", "SEO", "Bootstrap"],
+        "links": {
+          "live": "https://tascarestaurant.com/",
+          "github": "",
+          "instagram": "https://instagram.com/tasca"
+        },
+        "summary": "Social media management and full website redesign.",
+        "caseStudy": {
+          "challenge": "Modernize the restaurant’s digital presence with a redesigned website and improved reservations.",
+          "solutions": [
+            "Full social media management with consistent content creation",
+            "Complete website redesign focused on reservations and usability",
+            "SEO optimization and integration with Google tools (Ads, Analytics, Search Console)"
+          ],
+          "results": "Online reservations increased by 40% within the first two months.",
+          "tags": ["Social Media", "SEO", "Website Redesign"]
+        }
+      },
+      {
+        "id": "ads",
+        "name": "Performance Campaigns",
+        "thumb": "/assets/images/projects/ads/cover.jpg",
+        "gallery": [],
+        "category": ["marketing", "ads"],
+        "stack": ["Google Ads", "Meta Ads", "Analytics"],
+        "links": {
+          "live": "",
+          "github": "",
+          "instagram": ""
+        },
+        "summary": "Performance-driven campaigns across Google and Meta platforms.",
+        "caseStudy": {
+          "challenge": "Increase online reservations and sales while optimizing ad spend.",
+          "solutions": [
+            "Advanced segmentation and keyword optimization in Google Ads",
+            "Meta Ads campaigns with creative variations for target audiences",
+            "Conversion tracking with Google Analytics and Meta Pixel"
+          ],
+          "results": "32% decrease in CPA and 50% increase in qualified leads in 3 months.",
+          "tags": ["Google Ads", "Meta Ads", "Performance Marketing"]
+        }
+      },
+      {
+        "id": "eventex",
+        "name": "Eventex",
+        "thumb": "/assets/images/projects/eventex/cover.jpg",
+        "gallery": [
+          "/assets/images/projects/eventex/1.jpg",
+          "/assets/images/projects/eventex/2.jpg"
+        ],
+        "category": ["web", "branding"],
+        "stack": ["Spring Boot", "Bootstrap", "PostgreSQL"],
+        "links": {
+          "live": "https://eventexsas.com/",
+          "github": "https://github.com/nataliafuentesg/eventex",
+          "instagram": ""
+        },
+        "summary": "Corporate site with optimized performance and lead forms.",
+        "caseStudy": {
+          "challenge": "Migrar de un sitio antiguo a una web moderna y rápida.",
+          "solutions": [
+            "Arquitectura limpia y assets optimizados",
+            "Mejora de Core Web Vitals",
+            "Lead tracking y seguridad de formularios"
+          ],
+          "results": "+35% conversion y +25% tráfico orgánico (3 meses).",
+          "tags": ["SEO", "Performance", "Forms"]
+        }
+      },
+      {
+        "id": "petstation",
+        "name": "Pet Station Vet",
+        "thumb": "/assets/images/projects/petstation/cover.jpg",
+        "gallery": [
+          "/assets/images/projects/petstation/1.jpg",
+          "/assets/images/projects/petstation/2.jpg"
+        ],
+        "category": ["ecommerce", "marketing"],
+        "stack": ["Bootstrap", "Meta Suite"],
+        "links": {
+          "live": "https://petstationvet.com/",
+          "github": "https://github.com/nataliafuentesg/petstation",
+          "instagram": "https://instagram.com/petstationvet"
+        },
+        "summary": "Tienda + funnel de reservas con campañas de performance.",
+        "caseStudy": {
+          "challenge": "Unificar reservas y tienda para mejorar ingresos.",
+          "solutions": [
+            "Checkout ligero",
+            "Integración con campañas Meta",
+            "Automatización de mensajes"
+          ],
+          "results": "x2 reservas; CPA -28%.",
+          "tags": ["Paid Media", "Checkout", "Automation"]
+        }
+      },
+      {
+        "id": "canbridge",
+        "name": "CanBridge",
+        "thumb": "/assets/images/projects/canbridge/cover.jpg",
+        "gallery": [
+          "/assets/images/projects/canbridge/1.jpg",
+          "/assets/images/projects/canbridge/2.jpg"
+        ],
+        "category": ["web", "marketing"],
+        "stack": ["Bootstrap", "Content"],
+        "links": {
+          "live": "https://canbridgeguarderiacanina.com/",
+          "github": "https://github.com/nataliafuentesg/canbridge",
+          "instagram": "https://instagram.com/can_bridge"
+        },
+        "summary": "Sitio y plan de contenidos (reels + campañas).",
+        "caseStudy": {
+          "challenge": "Aumentar demanda de guardería y entrenamiento.",
+          "solutions": [
+            "Calendario de contenidos con IA",
+            "Páginas enfocadas a conversión",
+            "Landing para campañas"
+          ],
+          "results": "+40% leads calificados en 6 semanas.",
+          "tags": ["Content", "Landing", "Reels IA"]
+        }
+      }
+    ]
+  }
+  
