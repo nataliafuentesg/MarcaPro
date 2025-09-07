@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services — MarcaPro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../styles/bootstrap-icons/bootstrap-icons.css"/>
+  <link rel="stylesheet" href="../styles/aos/aos.css"/>
+  <link rel="stylesheet" href="../styles/styles.css"/>
+  <link rel="shortcut icon" href="./assets/images/logo-blanco.png" type="image/x-icon">
+</head>
+<body class="index-page">
+
+<header id="header" class="header d-flex align-items-center fixed-top">
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+    <a href="../../index.html" class="logo d-flex align-items-center">
+      <img src="../images/logo-blanco-sin-fondo.png" alt="MarcaPro logo" class="logo-nav">
+      <h1 class="sitename">MarcaPro</h1>
+    </a>
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html#hero" data-i18n="nav.home">Home</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="services.html" class="active" data-i18n="nav.services">Services</a></li>
+        <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
+        <li class="lang-switch">
+          <button class="btn-lang" data-lang="en">EN</button>
+          <button class="btn-lang" data-lang="es">ES</button>
+        </li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+  </div>
+</header>
+
+<main class="main">
+  <!-- HERO -->
+  <section class="hero-clean d-flex align-items-center">
+    <div class="container">
+      <span class="hero-badge" data-i18n="svc.hero.badge">Services</span>
+      <h1 class="mt-3 fw-bold" data-i18n="svc.hero.h1">What we do</h1>
+      <p class="lead mt-3 mb-0" data-i18n="svc.hero.subtitle">Full-stack development, e-commerce, content, and growth/ads.</p>
+    </div>
+  </section>
+
+  <!-- WEB -->
+  <section class="section1" id="web">
+    <div class="container section-title">
+      <h2 data-i18n="svc.web.h2">Web Apps</h2>
+      <div><span data-i18n="svc.web.lead1">Dashboards, portals</span> <span class="description-title" data-i18n="svc.web.lead2">and APIs</span></div>
+    </div>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-6">
+          <div class="icon-box h-100">
+            <i class="bi bi-code-slash"></i>
+            <h3 data-i18n="svc.web.front.title">Frontend (Vue 3)</h3>
+            <p data-i18n="svc.web.front.desc">Design system, accessibility, performance, base SEO.</p>
+            <a href="web-design.html" class="btn btn-outline-dark btn-sm mt-2" data-i18n="svc.web.learn">Learn more</a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="icon-box h-100">
+            <i class="bi bi-hdd-network"></i>
+            <h3 data-i18n="svc.web.back.title">Backend (Spring Boot)</h3>
+            <p data-i18n="svc.web.back.desc">REST APIs, JWT auth, roles, Stripe & third-party integrations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- E-COMMERCE -->
+  <section class="section1" id="ecommerce">
+    <div class="container section-title">
+      <h2 data-i18n="svc.ecom.h2">E-commerce</h2>
+      <div><span data-i18n="svc.ecom.lead1">Stripe, taxes</span> <span class="description-title" data-i18n="svc.ecom.lead2">and shipping</span></div>
+    </div>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-bag"></i><h3 data-i18n="svc.ecom.cat.title">Catalog & Variants</h3><p data-i18n="svc.ecom.cat.desc">Sizes, colors, stock, collections.</p></div></div>
+        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-cart-check"></i><h3 data-i18n="svc.ecom.cart.title">Cart & Checkout</h3><p data-i18n="svc.ecom.cart.desc">Stripe Checkout, coupons, taxes.</p></div></div>
+        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-box-seam"></i><h3 data-i18n="svc.ecom.orders.title">Orders & Webhooks</h3><p data-i18n="svc.ecom.orders.desc">Confirmations, statuses, reports.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="section1" id="content">
+    <div class="container section-title">
+      <h2 data-i18n="svc.content.h2">Content</h2>
+      <div><span data-i18n="svc.content.lead1">Reels, UGC</span> <span class="description-title" data-i18n="svc.content.lead2">brand kits</span></div>
+    </div>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-camera-video"></i><h3 data-i18n="svc.content.video.title">Short-form video</h3><p data-i18n="svc.content.video.desc">Script, shoot, edit & calendar.</p></div></div>
+        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-brush"></i><h3 data-i18n="svc.content.brand.title">Branding</h3><p data-i18n="svc.content.brand.desc">Brand manual, type, color.</p></div></div>
+        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-images"></i><h3 data-i18n="svc.content.kits.title">Social kits</h3><p data-i18n="svc.content.kits.desc">IG/TikTok/YouTube templates.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GROWTH -->
+  <section class="section1" id="growth">
+    <div class="container section-title">
+      <h2 data-i18n="svc.growth.h2">Growth & Ads</h2>
+      <div><span data-i18n="svc.growth.lead1">Meta Suite</span> <span class="description-title" data-i18n="svc.growth.lead2">Google/GA4</span></div>
+    </div>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-bullseye"></i><h3 data-i18n="svc.growth.funnel.title">Funnels</h3><p data-i18n="svc.growth.funnel.desc">Top/Mid/Bottom, offers & creatives.</p></div></div>
+        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-megaphone"></i><h3 data-i18n="svc.growth.meta.title">Meta Ads</h3><p data-i18n="svc.growth.meta.desc">Targeting, events, remarketing.</p></div></div>
+        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-bar-chart-line"></i><h3 data-i18n="svc.growth.analytics.title">Measurement</h3><p data-i18n="svc.growth.analytics.desc">GA4 dashboards, ROAS, sprints.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-strip py-5 text-white">
+    <div class="container">
+      <div class="row align-items-center gy-3">
+        <div class="col-lg-8">
+          <h3 class="mb-1" data-i18n="cta.title">Have a project in mind?</h3>
+          <p class="mb-0 opacity-75" data-i18n="cta.copy">Tell us about your product, timeline, and goals. We’ll reply within 24 hours.</p>
+        </div>
+        <div class="col-lg-4 d-flex gap-2 justify-content-lg-end">
+          <a href="mailto:info@marcapro.agency" class="btn btn-light" data-i18n="cta.email">info@marcapro.agency</a>
+          <a href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener" class="btn btn-outline-light" data-i18n="cta.ig">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="footer" class="footer dark-background">
+  <div class="container footer-top">
+    <div class="row gy-4">
+      <div class="col-lg-4 col-md-6 footer-about">
+        <a href="index.html" class="logo d-flex align-items-center"><span class="sitename">MarcaPro</span></a>
+        <div class="footer-contact pt-3">
+          <p>Bogotá, Colombia</p>
+          <p class="mt-3"><strong>Phone:</strong> <span>+57 300 685 0097</span></p>
+          <p><strong>Email:</strong> <span>info@marcapro.agency</span></p>
+        </div>
+        <div class="social-links d-flex mt-4">
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4>Quick links</h4>
+        <ul>
+          <li><a href="index.html#hero">Home</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="web-design.html">Web Design</a></li>
+          <li><a href="services.html#ecommerce">E-commerce</a></li>
+          <li><a href="services.html#growth">Growth/Ads</a></li>
+          <li><a href="services.html#content">Content</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container text-center mt-4">
+    <p>© <strong class="px-1 sitename">MarcaPro</strong> All Rights Reserved</p>
+  </div>
+</footer>
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<div id="preloader"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../styles/aos/aos.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

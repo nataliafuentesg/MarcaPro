@@ -1,21 +1,19 @@
 /**
  * MarcaPro main.js — EN/ES + Projects + utilidades (Bootstrap/AOS)
  */
-
 (function () {
   "use strict";
 
   /* =========================
-     UTILIDADES DE UI (mantener)
+     UTILIDADES DE UI
      ========================= */
 
   // .scrolled en body si el header es fixed-top
   function toggleScrolled() {
-    const selectBody = document.querySelector('body');
-    const selectHeader = document.querySelector('#header');
-    if (!selectHeader) return;
-    if (!selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+    const body = document.body;
+    const header = document.querySelector('#header');
+    if (!header || !header.classList.contains('fixed-top')) return;
+    window.scrollY > 100 ? body.classList.add('scrolled') : body.classList.remove('scrolled');
   }
   document.addEventListener('scroll', toggleScrolled);
   window.addEventListener('load', toggleScrolled);
@@ -23,24 +21,24 @@
   // Mobile nav toggle
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
   function mobileNavToggle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
+    document.body.classList.toggle('mobile-nav-active');
+    if (mobileNavToggleBtn) {
+      mobileNavToggleBtn.classList.toggle('bi-list');
+      mobileNavToggleBtn.classList.toggle('bi-x');
+    }
   }
   if (mobileNavToggleBtn) mobileNavToggleBtn.addEventListener('click', mobileNavToggle);
 
-  // Cerrar mobile nav al hacer click en links del nav
+  // Cerrar mobile nav al hacer click en links
   document.querySelectorAll('#navmenu a').forEach(a => {
     a.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) mobileNavToggle();
+      if (document.body.classList.contains('mobile-nav-active')) mobileNavToggle();
     });
   });
 
   // Preloader
   const preloader = document.querySelector('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => preloader.remove());
-  }
+  if (preloader) window.addEventListener('load', () => preloader.remove());
 
   // Scroll top button
   const scrollTop = document.querySelector('.scroll-top');
@@ -59,13 +57,11 @@
 
   // AOS
   function aosInit() {
-    if (window.AOS) {
-      AOS.init({ duration: 600, easing: 'ease-in-out', once: true, mirror: false });
-    }
+    if (window.AOS) AOS.init({ duration: 600, easing: 'ease-in-out', once: true, mirror: false });
   }
   window.addEventListener('load', aosInit);
 
-  // Fijar posición correcta si hay hash al cargar
+  // Corrige scroll si hay hash al cargar
   window.addEventListener('load', function () {
     if (window.location.hash) {
       const section = document.querySelector(window.location.hash);
@@ -78,7 +74,7 @@
     }
   });
 
-  // Scrollspy manual
+  // Scrollspy simple
   const navmenulinks = document.querySelectorAll('.navmenu a');
   function navmenuScrollspy() {
     const pos = window.scrollY + 200;
@@ -98,7 +94,7 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
   /* =========================
-     I18N SIMPLE (EN por defecto)
+     I18N (EN por defecto)
      ========================= */
   const I18N = {
     en: {
@@ -131,8 +127,81 @@
       'projects.h2': 'Projects', 'projects.lead1': 'Explore', 'projects.lead2': 'Client Work & Case Studies',
       // CTA
       'cta.title': 'Have a project in mind?', 'cta.copy': 'Tell us about your product, timeline, and goals. We’ll reply within 24 hours.',
-      'cta.email': 'info@marcapro.agency', 'cta.ig': 'Instagram'
+      'cta.email': 'info@marcapro.agency', 'cta.ig': 'Instagram',
+
+      /* ==== SERVICES (svc.*) ==== */
+      'svc.hero.badge':'Services',
+      'svc.hero.h1':'What we do',
+      'svc.hero.subtitle':'Full-stack development, e-commerce, content, and growth/ads.',
+      'svc.web.h2':'Web Apps',
+      'svc.web.lead1':'Dashboards, portals', 'svc.web.lead2':'and APIs',
+      'svc.web.front.title':'Frontend (Vue 3)',
+      'svc.web.front.desc':'Design system, accessibility, performance, base SEO.',
+      'svc.web.back.title':'Backend (Spring Boot)',
+      'svc.web.back.desc':'REST APIs, JWT auth, roles, Stripe & third-party integrations.',
+      'svc.web.learn':'Learn more',
+      'svc.ecom.h2':'E-commerce',
+      'svc.ecom.lead1':'Stripe, taxes', 'svc.ecom.lead2':'and shipping',
+      'svc.ecom.cat.title':'Catalog & Variants', 'svc.ecom.cat.desc':'Sizes, colors, stock, collections.',
+      'svc.ecom.cart.title':'Cart & Checkout', 'svc.ecom.cart.desc':'Stripe Checkout, coupons, taxes.',
+      'svc.ecom.orders.title':'Orders & Webhooks', 'svc.ecom.orders.desc':'Confirmations, statuses, reports.',
+      'svc.content.h2':'Content',
+      'svc.content.lead1':'Reels, UGC', 'svc.content.lead2':'brand kits',
+      'svc.content.video.title':'Short-form video', 'svc.content.video.desc':'Script, shoot, edit & calendar.',
+      'svc.content.brand.title':'Branding', 'svc.content.brand.desc':'Brand manual, type, color.',
+      'svc.content.kits.title':'Social kits', 'svc.content.kits.desc':'IG/TikTok/YouTube templates.',
+      'svc.growth.h2':'Growth & Ads',
+      'svc.growth.lead1':'Meta Suite', 'svc.growth.lead2':'Google/GA4',
+      'svc.growth.funnel.title':'Funnels', 'svc.growth.funnel.desc':'Top/Mid/Bottom, offers & creatives.',
+      'svc.growth.meta.title':'Meta Ads', 'svc.growth.meta.desc':'Targeting, events, remarketing.',
+      'svc.growth.analytics.title':'Measurement', 'svc.growth.analytics.desc':'GA4 dashboards, ROAS, sprints.',
+
+      /* ==== WEB DESIGN (webd.*) ==== */
+      'webd.badge':'Web Design',
+      'webd.h1':'Custom Web Design — no templates.',
+      'webd.subtitle':'Pixel-perfect UI, fast by default, built with Vue 3 + Spring Boot. 100% coded for your brand — not a theme.',
+      'webd.pill.custom':'100% custom code',
+      'webd.pill.redesign':'Expert redesigns',
+      'webd.pill.performance':'Performance & SEO',
+      'webd.cta.quote':'Get a quote',
+      'webd.cta.work':'See our work',
+      'webd.why.h2':'Why custom-built instead of templates?',
+      'webd.why.lead1':'Faster, clearer,', 'webd.why.lead2':'easier to scale',
+      'webd.why.point1.title':'Performance by design',
+      'webd.why.point1.desc':'No bloat. Clean components, minimal JS, Core Web Vitals in check.',
+      'webd.why.point2.title':'Brand-true UI',
+      'webd.why.point2.desc':'Layouts and components crafted for your tone, not a generic theme.',
+      'webd.why.point3.title':'SEO-ready, analytics-ready',
+      'webd.why.point3.desc':'Semantic HTML, tags, and events built-in for GA4 and Meta pixels.',
+      'webd.templates.title':'Typical template issues',
+      'webd.templates.li1':'Heavy plugins and CSS you don’t use.',
+      'webd.templates.li2':'Limited layouts; hard to match your brand.',
+      'webd.templates.li3':'Slow scores and messy SEO.',
+      'webd.templates.li4':'Costly to maintain or extend.',
+      'webd.redesign.h2':'Redesigns that move the needle',
+      'webd.redesign.lead1':'Audit → Wireframe → ', 'webd.redesign.lead2':'UI Build → Launch',
+      'webd.redesign.s1.title':'Audit', 'webd.redesign.s1.desc':'Analytics, heatmaps, SEO and content inventory.',
+      'webd.redesign.s2.title':'Wireframe', 'webd.redesign.s2.desc':'Structure, messaging, and conversion points.',
+      'webd.redesign.s3.title':'UI Build', 'webd.redesign.s3.desc':'Vue components + Spring Boot API, SEO & tags.',
+      'webd.redesign.s4.title':'Launch & Iterate', 'webd.redesign.s4.desc':'Perf/QA, pixels, A/B tests and monthly sprints.',
+      'webd.scope.h2':'Scope & Deliverables',
+      'webd.scope.lead1':'Everything you need', 'webd.scope.lead2':'for a real business site',
+      'webd.scope.landing.title':'Landing / Multi-page', 'webd.scope.landing.desc':'Home, About, Services, Projects, FAQ, 404.',
+      'webd.scope.ecom.title':'E-commerce', 'webd.scope.ecom.desc':'Variants, cart, orders, Stripe, taxes and shipping.',
+      'webd.scope.analytics.title':'SEO & Analytics', 'webd.scope.analytics.desc':'GA4/Tags, Meta pixels, events, sitemap & meta.',
+      'webd.packages.h2':'Packages', 'webd.packages.lead1':'Clear scope,', 'webd.packages.lead2':'measurable outcomes',
+      'webd.pkg.starter.title':'Starter', 'webd.pkg.starter.desc':'One-page or simple multi-page site.',
+      'webd.pkg.starter.li1':'Custom design — no templates', 'webd.pkg.starter.li2':'Responsive, fast, SEO base', 'webd.pkg.starter.li3':'GA4 & basic events',
+      'webd.pkg.growth.title':'Growth', 'webd.pkg.growth.desc':'Multi-page + blog/sections, ready for ads.',
+      'webd.pkg.growth.li1':'Design system + components', 'webd.pkg.growth.li2':'Events for funnels & ROAS', 'webd.pkg.growth.li3':'Monthly sprints (optional)',
+      'webd.pkg.custom.title':'Custom', 'webd.pkg.custom.desc':'E-commerce or complex features.',
+      'webd.pkg.custom.li1':'Vue 3 + Spring Boot + PG', 'webd.pkg.custom.li2':'Stripe, auth, webhooks', 'webd.pkg.custom.li3':'Integrations & dashboards',
+      'webd.faq.h2':'FAQ', 'webd.faq.lead1':'Straight answers', 'webd.faq.lead2':'no fluff',
+      'webd.faq.q1.title':'Do you use templates?', 'webd.faq.q1.desc':'No. Everything is coded to your brand. That’s how we keep speed high and UX on point.',
+      'webd.faq.q2.title':'Timelines?', 'webd.faq.q2.desc':'Starter ~2–3 weeks. Growth ~3–6 weeks. Custom varies by scope.',
+      'webd.cta.title':'Ready to build or redesign?', 'webd.cta.copy':'Tell us goals, scope and timeline. We’ll reply within 24 hours.'
     },
+
     es: {
       // Nav
       'nav.home': 'Inicio', 'nav.about': 'Nosotros', 'nav.services': 'Servicios', 'nav.projects': 'Proyectos',
@@ -163,7 +232,79 @@
       'projects.h2': 'Proyectos', 'projects.lead1': 'Explora', 'projects.lead2': 'Trabajos y Casos de Estudio',
       // CTA
       'cta.title': '¿Tienes un proyecto en mente?', 'cta.copy': 'Cuéntanos sobre el producto, tiempos y objetivos. Respondemos en menos de 24 horas.',
-      'cta.email': 'info@marcapro.agency', 'cta.ig': 'Instagram'
+      'cta.email': 'info@marcapro.agency', 'cta.ig': 'Instagram',
+
+      /* ==== SERVICES (svc.*) ==== */
+      'svc.hero.badge':'Servicios',
+      'svc.hero.h1':'Qué hacemos',
+      'svc.hero.subtitle':'Desarrollo full-stack, e-commerce, contenido y growth/ads.',
+      'svc.web.h2':'Web Apps',
+      'svc.web.lead1':'Dashboards, portales', 'svc.web.lead2':'y APIs',
+      'svc.web.front.title':'Frontend (Vue 3)',
+      'svc.web.front.desc':'Design system, accesibilidad, performance y SEO base.',
+      'svc.web.back.title':'Backend (Spring Boot)',
+      'svc.web.back.desc':'APIs REST, auth JWT, roles, Stripe e integraciones.',
+      'svc.web.learn':'Ver más',
+      'svc.ecom.h2':'E-commerce',
+      'svc.ecom.lead1':'Stripe, impuestos', 'svc.ecom.lead2':'y envíos',
+      'svc.ecom.cat.title':'Catálogo y variantes', 'svc.ecom.cat.desc':'Tallas, colores, stock y colecciones.',
+      'svc.ecom.cart.title':'Carrito y checkout', 'svc.ecom.cart.desc':'Stripe Checkout, cupones e impuestos.',
+      'svc.ecom.orders.title':'Órdenes y webhooks', 'svc.ecom.orders.desc':'Confirmaciones, estados y reportes.',
+      'svc.content.h2':'Contenido',
+      'svc.content.lead1':'Reels, UGC', 'svc.content.lead2':'brand kits',
+      'svc.content.video.title':'Video corto', 'svc.content.video.desc':'Guión, grabación, edición y calendar.',
+      'svc.content.brand.title':'Branding', 'svc.content.brand.desc':'Manual de marca, tipografía y color.',
+      'svc.content.kits.title':'Kits sociales', 'svc.content.kits.desc':'Plantillas IG/TikTok/YouTube.',
+      'svc.growth.h2':'Growth & Ads',
+      'svc.growth.lead1':'Meta Suite', 'svc.growth.lead2':'Google/GA4',
+      'svc.growth.funnel.title':'Embudos', 'svc.growth.funnel.desc':'Top/Mid/Bottom, ofertas y creatividades.',
+      'svc.growth.meta.title':'Meta Ads', 'svc.growth.meta.desc':'Segmentación, eventos y remarketing.',
+      'svc.growth.analytics.title':'Medición', 'svc.growth.analytics.desc':'Dashboards GA4, ROAS y sprints.',
+
+      /* ==== WEB DESIGN (webd.*) ==== */
+      'webd.badge':'Diseño Web',
+      'webd.h1':'Diseño web a medida — sin plantillas.',
+      'webd.subtitle':'UI pixel-perfect, rápido por defecto, hecho con Vue 3 + Spring Boot. 100% código para tu marca — no un tema.',
+      'webd.pill.custom':'100% código propio',
+      'webd.pill.redesign':'Rediseños expertos',
+      'webd.pill.performance':'Performance & SEO',
+      'webd.cta.quote':'Pedir cotización',
+      'webd.cta.work':'Ver trabajos',
+      'webd.why.h2':'¿Por qué 100% a medida y no plantillas?',
+      'webd.why.lead1':'Más rápido, claro,', 'webd.why.lead2':'y escalable',
+      'webd.why.point1.title':'Performance por diseño',
+      'webd.why.point1.desc':'Sin bloat. Componentes limpios, JS mínimo y Web Vitals en verde.',
+      'webd.why.point2.title':'UI fiel a tu marca',
+      'webd.why.point2.desc':'Layouts y componentes hechos a tu tono, no a uno genérico.',
+      'webd.why.point3.title':'SEO-ready y analytics-ready',
+      'webd.why.point3.desc':'HTML semántico, metatags y eventos para GA4 y píxeles de Meta.',
+      'webd.templates.title':'Problemas típicos de plantillas',
+      'webd.templates.li1':'Plugins y CSS pesados que no usas.',
+      'webd.templates.li2':'Layouts limitados; difícil calzar con tu marca.',
+      'webd.templates.li3':'Scores lentos y SEO desordenado.',
+      'webd.templates.li4':'Caro de mantener o extender.',
+      'webd.redesign.h2':'Rediseños que sí mueven la aguja',
+      'webd.redesign.lead1':'Auditoría → Wireframe → ', 'webd.redesign.lead2':'UI Build → Lanzamiento',
+      'webd.redesign.s1.title':'Auditoría', 'webd.redesign.s1.desc':'Analytics, heatmaps, SEO e inventario de contenidos.',
+      'webd.redesign.s2.title':'Wireframe', 'webd.redesign.s2.desc':'Estructura, mensajes y puntos de conversión.',
+      'webd.redesign.s3.title':'UI Build', 'webd.redesign.s3.desc':'Componentes Vue + API Spring Boot, SEO & tags.',
+      'webd.redesign.s4.title':'Lanzar e iterar', 'webd.redesign.s4.desc':'Perf/QA, píxeles, A/B tests y sprints mensuales.',
+      'webd.scope.h2':'Alcance & Entregables',
+      'webd.scope.lead1':'Todo lo necesario', 'webd.scope.lead2':'para un sitio real de negocio',
+      'webd.scope.landing.title':'Landing / Multipágina', 'webd.scope.landing.desc':'Home, Nosotros, Servicios, Proyectos, FAQ, 404.',
+      'webd.scope.ecom.title':'E-commerce', 'webd.scope.ecom.desc':'Variantes, carrito, órdenes, Stripe, impuestos y envíos.',
+      'webd.scope.analytics.title':'SEO & Analytics', 'webd.scope.analytics.desc':'GA4/Tags, píxeles de Meta, eventos, sitemap y meta.',
+      'webd.packages.h2':'Paquetes', 'webd.packages.lead1':'Alcance claro,', 'webd.packages.lead2':'resultados medibles',
+      'webd.pkg.starter.title':'Starter', 'webd.pkg.starter.desc':'One-page o multipágina simple.',
+      'webd.pkg.starter.li1':'Diseño a medida — sin plantillas', 'webd.pkg.starter.li2':'Responsive, rápido, SEO base', 'webd.pkg.starter.li3':'GA4 y eventos básicos',
+      'webd.pkg.growth.title':'Growth', 'webd.pkg.growth.desc':'Multipágina + blog/secciones, listo para pauta.',
+      'webd.pkg.growth.li1':'Design system + componentes', 'webd.pkg.growth.li2':'Eventos para funnels y ROAS', 'webd.pkg.growth.li3':'Sprints mensuales (opcional)',
+      'webd.pkg.custom.title':'Custom', 'webd.pkg.custom.desc':'E-commerce o features complejos.',
+      'webd.pkg.custom.li1':'Vue 3 + Spring Boot + PG', 'webd.pkg.custom.li2':'Stripe, auth, webhooks', 'webd.pkg.custom.li3':'Integraciones y dashboards',
+      'webd.faq.h2':'FAQ', 'webd.faq.lead1':'Respuestas directas', 'webd.faq.lead2':'sin humo',
+      'webd.faq.q1.title':'¿Usan plantillas?', 'webd.faq.q1.desc':'No. Todo se codifica a tu marca. Así mantenemos velocidad y UX.',
+      'webd.faq.q2.title':'¿Tiempos?', 'webd.faq.q2.desc':'Starter ~2–3 semanas. Growth ~3–6 semanas. Custom depende del alcance.',
+      'webd.cta.title':'¿Listo para construir o rediseñar?', 'webd.cta.copy':'Cuéntanos objetivos, alcance y tiempos. Respondemos en 24h.'
     }
   };
 
@@ -175,7 +316,6 @@
       const key = el.getAttribute('data-i18n');
       if (dict[key] != null) el.textContent = dict[key];
     });
-
     document.querySelectorAll('[data-i18n-html]').forEach(el => {
       const key = el.getAttribute('data-i18n-html');
       if (dict[key] != null) el.innerHTML = dict[key];
@@ -192,7 +332,7 @@
     btn.addEventListener('click', () => applyI18n(btn.getAttribute('data-lang')));
   });
 
-  // Inicializa en EN por defecto (si no hay preferencia guardada)
+  // Inicializa (EN por defecto)
   const savedLang = localStorage.getItem('lang');
   applyI18n(savedLang || 'en');
 
@@ -235,7 +375,7 @@
       results: 'Load times <1.5s in key pages.'
     },
     {
-      id: 4, title: 'Pet Station', type: 'web',
+      id: 4, title: 'Pet Station', type: 'marketing',
       sector: 'Vet Clinic — Grooming & Health',
       img: 'assets/images/petstation.png',
       live: 'https://petstationvet.com', github: null,
@@ -245,7 +385,7 @@
       results: 'Consistent weekly growth of paid/organic leads.'
     },
     {
-      id: 5, title: 'Canbridge', type: 'web',
+      id: 5, title: 'Canbridge', type: 'branding',
       sector: 'Dog School — Therapy & Boarding',
       img: 'assets/images/canbridge.png',
       live: 'https://canbridgeguarderiacanina.com', github: null,
@@ -358,221 +498,4 @@
   }
 
   window.addEventListener('load', initProjects);
-
-})();
-
-
-  /* =========================
-   Projects data + rendering
-   ========================= */
-
-const PROJECTS = [
-  {
-    id: 1,
-    title: 'Valkha',
-    type: 'ecommerce',       // para filtros: web | ecommerce | marketing | branding
-    sector: 'E-commerce — Sportswear',
-    img: 'assets/images/valkha.png',   // reemplaza por tu ruta real
-    live: 'https://valkhasport.com',
-    github: null,
-    tags: ['Vue 3', 'Spring Boot', 'Stripe', 'PostgreSQL', 'Netlify/Railway'],
-    challenge: 'Lanzar tienda de ropa deportiva con variantes (talla/color), carrito, checkout en Stripe y panel admin.',
-    solutions: [
-      'Frontend en Vue 3 + Pinia, sliders y página de producto con variantes',
-      'API Spring Boot segura con JWT y carrito por sesión/usuario',
-      'Stripe Checkout (USD), webhooks y creación de órdenes',
-      'Despliegue: Netlify (front) + Railway (back) + NeonDB/PG'
-    ],
-    results: 'Checkout estable y rápido, base para campañas de conversión (Meta/Google).'
-  },
-  {
-    id: 2,
-    title: 'Tasca',
-    type: 'web',
-    sector: 'Restaurant — Spanish Tapas',
-    img: 'assets/images/tasca.png',
-    live: 'https://tascatapas.com', // si cambia, pon la URL correcta o deja null
-    github: null,
-    tags: ['Vue 3', 'Menu CMS', 'SEO', 'Netlify'],
-    challenge: 'Rediseño con foco en reservas y performance.',
-    solutions: [
-      'Arquitectura SPA con rutas públicas y admin',
-      'Secciones: menú, drinks, eventos, galería',
-      'Integración de widget de reservas (Tock) y schema SEO'
-    ],
-    results: 'Mejor CTR en orgánico y claridad de la carta.'
-  },
-  {
-    id: 3,
-    title: 'Pintxo Pincho',
-    type: 'web',
-    sector: 'Restaurant — Pintxos & Drinks',
-    img: 'assets/images/pintxo.png',
-    live: 'https://pintxopincho.com', // ajusta si tienes otra
-    github: null,
-    tags: ['Vue 3', 'Railway', 'Drinks Menu', 'CORS hardening'],
-    challenge: 'Sitio veloz para cartas de comida/bebida y promos.',
-    solutions: [
-      'Ruteo claro y admin para ofertas destacadas',
-      'Caching estático + endpoints paginados',
-      'Resolución de CORS en entorno Railway'
-    ],
-    results: 'Tiempo de carga <1.5s en páginas clave.'
-  },
-  {
-    id: 4,
-    title: 'Pet Station',
-    type: 'marketing',
-    sector: 'Vet Clinic — Grooming & Health',
-    img: 'assets/images/petstation.png',
-    live: 'https://petstationvet.com', // si no existe, pon null
-    github: null,
-    tags: ['Content', 'Reels', 'Landing', 'Meta Ads'],
-    challenge: 'Aumentar citas de grooming y odontología veterinaria.',
-    solutions: [
-      'Calendario de reels y creatividades (CapCut/Canva)',
-      'Landing con formularios y WhatsApp CTA',
-      'Etiquetado de eventos y campañas locales'
-    ],
-    results: 'Incremento semanal sostenido de leads orgánicos/pagos.'
-  },
-  {
-    id: 5,
-    title: 'Canbridge',
-    type: 'branding',
-    sector: 'Dog School — Therapy & Boarding',
-    img: 'assets/images/canbridge.png',
-    live: 'https://canbridgeguarderiacanina.com', // si no existe, pon null
-    github: null,
-    tags: ['Brand Kit', 'Website', 'UGC', 'Community'],
-    challenge: 'Unificar marca y captar cupos para guardería y terapia.',
-    solutions: [
-      'Manual de marca (colores, tipografías, voz)',
-      'Landing con secciones de servicios y testimonios',
-      'UGC estilo “Pixar-like” para awareness'
-    ],
-    results: 'Mayor recordación y consultas por WhatsApp/IG.'
-  },
-  {
-    id: 6,
-    title: 'Eventex',
-    type: 'web',
-    sector: 'Events & Uniforms',
-    img: 'assets/images/eventex.png',
-    live: 'https://www.eventex.com.co',
-    github: null,
-    tags: ['Static site', 'SEO', 'Lead capture'],
-    challenge: 'Renovar presencia y captación con dominio nuevo.',
-    solutions: [
-      'Estructura SEO, sitemap, metatags',
-      'Sección de dotaciones y eventos',
-      'CTAs a correo/IG mientras se implementa backend'
-    ],
-    results: 'Mejor indexación y base para campañas.'
-  }
-];
-
-(function initProjects(){
-  const grid = document.getElementById('projectsGrid');
-  const filters = document.getElementById('projectsFilters');
-  const logosRow = document.getElementById('logosRow');
-
-  if (!grid) return;
-
-  // Render grid
-  function render(list){
-    grid.innerHTML = '';
-    const frag = document.createDocumentFragment();
-    list.forEach(p => {
-      const col = document.createElement('div');
-      col.className = 'col-sm-6 col-lg-4';
-      col.innerHTML = `
-        <div class="project-card">
-          <img class="project-thumb" src="${p.img}" alt="${p.title}">
-          <div class="project-body">
-            <h5 class="project-title">${p.title}</h5>
-            <div class="small text-muted">${p.sector}</div>
-            <div class="project-tags mt-1">
-              ${p.tags.slice(0,3).map(t=>`<span class="project-tag">${t}</span>`).join('')}
-            </div>
-            <div class="project-actions">
-              <button class="btn btn-sm btn-outline-dark" data-case="${p.id}">
-                <i class="bi bi-journal-text me-1"></i> Case study
-              </button>
-              ${p.live ? `<a class="btn btn-sm btn-primary" href="${p.live}" target="_blank" rel="noopener">
-                <i class="bi bi-globe me-1"></i> Visit
-              </a>` : ''}
-              ${p.github ? `<a class="btn btn-sm btn-outline-secondary" href="${p.github}" target="_blank" rel="noopener">
-                <i class="bi bi-github me-1"></i> GitHub
-              </a>` : ''}
-            </div>
-          </div>
-        </div>`;
-      frag.appendChild(col);
-    });
-    grid.appendChild(frag);
-
-    // Bind modal buttons
-    grid.querySelectorAll('[data-case]').forEach(btn=>{
-      btn.addEventListener('click', e=>{
-        const id = Number(e.currentTarget.getAttribute('data-case'));
-        const item = PROJECTS.find(x=>x.id===id);
-        if (item) openCaseStudy(item);
-      });
-    });
-  }
-
-  // Filter logic
-  if (filters){
-    filters.querySelectorAll('.nav-link').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        filters.querySelectorAll('.nav-link').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        const f = btn.getAttribute('data-filter');
-        const list = f==='all' ? PROJECTS : PROJECTS.filter(p=>p.type===f);
-        render(list);
-      });
-    });
-  }
-
-  // Case study modal
-  function openCaseStudy(p){
-    const modalEl = document.getElementById('caseStudyModal');
-    if (!modalEl) return;
-    modalEl.querySelector('#caseStudyTitle').textContent = p.title;
-    modalEl.querySelector('#caseStudyChallenge').textContent = p.challenge;
-    const ul = modalEl.querySelector('#caseStudySolutions');
-    ul.innerHTML = p.solutions.map(s=>`<li>${s}</li>`).join('');
-    const res = modalEl.querySelector('#caseStudyResults');
-    res.textContent = p.results;
-    res.classList.remove('d-none');
-    const live = modalEl.querySelector('#caseStudyLive');
-    const git = modalEl.querySelector('#caseStudyGithub');
-    if (p.live) { live.classList.remove('d-none'); live.href = p.live; }
-    else { live.classList.add('d-none'); }
-    if (p.github) { git.classList.remove('d-none'); git.href = p.github; }
-    else { git.classList.add('d-none'); }
-
-    const tags = modalEl.querySelector('#caseStudyTags');
-    tags.innerHTML = p.tags.map(t=>`<span class="badge rounded-pill text-bg-light border">${t}</span>`).join('');
-
-    const bsModal = new bootstrap.Modal(modalEl);
-    bsModal.show();
-  }
-
-  // “Trusted by” logos (opcional, pon tus rutas reales o quita este bloque)
-  if (logosRow){
-    const logos = [
-      'assets/images/logos/valkha.svg',
-      'assets/images/logos/tasca.svg',
-      'assets/images/logos/pintxo.svg',
-      'assets/images/logos/petstation.svg',
-      'assets/images/logos/canbridge.svg',
-      'assets/images/logos/eventex.svg',
-    ];
-    logosRow.innerHTML = logos.map(src=>`<img src="${src}" alt="" height="26" />`).join('');
-  }
-
-  // Initial render
-  render(PROJECTS);
 })();
