@@ -2,529 +2,386 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/styles/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/styles/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="./assets/styles/aos/aos.css">
-    <link rel="stylesheet" href="./assets/styles/glightbox/css/glightbox.min.css">
-    <link rel="stylesheet" href="./assets/styles/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="./assets/styles/styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MarcaPro</title>
+
+    <!-- Bootstrap & vendors -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/styles/bootstrap-icons/bootstrap-icons.css" />
+    <link rel="stylesheet" href="./assets/styles/aos/aos.css" />
+
+    <!-- Tu hoja de estilos UNICA -->
+    <link rel="stylesheet" href="./assets/styles/styles.css" />
+
     <link rel="shortcut icon" href="./assets/images/logo-blanco.png" type="image/x-icon">
-    <!-- Fonts -->
+    <!-- Fonts (opcional) -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-
-    <title>MarcaPro - Home</title>
 </head>
 
 <body class="index-page">
-
+    <!-- ===== Header ===== -->
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-
             <a href="index.html" class="logo d-flex align-items-center">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <img src="assets/images/logo-blanco-sin-fondo.png" alt="logo MarcaPro" class="logo-nav">
+                <img src="assets/images/logo-blanco-sin-fondo.png" alt="MarcaPro logo" class="logo-nav">
                 <h1 class="sitename">MarcaPro</h1>
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="#hero" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#team">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#hero" class="active" data-i18n="nav.home">Home</a></li>
+                    <li><a href="#about" data-i18n="nav.about">About</a></li>
+                    <li><a href="#features" data-i18n="nav.services">Services</a></li>
+                    <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+                    <!-- Idiomas -->
+                    <li class="lang-switch">
+                        <button class="btn-lang" data-lang="en">EN</button>
+                        <button class="btn-lang" data-lang="es">ES</button>
+                    </li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
-
         </div>
     </header>
 
     <main class="main">
-
-        <!-- Hero Section -->
-        <section id="hero" class="hero section1 dark-background">
-            <img src="assets/img/hero-bg-2.jpg" alt="" class="hero-bg">
-
-            <div class="container">
-                <div class="row gy-4 justify-content-between">
-                    <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
-                        <img src="assets/images/hero-img.png" class="img-fluid animated" alt="">
-                    </div>
-
-                    <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
-                        <h1>Your Solution for a Powerful Digital Presence <span>MarcaPro </span></h1>
-                        <p>Our team of expert developers and digital marketers is here to elevate your online presence
-                            with responsive designs, strategic social media management, and impactful ads that drive
-                            growth.</p>
-                        <div class="d-flex">
-                            <a href="#about" class="btn-get-started">Get Started</a>
-                        </div>
-                    </div>
-
+        <!-- ===== HERO limpio (sin ilustración) ===== -->
+        <section id="hero" class="hero-clean d-flex align-items-center">
+            <div class="container text-center text-lg-start" data-aos="fade-up">
+                <span class="hero-badge" data-i18n="hero.badge">
+                    Full-stack + Growth for modern brands
+                </span>
+                <h1 class="mt-3 display-5 fw-bold" data-i18n-html="hero.title">
+                    Build. Launch. <span class="text-primary">Scale.</span>
+                </h1>
+                <p class="lead mt-3 mb-4" data-i18n="hero.subtitle">
+                    Custom websites & e-commerce (Spring Boot + Vue) and performance marketing
+                    for U.S. audiences. Clean design, fast delivery, measurable results.
+                </p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                    <a href="mailto:info@marcapro.agency" class="btn btn-primary btn-lg" data-i18n="hero.ctaEmail">
+                        Email us
+                    </a>
+                    <a href="https://www.instagram.com/marketing.marcapro" target="_blank" rel="noopener"
+                        class="btn btn-outline-light btn-lg" data-i18n="hero.ctaIg">
+                        DM on Instagram
+                    </a>
+                </div>
+                <div
+                    class="d-flex flex-wrap gap-3 mt-4 opacity-75 small justify-content-center justify-content-lg-start">
+                    <span data-i18n="hero.badgeStripe">Stripe-ready</span>
+                    <span data-i18n="hero.badgeInfra">Netlify / Railway</span>
+                    <span data-i18n="hero.badgeAnalytics">Ads & Analytics</span>
                 </div>
             </div>
+        </section>
 
-            <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 24 150 28 " preserveAspectRatio="none">
-                <defs>
-                    <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
-                    </path>
-                </defs>
-                <g class="wave1">
-                    <use xlink:href="#wave-path" x="50" y="3"></use>
-                </g>
-                <g class="wave2">
-                    <use xlink:href="#wave-path" x="50" y="0"></use>
-                </g>
-                <g class="wave3">
-                    <use xlink:href="#wave-path" x="50" y="9"></use>
-                </g>
-            </svg>
 
-        </section><!-- /Hero Section -->
-
-        <!-- About Section -->
+        <!-- ===== About ===== -->
         <section id="about" class="about section1">
-
             <div class="container" data-aos="fade-up" data-aos-delay="100">
                 <div class="row align-items-xl-center gy-5">
-
                     <div class="col-xl-5 content">
-                        <h3>About Us</h3>
-                        <h2>Innovative Solutions for Your Digital Presence</h2>
-                        <p>At MarcaPro, we are a team of dedicated developers and digital marketing experts who
-                            specialize in building full-stack websites and managing comprehensive digital strategies.
-                            From eCommerce platforms to web applications, we use cutting-edge technologies like Spring
-                            Boot, Vue.js, Bootstrap, and PostgreSQL to deliver responsive, scalable solutions. On the
-                            marketing side, we craft compelling content for platforms such as TikTok, Instagram, and
-                            Facebook, leveraging the Meta suite for optimal performance across all apps.</p>
+                        <h3 data-i18n="about.h3">About Us</h3>
+                        <h2 data-i18n="about.h2">Dev + Marketing under one roof</h2>
+                        <p data-i18n="about.p1">
+                            We ship full-stack websites and growth frameworks. Vue 3 frontends, Spring Boot backends,
+                            solid infra, and ads that actually convert. Designed for speed, clarity, and ROI.
+                        </p>
                     </div>
-
                     <div class="col-xl-7">
                         <div class="row gy-4 icon-boxes">
-
-                            <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                            <div class="col-md-6">
                                 <div class="icon-box">
                                     <i class="bi bi-code-slash"></i>
-                                    <h3>Full-Stack Development</h3>
-                                    <p>We build robust websites using technologies like Spring Boot, Vue.js, Bootstrap,
-                                        HTML, CSS, and Java, ensuring both front-end aesthetics and back-end efficiency.
-                                    </p>
+                                    <h3 data-i18n="about.fullstack.title">Full-Stack</h3>
+                                    <p data-i18n="about.fullstack.desc">Vue 3 + Spring Boot + PostgreSQL. Clean APIs,
+                                        secure auth, Stripe checkout.</p>
                                 </div>
-                            </div> <!-- End Icon Box -->
-
-                            <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                            </div>
+                            <div class="col-md-6">
                                 <div class="icon-box">
                                     <i class="bi bi-cart"></i>
-                                    <h3>E-Commerce Solutions</h3>
-                                    <p>Our team creates fully customized eCommerce platforms that are secure, scalable,
-                                        and tailored to your business needs, powered by Gradle and PostgreSQL.</p>
+                                    <h3 data-i18n="about.ecommerce.title">E-commerce</h3>
+                                    <p data-i18n="about.ecommerce.desc">Variant logic, carts, orders, webhooks, taxes,
+                                        U.S. Stripe setup end-to-end.</p>
                                 </div>
-                            </div> <!-- End Icon Box -->
-
-                            <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                                <div class="icon-box">
-                                    <i class="bi bi-camera-video"></i>
-                                    <h3>Content Creation</h3>
-                                    <p>We produce engaging content for platforms like TikTok, Instagram, and Facebook
-                                        using tools such as Photoshop, Canva, Premiere Pro, and CapCut to ensure your
-                                        brand stands out.</p>
-                                </div>
-                            </div> <!-- End Icon Box -->
-
-                            <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+                            </div>
+                            <div class="col-md-6">
                                 <div class="icon-box">
                                     <i class="bi bi-bullseye"></i>
-                                    <h3>Social Media & Ads Management</h3>
-                                    <p>Maximize your reach and performance on Meta platforms with our expert management
-                                        of the Meta suite, driving targeted ad campaigns that deliver results.</p>
+                                    <h3 data-i18n="about.growth.title">Growth</h3>
+                                    <p data-i18n="about.growth.desc">Meta & Google Ads, pixels, events, CRO, content
+                                        engines that scale.</p>
                                 </div>
-                            </div> <!-- End Icon Box -->
-
+                            </div>
+                            <div class="col-md-6">
+                                <div class="icon-box">
+                                    <i class="bi bi-cloud-upload"></i>
+                                    <h3 data-i18n="about.deploy.title">Deploy</h3>
+                                    <p data-i18n="about.deploy.desc">Netlify frontends, Railway/Neon DB, CI/CD, logging,
+                                        uptime, SSL right.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
+        </section>
 
-        </section><!-- /About Section -->
-
-        <!-- Features Section -->
+        <!-- ===== Services (Features) ===== -->
         <section id="features" class="features section1">
-
             <div class="container">
-
                 <div class="row gy-4">
-
                     <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="features-item">
-                            <i class="bi bi-code-slash" style="color: #ffbb2c;"></i>
-                            <h3><a href="" class="stretched-link">Full-Stack Development</a></h3>
+                            <i class="bi bi-code-slash"></i>
+                            <h3 class="mb-0">Web Apps</h3>
+                            <small class="text-muted">Dashboards, portals, APIs</small>
                         </div>
-                    </div><!-- End Feature Item -->
-
+                    </div>
                     <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="features-item">
-                            <i class="bi bi-cart-fill" style="color: #5578ff;"></i>
-                            <h3><a href="" class="stretched-link">E-Commerce Solutions</a></h3>
+                            <i class="bi bi-cart-fill"></i>
+                            <h3 class="mb-0">E-commerce</h3>
+                            <small class="text-muted">Stripe, taxes, shipping</small>
                         </div>
-                    </div><!-- End Feature Item -->
-
+                    </div>
                     <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
                         <div class="features-item">
-                            <i class="bi bi-images" style="color: #e80368;"></i>
-                            <h3><a href="" class="stretched-link">Content Creation</a></h3>
+                            <i class="bi bi-images"></i>
+                            <h3 class="mb-0">Content</h3>
+                            <small class="text-muted">Reels, UGC, brand kits</small>
                         </div>
-                    </div><!-- End Feature Item -->
-
+                    </div>
                     <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="400">
                         <div class="features-item">
-                            <i class="bi bi-bar-chart-line" style="color: #e361ff;"></i>
-                            <h3><a href="" class="stretched-link">SEO & Performance</a></h3>
+                            <i class="bi bi-bar-chart-line"></i>
+                            <h3 class="mb-0">SEO & Analytics</h3>
+                            <small class="text-muted">GAds/Meta, GA4, tags</small>
                         </div>
-                    </div><!-- End Feature Item -->
-
-                    <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="500">
-                        <div class="features-item">
-                            <i class="bi bi-people" style="color: #47aeff;"></i>
-                            <h3><a href="" class="stretched-link">Social Media Management</a></h3>
-                        </div>
-                    </div><!-- End Feature Item -->
-
-                    <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="600">
-                        <div class="features-item">
-                            <i class="bi bi-bar-chart" style="color: #ffa76e;"></i>
-                            <h3><a href="" class="stretched-link">Ads Management</a></h3>
-                        </div>
-                    </div><!-- End Feature Item -->
-
-                    <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="700">
-                        <div class="features-item">
-                            <i class="bi bi-cloud-upload" style="color: #11dbcf;"></i>
-                            <h3><a href="" class="stretched-link">Cloud Deployment</a></h3>
-                        </div>
-                    </div><!-- End Feature Item -->
-
-                    <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="800">
-                        <div class="features-item">
-                            <i class="bi bi-calendar-event" style="color: #4233ff;"></i>
-                            <h3><a href="" class="stretched-link">Performance Tracking</a></h3>
-                        </div>
-                    </div><!-- End Feature Item -->
-
+                    </div>
                 </div>
-
             </div>
+        </section>
 
-        </section><!-- /Features Section -->
+        <!-- ===== How we work (process) ===== -->
+        <section id="details" class="section1">
+            <div class="container section-title" data-aos="fade-up">
+                <h2 data-i18n="process.h2">How we work</h2>
+                <div><span data-i18n="process.lead1">Simple process,</span> <span class="description-title"
+                        data-i18n="process.lead2">fast outcomes</span></div>
+            </div>
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="process-step h-100">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="badge text-bg-primary">1</span>
+                                <h5 class="mb-0" data-i18n="process.1.title">Discovery</h5>
+                            </div>
+                            <p class="mb-2" data-i18n="process.1.desc">30-min call: goals, audience, offers, budget.</p>
+                            <ul class="mb-0 small">
+                                <li data-i18n="process.1.li1">Baseline audit</li>
+                                <li data-i18n="process.1.li2">Scope & timeline</li>
+                                <li data-i18n="process.1.li3">Tech & channels</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="process-step h-100">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="badge text-bg-primary">2</span>
+                                <h5 class="mb-0" data-i18n="process.2.title">Build</h5>
+                            </div>
+                            <p class="mb-2" data-i18n="process.2.desc">Design system + front/back integration.</p>
+                            <ul class="mb-0 small">
+                                <li data-i18n="process.2.li1">Vue 3 UI</li>
+                                <li data-i18n="process.2.li2">Spring Boot API</li>
+                                <li data-i18n="process.2.li3">Stripe, auth, CMS</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                        <div class="process-step h-100">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="badge text-bg-primary">3</span>
+                                <h5 class="mb-0" data-i18n="process.3.title">Launch</h5>
+                            </div>
+                            <p class="mb-2" data-i18n="process.3.desc">Netlify + Railway, SSL, domains, pixels.</p>
+                            <ul class="mb-0 small">
+                                <li data-i18n="process.3.li1">Perf & QA</li>
+                                <li data-i18n="process.3.li2">Analytics events</li>
+                                <li data-i18n="process.3.li3">On-page SEO</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                        <div class="process-step h-100">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="badge text-bg-primary">4</span>
+                                <h5 class="mb-0" data-i18n="process.4.title">Grow</h5>
+                            </div>
+                            <p class="mb-2" data-i18n="process.4.desc">Ad funnels + content engine.</p>
+                            <ul class="mb-0 small">
+                                <li data-i18n="process.4.li1">A/B tests</li>
+                                <li data-i18n="process.4.li2">ROAS tracking</li>
+                                <li data-i18n="process.4.li3">Monthly sprints</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- Stats Section -->
-        <section id="stats" class="stats section1 light-background">
+        <!-- ===== Projects ===== -->
+        <section id="projects" class="projects section1">
+            <div class="container section-title" data-aos="fade-up">
+                <h2 data-i18n="projects.h2">Projects</h2>
+                <div><span data-i18n="projects.lead1">Explore</span> <span class="description-title"
+                        data-i18n="projects.lead2">Client Work & Case Studies</span></div>
+            </div>
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
+                <!-- Filtros -->
+                <ul class="nav nav-pills justify-content-center gap-2 mb-4" id="projectsFilters">
+                    <li class="nav-item"><button class="nav-link active" data-filter="all">All</button></li>
+                    <li class="nav-item"><button class="nav-link" data-filter="web">Web</button></li>
+                    <li class="nav-item"><button class="nav-link" data-filter="ecommerce">E-commerce</button></li>
+                    <li class="nav-item"><button class="nav-link" data-filter="marketing">Marketing</button></li>
+                    <li class="nav-item"><button class="nav-link" data-filter="branding">Branding</button></li>
+                </ul>
 
-                <div class="row gy-4">
-
-                    <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <i class="bi bi-emoji-smile"></i>
-                        <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Happy Clients</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <i class="bi bi-journal-richtext"></i>
-                        <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Projects</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <i class="bi bi-headset"></i>
-                        <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Hours Of Support</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <i class="bi bi-people"></i>
-                        <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Hard Workers</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                </div>
-
+                <!-- Grid -->
+                <div class="row gy-4" id="projectsGrid"><!-- injected by JS --></div>
             </div>
 
-        </section><!-- /Stats Section -->
+            <!-- Case Study Modal -->
+            <div class="modal fade" id="caseStudyModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="caseStudyTitle">Case Study</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="caseStudyChallenge" class="mb-2"></p>
+                            <ul id="caseStudySolutions" class="mb-3"></ul>
+                            <div id="caseStudyResults" class="alert alert-success py-2 d-none"></div>
+                            <div class="d-flex flex-wrap gap-2 mt-3" id="caseStudyTags"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="caseStudyLive" target="_blank" rel="noopener" class="btn btn-primary d-none">
+                                <i class="bi bi-globe me-1"></i> Visit site
+                            </a>
+                            <a id="caseStudyGithub" target="_blank" rel="noopener"
+                                class="btn btn-outline-secondary d-none">
+                                <i class="bi bi-github me-1"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- Details Section -->
-        <section id="details" class="details section1">
-
-            <!-- Section Title -->
+        <!-- ===== Social Media & Ads ===== -->
+        <section id="social" class="section1 light-background">
             <div class="container section-title" data-aos="fade-up">
-                <h2>Details</h2>
-                <div><span>Explore</span> <span class="description-title">Our Innovative Solutions</span></div>
-            </div><!-- End Section Title -->
+                <h2>Social Media & Ads</h2>
+                <div>
+                    <span>Engagement & Growth for</span>
+                    <span class="description-title">Our Clients</span>
+                </div>
+            </div>
 
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+                <div class="row gy-4 justify-content-center">
+
+                    <!-- Pet Station -->
+                    <div class="col-md-4">
+                        <div class="social-card h-100 text-center p-4">
+                            <img src="assets/images/projects/petstation.jpg" alt="Pet Station" class="social-logo mb-3">
+                            <h5 class="mb-2">Pet Station</h5>
+                            <p class="small text-muted mb-3">Veterinary Clinic</p>
+                            <div class="d-flex justify-content-center gap-3 social-icons">
+                                <a href="https://instagram.com/petstationvet" target="_blank" rel="noopener"><i
+                                        class="bi bi-instagram"></i></a>
+                                <a href="https://tiktok.com/@petstationvet" target="_blank" rel="noopener"><i
+                                        class="bi bi-tiktok"></i></a>
+                                <a href="https://youtube.com/@petstationvet" target="_blank" rel="noopener"><i
+                                        class="bi bi-youtube"></i></a>
+                            </div>
+                            <span class="badge bg-dark mt-3">Meta Ads</span>
+                            <span class="badge bg-dark mt-1">Meta Suite</span>
+                        </div>
+                    </div>
+
+                    <!-- Canbridge -->
+                    <div class="col-md-4">
+                        <div class="social-card h-100 text-center p-4">
+                            <img src="assets/images/projects/canbridge.jpg" alt="Canbridge" class="social-logo mb-3">
+                            <h5 class="mb-2">Canbridge</h5>
+                            <p class="small text-muted mb-3">Dog School & Therapy</p>
+                            <div class="d-flex justify-content-center gap-3 social-icons">
+                                <a href="https://instagram.com/can_bridge" target="_blank" rel="noopener"><i
+                                        class="bi bi-instagram"></i></a>
+                                <a href="https://tiktok.com/@can_bridge" target="_blank" rel="noopener"><i
+                                        class="bi bi-tiktok"></i></a>
+                            </div>
+                            <span class="badge bg-dark mt-3">Meta Ads</span>
+                            <span class="badge bg-dark mt-1">Meta Suite</span>
+                        </div>
+                    </div>
+
+                    <!-- Tasca -->
+                    <div class="col-md-4">
+                        <div class="social-card h-100 text-center p-4">
+                            <img src="assets/images/projects/tasca.jpg" alt="Tasca" class="social-logo mb-3">
+                            <h5 class="mb-2">Tasca</h5>
+                            <p class="small text-muted mb-3">Spanish Tapas Restaurant</p>
+                            <div class="d-flex justify-content-center gap-3 social-icons">
+                                <a href="https://www.instagram.com/tascarestaurantboston/" target="_blank" rel="noopener"><i
+                                        class="bi bi-instagram"></i></a>
+                                <a href="https://facebook.com/tascarestaurantboston" target="_blank" rel="noopener"><i
+                                        class="bi bi-facebook"></i></a>
+                            </div>
+                            <span class="badge bg-dark mt-3">Meta Ads</span>
+                            <span class="badge bg-dark mt-1">Meta Suite</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- ===== CTA (en vez de formulario) ===== -->
+        <section class="cta-strip py-5 text-white">
             <div class="container">
-
-                <!-- First Feature Item -->
-                <div class="row gy-4 align-items-center features-item">
-                    <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-                        <img src="assets/images/details-1.png" class="img-fluid" alt="Innovative Product 1">
+                <div class="row align-items-center gy-3">
+                    <div class="col-lg-8" data-aos="fade-right">
+                        <h3 class="mb-1" data-i18n="cta.title">Have a project in mind?</h3>
+                        <p class="mb-0 opacity-75" data-i18n="cta.copy">Tell us about your product, timeline, and goals.
+                            We’ll reply within 24 hours.</p>
                     </div>
-                    <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-                        <h3>Next-Level Product Design</h3>
-                        <p class="fst-italic">
-                            At MarcaPro, we push the boundaries of product innovation. Our solutions combine aesthetics
-                            with functionality to deliver unparalleled user experiences.
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-check"></i><span> Cutting-edge technology built for your everyday
-                                    needs.</span></li>
-                            <li><i class="bi bi-check"></i><span> Designed with sustainability and efficiency in
-                                    mind.</span></li>
-                            <li><i class="bi bi-check"></i><span> Customizable options to fit your lifestyle.</span>
-                            </li>
-                        </ul>
+                    <div class="col-lg-4 d-flex gap-2 justify-content-lg-end" data-aos="fade-left">
+                        <a href="mailto:info@marcapro.agency" class="btn btn-light"
+                            data-i18n="cta.email">info@marcapro.agency</a>
+                        <a href="https://instagram.com/marketing.marcapro" target="_blank" rel="noopener"
+                            class="btn btn-outline-light" data-i18n="cta.ig">Instagram</a>
                     </div>
-                </div><!-- End Feature Item -->
-
-                <!-- Second Feature Item -->
-                <div class="row gy-4 align-items-center features-item">
-                    <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out"
-                        data-aos-delay="200">
-                        <img src="assets/images/details-2.png" class="img-fluid" alt="Product Integration">
-                    </div>
-                    <div class="col-md-7 order-2 order-md-1" data-aos="fade-up" data-aos-delay="200">
-                        <h3>Seamless Product Integration</h3>
-                        <p class="fst-italic">
-                            Our solutions integrate effortlessly into your existing systems, ensuring that you get the
-                            most out of every product without disruptions.
-                        </p>
-                        <p>
-                            Whether you're upgrading your current setup or starting from scratch, MarcaPro provides a
-                            smooth transition with full compatibility across platforms and devices.
-                        </p>
-                    </div>
-                </div><!-- End Feature Item -->
-
-                <!-- Third Feature Item -->
-                <div class="row gy-4 align-items-center features-item">
-                    <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out">
-                        <img src="assets/images/details-3.png" class="img-fluid" alt="Customer Support">
-                    </div>
-                    <div class="col-md-7" data-aos="fade-up">
-                        <h3>Exceptional Customer Support</h3>
-                        <p>
-                            At MarcaPro, customer satisfaction is our top priority. We offer 24/7 support to ensure that
-                            your products work flawlessly at all times.
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-check"></i> <span>Dedicated support team available anytime,
-                                    anywhere.</span></li>
-                            <li><i class="bi bi-check"></i> <span>Comprehensive guides and personalized
-                                    assistance.</span></li>
-                            <li><i class="bi bi-check"></i> <span>Swift problem resolution to minimize downtime.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div><!-- End Feature Item -->
-
-                <!-- Fourth Feature Item -->
-                <div class="row gy-4 align-items-center features-item">
-                    <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out">
-                        <img src="assets/images/details-4.png" class="img-fluid" alt="Innovative Services">
-                    </div>
-                    <div class="col-md-7 order-2 order-md-1" data-aos="fade-up">
-                        <h3>Innovative Services Tailored for You</h3>
-                        <p class="fst-italic">
-                            We don't just stop at products. MarcaPro offers a range of tailored services to ensure your
-                            business thrives with the latest technological advancements.
-                        </p>
-                        <p>
-                            From expert consultations to full-scale implementations, we help you get the best results
-                            from our products.
-                        </p>
-                    </div>
-                </div><!-- End Feature Item -->
-
-            </div>
-
-        </section><!-- /Details Section -->
-
-        <!-- Team Section -->
-        <section id="team" class="team section1">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Team</h2>
-                <div><span>Check Our</span> <span class="description-title">Projects</span></div>
-            </div><!-- End Section Title -->
-
-            <div class="container">
-
-                <div class="row gy-5">
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member">
-                            <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
-                            <div class="member-info">
-                                <h4>Eventex</h4>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                    <a href="https://github.com/nataliafuentesg/eventex"><i class="bi bi-github"></i></a>
-                                    <a href="https://eventexsas.com/"><i class="bi bi-globe"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Team Member -->
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="member">
-                            <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
-                            <div class="member-info">
-                                <h4>Pet Station</h4>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                    <a href="https://github.com/nataliafuentesg/petstation"><i class="bi bi-github"></i></a>
-                                    <a href="https://petstationvet.com/"><i class="bi bi-globe"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Team Member -->
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="member">
-                            <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
-                            <div class="member-info">
-                                <h4>CanBridge</h4>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                    <a href="https://github.com/nataliafuentesg/canbridge"><i class="bi bi-github"></i></a>
-                                    <a href="https://canbridgeguarderiacanina.com/"><i class="bi bi-globe"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Team Member -->
-
                 </div>
-
             </div>
-
-        </section><!-- /Team Section -->
-
-        
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact section1">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Contact</h2>
-                <div><span>Check Our</span> <span class="description-title">Contact</span></div>
-            </div><!-- End Section Title -->
-
-            <div class="container" data-aos="fade" data-aos-delay="100">
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-4">
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                            <i class="bi bi-geo-alt flex-shrink-0"></i>
-                            <div>
-                                <h3>Address</h3>
-                                <p>Bogotá, Colombia</p>
-                            </div>
-                        </div><!-- End Info Item -->
-
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                            <i class="bi bi-telephone flex-shrink-0"></i>
-                            <div>
-                                <h3>Call Us</h3>
-                                <p>+57 300 685 0097</p>
-                            </div>
-                        </div><!-- End Info Item -->
-
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                            <i class="bi bi-envelope flex-shrink-0"></i>
-                            <div>
-                                <h3>Email Us</h3>
-                                <p>info@marcapro.co</p>
-                            </div>
-                        </div><!-- End Info Item -->
-
-                    </div>
-
-                    <div class="col-lg-8">
-                        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-                            data-aos-delay="200">
-                            <div class="row gy-4">
-
-                                <div class="col-md-6">
-                                    <input type="text" name="name" class="form-control" placeholder="Your Name"
-                                        required="">
-                                </div>
-
-                                <div class="col-md-6 ">
-                                    <input type="email" class="form-control" name="email" placeholder="Your Email"
-                                        required="">
-                                </div>
-
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control" name="subject" placeholder="Subject"
-                                        required="">
-                                </div>
-
-                                <div class="col-md-12">
-                                    <textarea class="form-control" name="message" rows="6" placeholder="Message"
-                                        required=""></textarea>
-                                </div>
-
-                                <div class="col-md-12 text-center">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                                    <button type="submit">Send Message</button>
-                                </div>
-
-                            </div>
-                        </form>
-                    </div><!-- End Contact Form -->
-
-                </div>
-
-            </div>
-
-        </section><!-- /Contact Section -->
-
+        </section>
     </main>
 
+    <!-- ===== Footer ===== -->
     <footer id="footer" class="footer dark-background">
-
         <div class="container footer-top">
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
@@ -532,60 +389,58 @@
                         <span class="sitename">MarcaPro</span>
                     </a>
                     <div class="footer-contact pt-3">
-                        <p>Bogotá,  Colombia</p>
+                        <p>Bogotá, Colombia</p>
                         <p class="mt-3"><strong>Phone:</strong> <span>+57 300 685 0097</span></p>
-                        <p><strong>Email:</strong> <span>info@marcapro.co</span></p>
+                        <p><strong>Email:</strong> <span>info@marcapro.agency</span></p>
                     </div>
                     <div class="social-links d-flex mt-4">
-                        <a href=""><i class="bi bi-twitter-x"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Useful Links</h4>
+                    <h4>Quick links</h4>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Terms of service</a></li>
-                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">About us</a></li>
+                        <li><a href="#features">Services</a></li>
+                        <li><a href="#projects">Projects</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
+                    <h4>Services</h4>
                     <ul>
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Product Management</a></li>
-                        <li><a href="#">Marketing</a></li>
-                        <li><a href="#">Graphic Design</a></li>
+                        <li><a href="#features">Web Design</a></li>
+                        <li><a href="#features">Web Development</a></li>
+                        <li><a href="#features">E-commerce</a></li>
+                        <li><a href="#features">Marketing</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="container copyright text-center mt-4">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">MarcaPro</strong> <span>All Rights
-                    Reserved</span></p>
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">MarcaPro</strong> <span>All Rights Reserved</span>
+            </p>
+        </div>
     </footer>
 
     <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
 
-    <!-- Preloader -->
+    <!-- Preloader (si lo usas) -->
     <div id="preloader"></div>
 
-
-    <script src="assets/styles/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ===== Scripts ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/styles/aos/aos.js"></script>
-    <script src="./assets/styles/glightbox/js/glightbox.min.js"></script>
-    <script src="./assets/styles/purecounter/purecounter_vanilla.js"></script>
-    <script src="./assets/styles/swiper/swiper-bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 
