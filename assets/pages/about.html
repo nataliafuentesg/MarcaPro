@@ -4,9 +4,11 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About — MarcaPro</title>
+
+  <!-- Estás en assets/pages/, así que sube 1 nivel a /assets/styles -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="./assets/styles/bootstrap-icons/bootstrap-icons.css"/>
-  <link rel="stylesheet" href="./assets/styles/aos/aos.css"/>
+  <link rel="stylesheet" href="../styles/bootstrap-icons/bootstrap-icons.css"/>
+  <link rel="stylesheet" href="../styles/aos/aos.css"/>
   <link rel="stylesheet" href="../styles/styles.css"/>
   <link rel="shortcut icon" href="../images/logo-blanco.png" type="image/x-icon">
 </head>
@@ -23,7 +25,7 @@
         <li><a href="../../index.html#hero" data-i18n="nav.home">Home</a></li>
         <li><a href="#" class="active" data-i18n="nav.about">About</a></li>
         <li><a href="./services.html" data-i18n="nav.services">Services</a></li>
-        <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="./projects.html" data-i18n="nav.projects">Projects</a></li>
         <li class="lang-switch">
           <button class="btn-lang" data-lang="en">EN</button>
           <button class="btn-lang" data-lang="es">ES</button>
@@ -35,47 +37,44 @@
 </header>
 
 <main class="main">
-  <!-- Hero simple -->
-  <section class="hero-clean d-flex align-items-center">
+  <!-- Hero -->
+  <section id="hero" class="hero-clean hero-lines d-flex align-items-center">
+    <!-- Cables + paquetes -->
+    <svg class="cable-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+      <path id="c1" class="wire strong" d="M-20 60 H260 V120 H880 V80 H1460" />
+      <path id="c2" class="wire"        d="M-20 120 H220 V200 H600 V160 H980 V220 H1460" />
+      <path id="c3" class="wire"        d="M-20 180 H180 V240 H520 V210 H900 V290 H1460" />
+      <path id="c4" class="wire strong" d="M1460 70 H1140 V140 H760 V90 H-20" />
+      <path id="c5" class="wire"        d="M1460 170 H1100 V230 H700 V190 H-20" />
+      <circle class="packet" r="3"><animateMotion dur="9s" repeatCount="indefinite" begin="0s"><mpath href="#c1"/></animateMotion></circle>
+      <circle class="packet" r="2.6"><animateMotion dur="9s" repeatCount="indefinite" begin="-4.5s"><mpath href="#c1"/></animateMotion></circle>
+      <circle class="packet" r="2.4"><animateMotion dur="11s" repeatCount="indefinite" begin="-6s"><mpath href="#c2"/></animateMotion></circle>
+      <circle class="packet" r="2.2"><animateMotion dur="11s" repeatCount="indefinite" begin="-1.5s"><mpath href="#c2"/></animateMotion></circle>
+      <circle class="packet" r="2.2"><animateMotion dur="12s" repeatCount="indefinite" begin="-3s"><mpath href="#c3"/></animateMotion></circle>
+      <circle class="packet" r="3"><animateMotion dur="10s" repeatCount="indefinite" begin="-2s" keyPoints="1;0" keyTimes="0;1"><mpath href="#c4"/></animateMotion></circle>
+      <circle class="packet" r="2.6"><animateMotion dur="8.5s" repeatCount="indefinite" begin="-5s"><mpath href="#c5"/></animateMotion></circle>
+      <circle class="packet" r="2.2"><animateMotion dur="8.5s" repeatCount="indefinite" begin="-1s"><mpath href="#c5"/></animateMotion></circle>
+    </svg>
+
     <div class="container" data-aos="fade-up">
       <span class="hero-badge" data-i18n="about.h3">About Us</span>
       <h1 class="mt-3 fw-bold" data-i18n="about.h2">Dev + Marketing under one roof</h1>
-      <p class="lead mt-3" data-i18n="about.p1">
-        We ship full-stack websites and growth frameworks...
-      </p>
+      <p class="lead mt-3" data-i18n="about.p1">We ship full-stack websites and growth frameworks...</p>
     </div>
   </section>
 
-  <!-- Valores / qué nos hace distintos -->
+  <!-- Valores -->
   <section class="section1">
     <div class="container">
       <div class="row gy-4">
-        <div class="col-md-4">
-          <div class="icon-box h-100">
-            <i class="bi bi-rocket-takeoff"></i>
-            <h3>Speed & Clarity</h3>
-            <p>Procesos cortos, comunicación clara, entregas semanales.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="icon-box h-100">
-            <i class="bi bi-shield-check"></i>
-            <h3>Solid Tech</h3>
-            <p>Vue 3 + Spring Boot + PostgreSQL, CI/CD, seguridad y performance.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="icon-box h-100">
-            <i class="bi bi-bullseye"></i>
-            <h3>Growth Mindset</h3>
-            <p>Meta/Google Ads, funnels, CRO y contenido que escala.</p>
-          </div>
-        </div>
+        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-rocket-takeoff"></i><h3>Speed & Clarity</h3><p>Procesos cortos, comunicación clara, entregas semanales.</p></div></div>
+        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-shield-check"></i><h3>Solid Tech</h3><p>Vue 3 + Spring Boot + PostgreSQL, CI/CD, seguridad y performance.</p></div></div>
+        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-bullseye"></i><h3>Growth Mindset</h3><p>Meta/Google Ads, funnels, CRO y contenido que escala.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- Stack / herramientas -->
+  <!-- Stack -->
   <section class="section1">
     <div class="container section-title">
       <h2>Tech Stack & Tools</h2>
@@ -100,7 +99,7 @@
   <div class="container footer-top">
     <div class="row gy-4">
       <div class="col-lg-4 col-md-6 footer-about">
-        <a href="index.html" class="logo d-flex align-items-center"><span class="sitename">MarcaPro</span></a>
+        <a href="../../index.html" class="logo d-flex align-items-center"><span class="sitename">MarcaPro</span></a>
         <div class="footer-contact pt-3">
           <p>Bogotá, Colombia</p>
           <p class="mt-3"><strong>Phone:</strong> <span>+57 300 685 0097</span></p>
@@ -116,19 +115,19 @@
       <div class="col-lg-2 col-md-3 footer-links">
         <h4>Quick links</h4>
         <ul>
-          <li><a href="index.html#hero">Home</a></li>
-          <li><a href="about.html">About us</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="projects.html">Projects</a></li>
+          <li><a href="../../index.html#hero">Home</a></li>
+          <li><a href="./about.html">About us</a></li>
+          <li><a href="./services.html">Services</a></li>
+          <li><a href="./projects.html">Projects</a></li>
         </ul>
       </div>
       <div class="col-lg-2 col-md-3 footer-links">
         <h4>Services</h4>
         <ul>
-          <li><a href="services.html#web">Web</a></li>
-          <li><a href="services.html#ecommerce">E-commerce</a></li>
-          <li><a href="services.html#growth">Growth/Ads</a></li>
-          <li><a href="services.html#content">Content</a></li>
+          <li><a href="./services.html#web">Web</a></li>
+          <li><a href="./services.html#ecommerce">E-commerce</a></li>
+          <li><a href="./services.html#growth">Growth/Ads</a></li>
+          <li><a href="./services.html#content">Content</a></li>
         </ul>
       </div>
     </div>
