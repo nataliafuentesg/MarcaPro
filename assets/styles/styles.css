@@ -322,8 +322,120 @@ html, body {
   .projects-toolbar .form-control,
   .projects-toolbar .form-select { max-width: 100%; }
 }
-.projects .nav-pills .nav-link.active{
-  background: rgba(229,9,20,.14);
-  color: var(--brand-red);
+
+/* Nav-pills en rojo de marca (no azul) */
+.nav-pills .nav-link{
+  color:#111; background:transparent; border:1px solid transparent; border-radius:999px;
 }
-.projects .nav-pills .nav-link{ color:#111; }
+.nav-pills .nav-link:hover{
+  color:var(--brand-red); background:rgba(229,9,20,.06);
+}
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link{
+  color:var(--brand-red) !important;
+  background:rgba(229,9,20,.14) !important;
+  border-color:rgba(229,9,20,.35) !important;
+}
+
+/* Enfoque inputs/selects/botones en rojo */
+.form-control:focus, .form-select:focus, .btn:focus{
+  border-color:rgba(229,9,20,.4);
+  box-shadow:0 0 0 .25rem rgba(229,9,20,.25);
+}
+
+/* Hero pills coherentes */
+.hero-badge{
+  display:inline-block; font-weight:600; padding:.35rem .7rem; border-radius:999px;
+  color:var(--brand-red); background:rgba(229,9,20,.08); border:1px solid rgba(229,9,20,.35);
+}
+
+/* ===== Project cards ===== */
+.project-card{
+  background:#fff; border:1px solid #eaeaea; border-radius:16px; overflow:hidden;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.project-card:hover{
+  transform: translateY(-4px);
+  box-shadow:0 14px 36px rgba(0,0,0,.08);
+  border-color:#e5e7eb;
+}
+.project-thumb{
+  width:100%; height:220px; object-fit:cover; display:block; background:#f6f6f6;
+}
+.project-body{ padding:16px; }
+.project-title{ margin:0 0 4px; font-weight:700; }
+.project-tags{ display:flex; flex-wrap:wrap; gap:.4rem; }
+.project-tag{
+  display:inline-block; font-size:.75rem; line-height:1; padding:.35rem .5rem; border-radius:999px;
+  background:#f4f4f5; border:1px solid #eee;
+}
+.project-actions{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.8rem; }
+
+/* ====== HERO LINES + CIRCUIT (reutilizable en cualquier héroe) ====== */
+:root{
+  --brand-red: #e50914;           /* ya lo usas, lo recuerdas aquí por si acaso */
+  --circuit-speed: 14s;
+}
+
+.hero-clean{ position:relative; background:#0b0b0b; color:#fff; overflow:hidden; }
+.hero-clean > .container{ position:relative; z-index:2; }
+
+/* Capa 1: líneas animadas (CSS puro) */
+.hero-lines::before,
+.hero-lines::after{
+  content:""; position:absolute; inset:-1px; pointer-events:none; z-index:0;
+}
+.hero-lines::before{
+  /* líneas verticales */
+  background:repeating-linear-gradient(
+    90deg,
+    rgba(229,9,20,.12) 0 2px,
+    transparent 2px 84px
+  );
+  animation:heroSlideX 30s linear infinite;
+  opacity:.45;
+}
+.hero-lines::after{
+  /* líneas horizontales */
+  background:repeating-linear-gradient(
+    0deg,
+    rgba(229,9,20,.10) 0 1px,
+    transparent 1px 56px
+  );
+  animation:heroSlideY 22s linear infinite;
+  opacity:.25;
+  mix-blend-mode:screen;
+}
+@keyframes heroSlideX{ to{ background-position:-84px 0; } }
+@keyframes heroSlideY{ to{ background-position:0 -56px; } }
+
+/* ===== HERO: cables + paquetes (glow) ===== */
+:root{
+  --brand-red:#e50914;
+}
+
+.hero-clean{ position:relative; background:#0b0b0b; color:#fff; overflow:hidden; }
+.hero-clean > .container{ position:relative; z-index:2; }
+
+/* Cables (sólidos) */
+.cable-svg{
+  position:absolute; inset:0; width:100%; height:100%;
+  z-index:1; pointer-events:none; opacity:.9;
+}
+.cable-svg .wire{
+  fill:none; stroke:rgba(229,9,20,.35); stroke-width:1.4;
+  stroke-linecap:round; stroke-linejoin:round;
+  filter:drop-shadow(0 0 4px rgba(229,9,20,.25));
+}
+.cable-svg .wire.strong{ stroke:rgba(229,9,20,.55); stroke-width:1.8; }
+
+/* Paquetes que viajan por los cables */
+.cable-svg .packet{
+  fill:#ff2a33;
+  filter:drop-shadow(0 0 8px rgba(229,9,20,.8));
+}
+
+/* Respeta reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .cable-svg .packet animateMotion{ display:none; }
+}

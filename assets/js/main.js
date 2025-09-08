@@ -199,7 +199,16 @@
       'webd.faq.h2':'FAQ', 'webd.faq.lead1':'Straight answers', 'webd.faq.lead2':'no fluff',
       'webd.faq.q1.title':'Do you use templates?', 'webd.faq.q1.desc':'No. Everything is coded to your brand. That’s how we keep speed high and UX on point.',
       'webd.faq.q2.title':'Timelines?', 'webd.faq.q2.desc':'Starter ~2–3 weeks. Growth ~3–6 weeks. Custom varies by scope.',
-      'webd.cta.title':'Ready to build or redesign?', 'webd.cta.copy':'Tell us goals, scope and timeline. We’ll reply within 24 hours.'
+      'webd.cta.title':'Ready to build or redesign?', 'webd.cta.copy':'Tell us goals, scope and timeline. We’ll reply within 24 hours.',
+
+      'projects.filter.all':'All','projects.filter.web':'Web','projects.filter.ecommerce':'E-commerce',
+      'projects.filter.marketing':'Marketing','projects.filter.branding':'Branding',
+      'projects.search.placeholder':'Search projects',
+      'projects.sort.az':'A → Z','projects.sort.za':'Z → A','projects.sort.new':'Newest',
+      'projects.btn.case':'Case study','projects.btn.visit':'Visit','projects.btn.github':'GitHub',
+      'projects.usp.code':'No templates — 100% code',
+      'projects.usp.ads':'Google Ads & Meta Ads',
+      'projects.usp.social':'IG · TikTok · YouTube management'
     },
 
     es: {
@@ -304,7 +313,16 @@
       'webd.faq.h2':'FAQ', 'webd.faq.lead1':'Respuestas directas', 'webd.faq.lead2':'sin humo',
       'webd.faq.q1.title':'¿Usan plantillas?', 'webd.faq.q1.desc':'No. Todo se codifica a tu marca. Así mantenemos velocidad y UX.',
       'webd.faq.q2.title':'¿Tiempos?', 'webd.faq.q2.desc':'Starter ~2–3 semanas. Growth ~3–6 semanas. Custom depende del alcance.',
-      'webd.cta.title':'¿Listo para construir o rediseñar?', 'webd.cta.copy':'Cuéntanos objetivos, alcance y tiempos. Respondemos en 24h.'
+      'webd.cta.title':'¿Listo para construir o rediseñar?', 'webd.cta.copy':'Cuéntanos objetivos, alcance y tiempos. Respondemos en 24h.',
+
+      'projects.filter.all':'Todos','projects.filter.web':'Web','projects.filter.ecommerce':'E-commerce',
+      'projects.filter.marketing':'Marketing','projects.filter.branding':'Branding',
+      'projects.search.placeholder':'Buscar proyectos',
+      'projects.sort.az':'A → Z','projects.sort.za':'Z → A','projects.sort.new':'Más nuevo',
+      'projects.btn.case':'Caso de estudio','projects.btn.visit':'Visitar','projects.btn.github':'GitHub',
+      'projects.usp.code':'Sin plantillas — 100% código',
+      'projects.usp.ads':'Google Ads & Meta Ads',
+      'projects.usp.social':'Gestión IG · TikTok · YouTube'
     }
   };
 
@@ -344,7 +362,7 @@
       id: 1, title: 'Valkha', type: 'ecommerce',
       sector: 'E-commerce — Sportswear',
       img: 'assets/images/valkha.png',
-      live: 'https://valkhasport.com', github: null,
+      live: 'https://valkha.netlify.app/', github: null,
       tags: ['Vue 3', 'Spring Boot', 'Stripe', 'PostgreSQL', 'Netlify/Railway'],
       challenge: 'Launch sportswear store with variants, cart, Stripe checkout and admin.',
       solutions: [
@@ -369,7 +387,7 @@
       id: 3, title: 'Pintxo Pincho', type: 'web',
       sector: 'Restaurant — Pintxos & Drinks',
       img: 'assets/images/pintxo.png',
-      live: 'https://pintxopincho.com', github: null,
+      live: 'https://pintxo-pincho.netlify.app/', github: null,
       tags: ['Vue 3', 'Railway', 'Drinks Menu', 'CORS'],
       challenge: 'Fast site for menu/promos.', solutions: ['Admin for highlights', 'Static caching + paginated endpoints', 'CORS hardening on Railway'],
       results: 'Load times <1.5s in key pages.'
