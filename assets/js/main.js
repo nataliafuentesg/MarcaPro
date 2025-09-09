@@ -517,3 +517,59 @@
 
   window.addEventListener('load', initProjects);
 })();
+
+// --- Activa por PATH cuando estamos en páginas internas (about, services, projects)
+function setActiveNavByPath() {
+  const links = document.querySelectorAll('#navmenu a');
+  const here = location.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '');
+  let matched = false;
+
+  links.forEach(a => {
+    a.classList.remove('active');
+    const href = a.getAttribute('href') || '';
+    if (href.startsWith('#')) return; // sólo anchors de esta misma página (home)
+    try {
+      const url = new URL(a.href, location.origin);
+      const path = url.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '');
+      if (path === here) { a.classList.add('active'); matched = true; }
+    } catch (_) {}
+  });
+
+  // Si no hubo match por path y existe un link #hero (caso Home), lo dejamos activo por defecto
+  if (!matched) {
+    const samePageHero = Array.from(links).find(a => (a.getAttribute('href') || '').startsWith('#hero'));
+    if (samePageHero) samePageHero.classList.add('active');
+  }
+}
+
+// --- Scrollspy sólo para enlaces que apuntan a SECCIONES de ESTA MISMA página
+const navmenulinks = document.querySelectorAll('#navmenu a');
+function isSameDocumentLink(a) {
+  const href = a.getAttribute('href') || '';
+  if (href.startsWith('#')) return true;
+  try {
+    const url = new URL(a.href, location.href);
+    return url.pathname === location.pathname && !!url.hash;
+  } catch { return false; }
+}
+function navmenuScrollspy() {
+  const pos = window.scrollY + 200;
+  navmenulinks.forEach(link => {
+    if (!isSameDocumentLink(link)) return;
+    const hash = new URL(link.href, location.href).hash || link.getAttribute('href');
+    const sec = hash ? document.querySelector(hash) : null;
+    if (!sec) return;
+    if (pos >= sec.offsetTop && pos <= (sec.offsetTop + sec.offsetHeight)) {
+      document.querySelectorAll('#navmenu a.active').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    }
+  });
+}
+
+// --- Inicialización
+window.addEventListener('load', () => {
+  setActiveNavByPath();   // marca activo por ruta (about/services/projects)
+  navmenuScrollspy();     // si es la Home, el scrollspy se encargará
+});
+document.addEventListener('scroll', navmenuScrollspy);
+

@@ -1,147 +1,359 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>About — MarcaPro</title>
 
-  <!-- Estás en assets/pages/, así que sube 1 nivel a /assets/styles -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="../styles/bootstrap-icons/bootstrap-icons.css"/>
-  <link rel="stylesheet" href="../styles/aos/aos.css"/>
-  <link rel="stylesheet" href="../styles/styles.css"/>
-  <link rel="shortcut icon" href="../images/logo-blanco.png" type="image/x-icon">
+  <!-- CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/bootstrap-icons/bootstrap-icons.css" />
+  <link rel="stylesheet" href="../styles/aos/aos.css" />
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="shortcut icon" href="../images/logo-marcapro-rojo.png" type="image/x-icon">
 </head>
+
 <body class="index-page">
 
-<header id="header" class="header d-flex align-items-center fixed-top">
-  <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-    <a href="../../index.html" class="logo d-flex align-items-center">
-      <img src="../images/logo-blanco-sin-fondo.png" alt="MarcaPro logo" class="logo-nav">
-      <h1 class="sitename">MarcaPro</h1>
-    </a>
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="../../index.html#hero" data-i18n="nav.home">Home</a></li>
-        <li><a href="#" class="active" data-i18n="nav.about">About</a></li>
-        <li><a href="./services.html" data-i18n="nav.services">Services</a></li>
-        <li><a href="./projects.html" data-i18n="nav.projects">Projects</a></li>
-        <li class="lang-switch">
-          <button class="btn-lang" data-lang="en">EN</button>
-          <button class="btn-lang" data-lang="es">ES</button>
-        </li>
-      </ul>
-      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-    </nav>
-  </div>
-</header>
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="../../index.html" class="logo d-flex align-items-center">
+        <img src="../images/logo-blanco-sin-fondo.png" alt="MarcaPro logo" class="logo-nav">
+        <h1 class="sitename">MarcaPro</h1>
+      </a>
 
-<main class="main">
-  <!-- Hero -->
-  <section id="hero" class="hero-clean hero-lines d-flex align-items-center">
-    <!-- Cables + paquetes -->
-    <svg class="cable-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
-      <path id="c1" class="wire strong" d="M-20 60 H260 V120 H880 V80 H1460" />
-      <path id="c2" class="wire"        d="M-20 120 H220 V200 H600 V160 H980 V220 H1460" />
-      <path id="c3" class="wire"        d="M-20 180 H180 V240 H520 V210 H900 V290 H1460" />
-      <path id="c4" class="wire strong" d="M1460 70 H1140 V140 H760 V90 H-20" />
-      <path id="c5" class="wire"        d="M1460 170 H1100 V230 H700 V190 H-20" />
-      <circle class="packet" r="3"><animateMotion dur="9s" repeatCount="indefinite" begin="0s"><mpath href="#c1"/></animateMotion></circle>
-      <circle class="packet" r="2.6"><animateMotion dur="9s" repeatCount="indefinite" begin="-4.5s"><mpath href="#c1"/></animateMotion></circle>
-      <circle class="packet" r="2.4"><animateMotion dur="11s" repeatCount="indefinite" begin="-6s"><mpath href="#c2"/></animateMotion></circle>
-      <circle class="packet" r="2.2"><animateMotion dur="11s" repeatCount="indefinite" begin="-1.5s"><mpath href="#c2"/></animateMotion></circle>
-      <circle class="packet" r="2.2"><animateMotion dur="12s" repeatCount="indefinite" begin="-3s"><mpath href="#c3"/></animateMotion></circle>
-      <circle class="packet" r="3"><animateMotion dur="10s" repeatCount="indefinite" begin="-2s" keyPoints="1;0" keyTimes="0;1"><mpath href="#c4"/></animateMotion></circle>
-      <circle class="packet" r="2.6"><animateMotion dur="8.5s" repeatCount="indefinite" begin="-5s"><mpath href="#c5"/></animateMotion></circle>
-      <circle class="packet" r="2.2"><animateMotion dur="8.5s" repeatCount="indefinite" begin="-1s"><mpath href="#c5"/></animateMotion></circle>
-    </svg>
-
-    <div class="container" data-aos="fade-up">
-      <span class="hero-badge" data-i18n="about.h3">About Us</span>
-      <h1 class="mt-3 fw-bold" data-i18n="about.h2">Dev + Marketing under one roof</h1>
-      <p class="lead mt-3" data-i18n="about.p1">We ship full-stack websites and growth frameworks...</p>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../../index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="./about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="./services.html" data-i18n="nav.services">Services</a></li>
+          <li><a href="./projects.html" data-i18n="nav.projects">Projects</a></li>
+          <li class="lang-switch">
+            <button class="btn-lang" data-lang="en">EN</button>
+            <button class="btn-lang" data-lang="es">ES</button>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list" aria-label="Toggle navigation"></i>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <!-- Valores -->
-  <section class="section1">
-    <div class="container">
+  <main class="main">
+    <section id="hero" class="hero-clean hero-net d-flex align-items-center">
+      <svg class="net-svg" viewBox="0 0 1440 720" preserveAspectRatio="none" aria-hidden="true">
+        <!-- GRID (cubre todo el alto) -->
+        <g class="net-grid">
+          <!-- columnas -->
+          <path d="M120 0V720M300 0V720M480 0V720M660 0V720M780 0V720M960 0V720M1140 0V720M1320 0V720" />
+          <!-- filas -->
+          <path d="M0 90H1440M0 180H1440M0 270H1440M0 360H1440M0 450H1440M0 540H1440M0 630H1440" />
+        </g>
+
+        <!-- SEED AL CENTRO -->
+        <!-- Centro del viewBox: 720, 360 -->
+        <g class="nodes">
+          <circle class="seed" cx="720" cy="360" r="8" />
+        </g>
+
+        <!-- PRIMERA CAPA: del seed a extremos (cubre todo el hero) -->
+        <g class="edges main">
+          <path id="m1" class="edge" pathLength="100" style="--delay:.10s" d="M720 360 L420 120" />
+          <path id="m2" class="edge" pathLength="100" style="--delay:.20s" d="M720 360 L540 600" />
+          <path id="m3" class="edge" pathLength="100" style="--delay:.30s" d="M720 360 L960 120" />
+          <path id="m4" class="edge" pathLength="100" style="--delay:.40s" d="M720 360 L1140 450" />
+          <path id="m5" class="edge" pathLength="100" style="--delay:.50s" d="M720 360 L240 450" />
+          <path id="m6" class="edge" pathLength="100" style="--delay:.60s" d="M720 360 L1260 240" />
+        </g>
+
+        <!-- SEGUNDA CAPA: ramificaciones desde los nodos principales -->
+        <g class="edges branches">
+          <!-- desde 420,120 -->
+          <path id="b1" class="edge" pathLength="100" style="--delay:1.00s" d="M420 120 L280 220" />
+          <path id="b2" class="edge" pathLength="100" style="--delay:1.10s" d="M420 120 L600 60" />
+          <!-- desde 540,600 -->
+          <path id="b3" class="edge" pathLength="100" style="--delay:1.20s" d="M540 600 L360 660" />
+          <path id="b4" class="edge" pathLength="100" style="--delay:1.30s" d="M540 600 L700 680" />
+          <!-- desde 960,120 -->
+          <path id="b5" class="edge" pathLength="100" style="--delay:1.40s" d="M960 120 L1120 60" />
+          <path id="b6" class="edge" pathLength="100" style="--delay:1.50s" d="M960 120 L840 40" />
+          <!-- desde 1140,450 -->
+          <path id="b7" class="edge" pathLength="100" style="--delay:1.60s" d="M1140 450 L1320 540" />
+          <path id="b8" class="edge" pathLength="100" style="--delay:1.70s" d="M1140 450 L980 560" />
+          <!-- desde 240,450 -->
+          <path id="b9" class="edge" pathLength="100" style="--delay:1.80s" d="M240 450 L160 320" />
+          <path id="b10" class="edge" pathLength="100" style="--delay:1.90s" d="M240 450 L280 600" />
+          <!-- desde 1260,240 -->
+          <path id="b11" class="edge" pathLength="100" style="--delay:2.00s" d="M1260 240 L1400 320" />
+          <path id="b12" class="edge" pathLength="100" style="--delay:2.10s" d="M1260 240 L1200 120" />
+        </g>
+
+        <!-- NODOS EN EXTREMOS Y RAMAS (aparecen al dibujar) -->
+        <g class="nodes">
+          <!-- principales -->
+          <circle class="node" cx="420" cy="120" r="6" style="--delay:.10s" />
+          <circle class="node" cx="540" cy="600" r="6" style="--delay:.20s" />
+          <circle class="node" cx="960" cy="120" r="6" style="--delay:.30s" />
+          <circle class="node" cx="1140" cy="450" r="6" style="--delay:.40s" />
+          <circle class="node" cx="240" cy="450" r="6" style="--delay:.50s" />
+          <circle class="node" cx="1260" cy="240" r="6" style="--delay:.60s" />
+          <!-- secundarios (coinciden con ramas) -->
+          <circle class="node" cx="280" cy="220" r="5.2" style="--delay:1.00s" />
+          <circle class="node" cx="600" cy="60" r="5.2" style="--delay:1.10s" />
+          <circle class="node" cx="360" cy="660" r="5.2" style="--delay:1.20s" />
+          <circle class="node" cx="700" cy="680" r="5.2" style="--delay:1.30s" />
+          <circle class="node" cx="1120" cy="60" r="5.2" style="--delay:1.40s" />
+          <circle class="node" cx="840" cy="40" r="5.2" style="--delay:1.50s" />
+          <circle class="node" cx="1320" cy="540" r="5.2" style="--delay:1.60s" />
+          <circle class="node" cx="980" cy="560" r="5.2" style="--delay:1.70s" />
+          <circle class="node" cx="160" cy="320" r="5.2" style="--delay:1.80s" />
+          <circle class="node" cx="280" cy="600" r="5.2" style="--delay:1.90s" />
+          <circle class="node" cx="1400" cy="320" r="5.2" style="--delay:2.00s" />
+          <circle class="node" cx="1200" cy="120" r="5.2" style="--delay:2.10s" />
+        </g>
+
+        <!-- PAQUETES EN LOOP (se mueven por varias rutas) -->
+        <g class="packets">
+          <!-- principales -->
+          <circle class="packet" r="3">
+            <animateMotion dur="8s" repeatCount="indefinite" begin="0s">
+              <mpath href="#m1" />
+            </animateMotion>
+          </circle>
+          <circle class="packet" r="3">
+            <animateMotion dur="8s" repeatCount="indefinite" begin="-4s">
+              <mpath href="#m1" />
+            </animateMotion>
+          </circle>
+
+          <circle class="packet" r="3">
+            <animateMotion dur="8.2s" repeatCount="indefinite" begin="-2s">
+              <mpath href="#m2" />
+            </animateMotion>
+          </circle>
+          <circle class="packet" r="3">
+            <animateMotion dur="8.2s" repeatCount="indefinite" begin="-6s">
+              <mpath href="#m2" />
+            </animateMotion>
+          </circle>
+
+          <circle class="packet" r="3">
+            <animateMotion dur="8.4s" repeatCount="indefinite" begin="-1.5s">
+              <mpath href="#m3" />
+            </animateMotion>
+          </circle>
+          <circle class="packet" r="3">
+            <animateMotion dur="8.4s" repeatCount="indefinite" begin="-5.7s">
+              <mpath href="#m3" />
+            </animateMotion>
+          </circle>
+
+          <circle class="packet" r="3">
+            <animateMotion dur="8.6s" repeatCount="indefinite" begin="-3s">
+              <mpath href="#m4" />
+            </animateMotion>
+          </circle>
+          <circle class="packet" r="3">
+            <animateMotion dur="8.6s" repeatCount="indefinite" begin="-7s">
+              <mpath href="#m4" />
+            </animateMotion>
+          </circle>
+
+          <circle class="packet" r="3">
+            <animateMotion dur="8.8s" repeatCount="indefinite" begin="-2.2s">
+              <mpath href="#m5" />
+            </animateMotion>
+          </circle>
+          <circle class="packet" r="3">
+            <animateMotion dur="8.8s" repeatCount="indefinite" begin="-6.4s">
+              <mpath href="#m5" />
+            </animateMotion>
+          </circle>
+
+          <circle class="packet" r="3">
+            <animateMotion dur="9s" repeatCount="indefinite" begin="-1.8s">
+              <mpath href="#m6" />
+            </animateMotion>
+          </circle>
+          <circle class="packet" r="3">
+            <animateMotion dur="9s" repeatCount="indefinite" begin="-5.5s">
+              <mpath href="#m6" />
+            </animateMotion>
+          </circle>
+
+          <!-- algunas ramas -->
+          <circle class="packet" r="2.8">
+            <animateMotion dur="7.4s" repeatCount="indefinite" begin="-1.2s">
+              <mpath href="#b1" />
+            </animateMotion>
+          </circle>
+          <circle class="packet" r="2.8">
+            <animateMotion dur="7.1s" repeatCount="indefinite" begin="-3.6s">
+              <mpath href="#b4" />
+            </animateMotion>
+          </circle>
+          <circle class="packet" r="2.8">
+            <animateMotion dur="7.1s" repeatCount="indefinite" begin="-2.8s">
+              <mpath href="#b5" />
+            </animateMotion>
+          </circle>
+          <circle class="packet" r="2.8">
+            <animateMotion dur="7.2s" repeatCount="indefinite" begin="-4.1s">
+              <mpath href="#b7" />
+            </animateMotion>
+          </circle>
+        </g>
+      </svg>
+
+
+      <!-- halo para legibilidad -->
+      <span class="hero-overlay"></span>
+
+      <div class="container" data-aos="fade-up">
+        <span class="hero-badge" data-i18n="about.h3">About Us</span>
+        <h1 class="mt-3 fw-bold" data-i18n="about.h2">Dev + Marketing under one roof</h1>
+        <p class="lead mt-3" data-i18n="about.p1">
+          We build connections that scale communities: custom code, content engines, and performance ads.
+        </p>
+      </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="section1">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-md-4">
+            <div class="icon-box h-100">
+              <i class="bi bi-rocket-takeoff"></i>
+              <h3>Speed & Clarity</h3>
+              <p>Procesos cortos, comunicación clara, entregas semanales.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="icon-box h-100">
+              <i class="bi bi-shield-check"></i>
+              <h3>Solid Tech</h3>
+              <p>Vue 3 + Spring Boot + PostgreSQL, CI/CD, seguridad y performance.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="icon-box h-100">
+              <i class="bi bi-bullseye"></i>
+              <h3>Growth Mindset</h3>
+              <p>Meta/Google Ads, funnels, CRO y contenido que escala.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack -->
+    <section class="section1">
+      <div class="container section-title">
+        <h2>Tech Stack & Tools</h2>
+        <div><span>Our daily</span> <span class="description-title">playbook</span></div>
+      </div>
+      <div class="container">
+        <div class="row gy-3">
+          <div class="col-6 col-md-3">
+            <div class="features-item"><i class="bi bi-code-slash"></i>
+              <h3>Vue 3</h3>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="features-item"><i class="bi bi-database"></i>
+              <h3>PostgreSQL</h3>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="features-item"><i class="bi bi-lock"></i>
+              <h3>JWT/Auth</h3>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="features-item"><i class="bi bi-credit-card"></i>
+              <h3>Stripe</h3>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="features-item"><i class="bi bi-graph-up-arrow"></i>
+              <h3>GA4/Tags</h3>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="features-item"><i class="bi bi-meta"></i>
+              <h3>Meta Suite</h3>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="features-item"><i class="bi bi-cloud-upload"></i>
+              <h3>Netlify</h3>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="features-item"><i class="bi bi-cpu"></i>
+              <h3>Railway</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer dark-background">
+    <div class="container footer-top">
       <div class="row gy-4">
-        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-rocket-takeoff"></i><h3>Speed & Clarity</h3><p>Procesos cortos, comunicación clara, entregas semanales.</p></div></div>
-        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-shield-check"></i><h3>Solid Tech</h3><p>Vue 3 + Spring Boot + PostgreSQL, CI/CD, seguridad y performance.</p></div></div>
-        <div class="col-md-4"><div class="icon-box h-100"><i class="bi bi-bullseye"></i><h3>Growth Mindset</h3><p>Meta/Google Ads, funnels, CRO y contenido que escala.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stack -->
-  <section class="section1">
-    <div class="container section-title">
-      <h2>Tech Stack & Tools</h2>
-      <div><span>Our daily</span> <span class="description-title">playbook</span></div>
-    </div>
-    <div class="container">
-      <div class="row gy-3">
-        <div class="col-6 col-md-3"><div class="features-item"><i class="bi bi-code-slash"></i><h3>Vue 3</h3></div></div>
-        <div class="col-6 col-md-3"><div class="features-item"><i class="bi bi-database"></i><h3>PostgreSQL</h3></div></div>
-        <div class="col-6 col-md-3"><div class="features-item"><i class="bi bi-lock"></i><h3>JWT/Auth</h3></div></div>
-        <div class="col-6 col-md-3"><div class="features-item"><i class="bi bi-credit-card"></i><h3>Stripe</h3></div></div>
-        <div class="col-6 col-md-3"><div class="features-item"><i class="bi bi-graph-up-arrow"></i><h3>GA4/Tags</h3></div></div>
-        <div class="col-6 col-md-3"><div class="features-item"><i class="bi bi-meta"></i><h3>Meta Suite</h3></div></div>
-        <div class="col-6 col-md-3"><div class="features-item"><i class="bi bi-cloud-upload"></i><h3>Netlify</h3></div></div>
-        <div class="col-6 col-md-3"><div class="features-item"><i class="bi bi-cpu"></i><h3>Railway</h3></div></div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer id="footer" class="footer dark-background">
-  <div class="container footer-top">
-    <div class="row gy-4">
-      <div class="col-lg-4 col-md-6 footer-about">
-        <a href="../../index.html" class="logo d-flex align-items-center"><span class="sitename">MarcaPro</span></a>
-        <div class="footer-contact pt-3">
-          <p>Bogotá, Colombia</p>
-          <p class="mt-3"><strong>Phone:</strong> <span>+57 300 685 0097</span></p>
-          <p><strong>Email:</strong> <span>info@marcapro.agency</span></p>
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="../../index.html" class="logo d-flex align-items-center"><span class="sitename">MarcaPro</span></a>
+          <div class="footer-contact pt-3">
+            <p>Bogotá, Colombia</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+57 300 685 0097</span></p>
+            <p><strong>Email:</strong> <span>info@marcapro.agency</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener"><i
+                class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
         </div>
-        <div class="social-links d-flex mt-4">
-          <a href="#"><i class="bi bi-twitter-x"></i></a>
-          <a href="#"><i class="bi bi-facebook"></i></a>
-          <a href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a>
-          <a href="#"><i class="bi bi-linkedin"></i></a>
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Quick links</h4>
+          <ul>
+            <li><a href="../../index.html#hero">Home</a></li>
+            <li><a href="./about.html">About us</a></li>
+            <li><a href="./services.html">Services</a></li>
+            <li><a href="./projects.html">Projects</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="./services.html#web">Web</a></li>
+            <li><a href="./services.html#ecommerce">E-commerce</a></li>
+            <li><a href="./services.html#growth">Growth/Ads</a></li>
+            <li><a href="./services.html#content">Content</a></li>
+          </ul>
         </div>
       </div>
-      <div class="col-lg-2 col-md-3 footer-links">
-        <h4>Quick links</h4>
-        <ul>
-          <li><a href="../../index.html#hero">Home</a></li>
-          <li><a href="./about.html">About us</a></li>
-          <li><a href="./services.html">Services</a></li>
-          <li><a href="./projects.html">Projects</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-2 col-md-3 footer-links">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="./services.html#web">Web</a></li>
-          <li><a href="./services.html#ecommerce">E-commerce</a></li>
-          <li><a href="./services.html#growth">Growth/Ads</a></li>
-          <li><a href="./services.html#content">Content</a></li>
-        </ul>
-      </div>
     </div>
-  </div>
-  <div class="container copyright text-center mt-4">
-    <p>© <strong class="px-1 sitename">MarcaPro</strong> All Rights Reserved</p>
-  </div>
-</footer>
+    <div class="container copyright text-center mt-4">
+      <p>© <strong class="px-1 sitename">MarcaPro</strong> All Rights Reserved</p>
+    </div>
+  </footer>
 
-<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-<div id="preloader"></div>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+  <div id="preloader"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../styles/aos/aos.js"></script>
-<script src="../js/main.js"></script>
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../styles/aos/aos.js"></script>
+  <script src="../js/main.js"></script>
 </body>
+
 </html>

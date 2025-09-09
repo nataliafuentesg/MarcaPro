@@ -14,7 +14,7 @@
     <!-- Tu hoja de estilos UNICA -->
     <link rel="stylesheet" href="./assets/styles/styles.css" />
 
-    <link rel="shortcut icon" href="./assets/images/logo-blanco.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/images/logo-marcapro-rojo.png" type="image/x-icon">
     <!-- Fonts (opcional) -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -54,62 +54,65 @@
             <svg class="cable-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
                 <!-- Cables (sólidos) -->
                 <path id="c1" class="wire strong" d="M-20 60 H260 V120 H880 V80 H1460" />
-                <path id="c2" class="wire"        d="M-20 120 H220 V200 H600 V160 H980 V220 H1460" />
-                <path id="c3" class="wire"        d="M-20 180 H180 V240 H520 V210 H900 V290 H1460" />
+                <path id="c2" class="wire" d="M-20 120 H220 V200 H600 V160 H980 V220 H1460" />
+                <path id="c3" class="wire" d="M-20 180 H180 V240 H520 V210 H900 V290 H1460" />
                 <path id="c4" class="wire strong" d="M1460 70 H1140 V140 H760 V90 H-20" />
-                <path id="c5" class="wire"        d="M1460 170 H1100 V230 H700 V190 H-20" />
-            
+                <path id="c5" class="wire" d="M1460 170 H1100 V230 H700 V190 H-20" />
+
                 <!-- Paquetes que viajan (varias velocidades y desfases) -->
                 <!-- c1 -->
                 <circle class="packet" r="3">
-                  <animateMotion dur="9s" repeatCount="indefinite" begin="0s">
-                    <mpath href="#c1"/>
-                  </animateMotion>
+                    <animateMotion dur="9s" repeatCount="indefinite" begin="0s">
+                        <mpath href="#c1" />
+                    </animateMotion>
                 </circle>
                 <circle class="packet" r="2.6">
-                  <animateMotion dur="9s" repeatCount="indefinite" begin="-4.5s">
-                    <mpath href="#c1"/>
-                  </animateMotion>
+                    <animateMotion dur="9s" repeatCount="indefinite" begin="-4.5s">
+                        <mpath href="#c1" />
+                    </animateMotion>
                 </circle>
-            
+
                 <!-- c2 -->
                 <circle class="packet" r="2.4">
-                  <animateMotion dur="11s" repeatCount="indefinite" begin="-6s">
-                    <mpath href="#c2"/>
-                  </animateMotion>
+                    <animateMotion dur="11s" repeatCount="indefinite" begin="-6s">
+                        <mpath href="#c2" />
+                    </animateMotion>
                 </circle>
                 <circle class="packet" r="2.2">
-                  <animateMotion dur="11s" repeatCount="indefinite" begin="-1.5s">
-                    <mpath href="#c2"/>
-                  </animateMotion>
+                    <animateMotion dur="11s" repeatCount="indefinite" begin="-1.5s">
+                        <mpath href="#c2" />
+                    </animateMotion>
                 </circle>
-            
+
                 <!-- c3 -->
                 <circle class="packet" r="2.2">
-                  <animateMotion dur="12s" repeatCount="indefinite" begin="-3s">
-                    <mpath href="#c3"/>
-                  </animateMotion>
+                    <animateMotion dur="12s" repeatCount="indefinite" begin="-3s">
+                        <mpath href="#c3" />
+                    </animateMotion>
                 </circle>
-            
+
                 <!-- c4 (dirección opuesta) -->
                 <circle class="packet" r="3">
-                  <animateMotion dur="10s" repeatCount="indefinite" begin="-2s" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
-                    <mpath href="#c4"/>
-                  </animateMotion>
+                    <animateMotion dur="10s" repeatCount="indefinite" begin="-2s" keyPoints="1;0" keyTimes="0;1"
+                        calcMode="linear">
+                        <mpath href="#c4" />
+                    </animateMotion>
                 </circle>
-            
+
                 <!-- c5 -->
                 <circle class="packet" r="2.6">
-                  <animateMotion dur="8.5s" repeatCount="indefinite" begin="-5s">
-                    <mpath href="#c5"/>
-                  </animateMotion>
+                    <animateMotion dur="8.5s" repeatCount="indefinite" begin="-5s">
+                        <mpath href="#c5" />
+                    </animateMotion>
                 </circle>
                 <circle class="packet" r="2.2">
-                  <animateMotion dur="8.5s" repeatCount="indefinite" begin="-1s">
-                    <mpath href="#c5"/>
-                  </animateMotion>
+                    <animateMotion dur="8.5s" repeatCount="indefinite" begin="-1s">
+                        <mpath href="#c5" />
+                    </animateMotion>
                 </circle>
-              </svg>
+            </svg>
+            <span class="hero-overlay"></span>
+
             <div class="container text-center text-lg-start" data-aos="fade-up">
                 <span class="hero-badge" data-i18n="hero.badge">
                     Full-stack + Growth for modern brands
@@ -403,8 +406,8 @@
                             <h5 class="mb-2">Tasca</h5>
                             <p class="small text-muted mb-3">Spanish Tapas Restaurant</p>
                             <div class="d-flex justify-content-center gap-3 social-icons">
-                                <a href="https://www.instagram.com/tascarestaurantboston/" target="_blank" rel="noopener"><i
-                                        class="bi bi-instagram"></i></a>
+                                <a href="https://www.instagram.com/tascarestaurantboston/" target="_blank"
+                                    rel="noopener"><i class="bi bi-instagram"></i></a>
                                 <a href="https://facebook.com/tascarestaurantboston" target="_blank" rel="noopener"><i
                                         class="bi bi-facebook"></i></a>
                             </div>

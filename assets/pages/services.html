@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../styles/bootstrap-icons/bootstrap-icons.css"/>
   <link rel="stylesheet" href="../styles/aos/aos.css"/>
   <link rel="stylesheet" href="../styles/styles.css"/>
-  <link rel="shortcut icon" href="./assets/images/logo-blanco.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../images/logo-marcapro-rojo.png" type="image/x-icon">
 </head>
 <body class="index-page">
 
@@ -19,7 +19,7 @@
     </a>
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="index.html#hero" data-i18n="nav.home">Home</a></li>
+        <li><a href="../../index.html" data-i18n="nav.home">Home</a></li>
         <li><a href="about.html" data-i18n="nav.about">About</a></li>
         <li><a href="services.html" class="active" data-i18n="nav.services">Services</a></li>
         <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
@@ -35,72 +35,66 @@
 
 <main class="main">
   <!-- HERO -->
-  <section id="hero" class="hero-clean hero-lines d-flex align-items-center">
-    <svg class="cable-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
-        <!-- Cables (sólidos) -->
-        <path id="c1" class="wire strong" d="M-20 60 H260 V120 H880 V80 H1460" />
-        <path id="c2" class="wire"        d="M-20 120 H220 V200 H600 V160 H980 V220 H1460" />
-        <path id="c3" class="wire"        d="M-20 180 H180 V240 H520 V210 H900 V290 H1460" />
-        <path id="c4" class="wire strong" d="M1460 70 H1140 V140 H760 V90 H-20" />
-        <path id="c5" class="wire"        d="M1460 170 H1100 V230 H700 V190 H-20" />
-    
-        <!-- Paquetes que viajan (varias velocidades y desfases) -->
-        <!-- c1 -->
-        <circle class="packet" r="3">
-          <animateMotion dur="9s" repeatCount="indefinite" begin="0s">
-            <mpath href="#c1"/>
-          </animateMotion>
-        </circle>
-        <circle class="packet" r="2.6">
-          <animateMotion dur="9s" repeatCount="indefinite" begin="-4.5s">
-            <mpath href="#c1"/>
-          </animateMotion>
-        </circle>
-    
-        <!-- c2 -->
-        <circle class="packet" r="2.4">
-          <animateMotion dur="11s" repeatCount="indefinite" begin="-6s">
-            <mpath href="#c2"/>
-          </animateMotion>
-        </circle>
-        <circle class="packet" r="2.2">
-          <animateMotion dur="11s" repeatCount="indefinite" begin="-1.5s">
-            <mpath href="#c2"/>
-          </animateMotion>
-        </circle>
-    
-        <!-- c3 -->
-        <circle class="packet" r="2.2">
-          <animateMotion dur="12s" repeatCount="indefinite" begin="-3s">
-            <mpath href="#c3"/>
-          </animateMotion>
-        </circle>
-    
-        <!-- c4 (dirección opuesta) -->
-        <circle class="packet" r="3">
-          <animateMotion dur="10s" repeatCount="indefinite" begin="-2s" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
-            <mpath href="#c4"/>
-          </animateMotion>
-        </circle>
-    
-        <!-- c5 -->
-        <circle class="packet" r="2.6">
-          <animateMotion dur="8.5s" repeatCount="indefinite" begin="-5s">
-            <mpath href="#c5"/>
-          </animateMotion>
-        </circle>
-        <circle class="packet" r="2.2">
-          <animateMotion dur="8.5s" repeatCount="indefinite" begin="-1s">
-            <mpath href="#c5"/>
-          </animateMotion>
-        </circle>
-      </svg>
-    <div class="container">
-      <span class="hero-badge" data-i18n="svc.hero.badge">Services</span>
-      <h1 class="mt-3 fw-bold" data-i18n="svc.hero.h1">What we do</h1>
-      <p class="lead mt-3 mb-0" data-i18n="svc.hero.subtitle">Full-stack development, e-commerce, content, and growth/ads.</p>
+  <section id="hero" class="hero-clean hero-growth d-flex align-items-center">
+    <!-- Fondo de gráficas -->
+    <svg class="charts-svg" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
+      <!-- Grid suave -->
+      <g class="grid">
+        <!-- verticales -->
+        <path d="M120 0V400 M300 0V400 M480 0V400 M660 0V400 M840 0V400 M1020 0V400 M1200 0V400 M1380 0V400"/>
+        <!-- horizontales -->
+        <path d="M0 60H1440 M0 140H1440 M0 220H1440 M0 300H1440"/>
+      </g>
+  
+      <!-- Series (líneas que se dibujan) -->
+      <path class="series s1" style="--delay:.15s"
+            d="M80 290 L240 260 L420 275 L600 230 L780 250 L960 210 L1140 180 L1320 150"/>
+      <path class="series s2" style="--delay:.35s"
+            d="M80 320 L240 300 L420 270 L600 255 L780 240 L960 200 L1140 190 L1320 160"/>
+      <path class="series s3" style="--delay:.55s"
+            d="M80 270 L240 240 L420 245 L600 210 L780 190 L960 160 L1140 150 L1320 120"/>
+  
+      <!-- Puntos que pulsan -->
+      <g class="dots">
+        <circle cx="600" cy="230" r="3.6" style="--delay:.15s"/>
+        <circle cx="960" cy="210" r="3.6" style="--delay:.35s"/>
+        <circle cx="1140" cy="180" r="3.6" style="--delay:.55s"/>
+        <circle cx="780" cy="190" r="3.6" style="--delay:.75s"/>
+      </g>
+  
+      <!-- Barras que crecen (lado derecho) -->
+      <g class="bars">
+        <rect x="1000" y="280" width="22" height="110" style="--delay:.25s"/>
+        <rect x="1050" y="250" width="22" height="140" style="--delay:.35s"/>
+        <rect x="1100" y="220" width="22" height="170" style="--delay:.45s"/>
+        <rect x="1150" y="200" width="22" height="190" style="--delay:.55s"/>
+        <rect x="1200" y="170" width="22" height="220" style="--delay:.65s"/>
+        <rect x="1250" y="150" width="22" height="240" style="--delay:.75s"/>
+      </g>
+    </svg>
+  
+    <!-- Capa de oscuridad suave para legibilidad -->
+    <span class="hero-overlay"></span>
+  
+    <!-- Texto -->
+    <div class="container" data-aos="fade-up">
+      <span class="hero-badge" data-i18n="services.badge">Growth & Analytics</span>
+      <h1 class="mt-3 fw-bold" data-i18n-html="services.h1">
+        Scale with <span class="text-primary">real growth</span>.
+      </h1>
+      <p class="lead mt-2" data-i18n="services.lead">
+        SEO & performance, CRO, Meta/Google Ads and analytics pipelines that prove ROI.
+      </p>
+  
+      <!-- KPIs flotantes (opcional) -->
+      <div class="kpis d-flex gap-2 mt-3">
+        <span class="kpi-badge">ROAS 4.2×</span>
+        <span class="kpi-badge">CTR +38%</span>
+        <span class="kpi-badge">CPA −27%</span>
+      </div>
     </div>
   </section>
+  
 
   <!-- WEB -->
   <section class="section1" id="web">
