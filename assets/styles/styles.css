@@ -656,3 +656,58 @@ footer .social-links a:hover{ color:var(--brand-red); }
   .seed{ r: 8.6; }
   .node{ r: 6.4; }
 }
+
+/* ===== Social Media & Ads (logos centrados y dentro de círculo) ===== */
+.social-card {
+  border: 1px solid #eee;
+  border-radius: 14px;
+  background: #fff;
+  transition: transform .2s ease, box-shadow .2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.social-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(0,0,0,.08);
+}
+
+/* Contenedor circular (siempre centrado) */
+.logo-ring {
+  width: 132px;
+  aspect-ratio: 1 / 1;        /* círculo perfecto */
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--brand-red);
+  display: grid;
+  place-items: center;
+  margin-inline: auto;
+  /* sutil glow rojo */
+  box-shadow: 0 0 0 4px rgba(229,9,20,.06);
+}
+
+/* El logo vive dentro del círculo SIN recortarse */
+.logo-img {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;         /* NO recorta, conserva proporción */
+  display: block;
+}
+
+/* Ajustes responsive del círculo */
+@media (max-width: 575.98px){
+  .logo-ring { width: 112px; }
+  .logo-img { width: 80%; height: 80%; }
+}
+
+/* Íconos de redes */
+.social-icons i {
+  font-size: 1.4rem;
+  color: var(--brand-red);
+  transition: color .15s ease, transform .15s ease;
+}
+.social-icons a:hover i {
+  color: var(--brand-black);
+  transform: translateY(-1px);
+}

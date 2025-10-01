@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../styles/bootstrap-icons/bootstrap-icons.css" />
-  <link rel="stylesheet" href="../styles/aos/aos.css" />
-  <link rel="stylesheet" href="../styles/styles.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../styles/bootstrap-icons/bootstrap-icons.css"/>
+  <link rel="stylesheet" href="../styles/aos/aos.css"/>
+  <link rel="stylesheet" href="../styles/styles.css"/>
   <link rel="shortcut icon" href="../images/logo-blanco.png" type="image/x-icon">
-  <title>Projects — Client Work & Case Studies | MarcaPro</title>
-  <meta name="description" content="Template-free, 100% code. See recent web, e-commerce and growth projects for U.S. and LATAM clients.">
-  <link rel="canonical" href="https://marcapro.agency/assets/pages/projects.html">
-  <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"ItemList",
-      "itemListElement":[
-        {"@type":"ListItem","position":1,"url":"https://valkha.netlify.app/"},
-        {"@type":"ListItem","position":2,"url":"https://tascatapas.com"},
-        {"@type":"ListItem","position":3,"url":"https://pintxo-pincho.netlify.app/"},
-        {"@type":"ListItem","position":4,"url":"https://petstationvet.com"},
-        {"@type":"ListItem","position":5,"url":"https://canbridgeguarderiacanina.com"},
-        {"@type":"ListItem","position":6,"url":"https://www.eventex.com.co"}
-      ]
-    }
-    </script>
 
+  <title data-i18n="meta.projects.title">Projects — Client Work & Case Studies | MarcaPro</title>
+  <meta name="description"
+        data-i18n-attr="content:meta.projects.desc"
+        content="Template-free, 100% code. See recent web, e-commerce and growth projects for U.S. and LATAM clients.">
+  <link rel="canonical" href="https://marcapro.agency/assets/pages/projects.html">
+  <meta property="og:title" data-i18n-attr="content:meta.projects.ogTitle" content="Projects — Client Work & Case Studies | MarcaPro">
+  <meta property="og:description" data-i18n-attr="content:meta.projects.ogDesc" content="Template-free, 100% code. Web, e-commerce and growth projects.">
+  <meta property="og:url" content="https://marcapro.agency/assets/pages/projects.html">
+  <meta property="og:image" content="https://marcapro.agency/assets/images/og/og-projects.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ItemList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"url":"https://valkha.netlify.app/"},
+      {"@type":"ListItem","position":2,"url":"https://tascatapas.com"},
+      {"@type":"ListItem","position":3,"url":"https://pintxopincho.com/"},
+      {"@type":"ListItem","position":4,"url":"https://petstationvet.com"},
+      {"@type":"ListItem","position":5,"url":"https://canbridgeguarderiacanina.com"},
+      {"@type":"ListItem","position":6,"url":"https://www.eventex.com.co"}
+    ]
+  }
+  </script>
 </head>
 
 <body class="index-page">
-
   <!-- Header -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
@@ -55,10 +61,8 @@
   </header>
 
   <main class="main">
-
-    <!-- HERO Projects — código escribiéndose + mensaje redes -->
+    <!-- HERO Projects -->
     <section id="hero" class="hero-clean hero-code d-flex align-items-center">
-      <!-- Fondo con líneas “typed” (alineado a la derecha) -->
       <div class="code-canvas" aria-hidden="true">
         <pre class="code-block">
 <span class="code-line" style="--delay:0s">const brand = 'MarcaPro';</span>
@@ -71,7 +75,6 @@
 <span class="code-line dim" style="--delay:1.60s">// 100% code — no templates. Designed to scale.</span>
         </pre>
 
-        <!-- Capa fantasma (suave) para profundidad -->
         <pre class="code-block ghost">
 <span class="ghost-line">const brand = 'MarcaPro';</span>
 <span class="ghost-line">const stack = ['Vue 3','Spring Boot','PostgreSQL','Stripe'];</span>
@@ -84,50 +87,45 @@
         </pre>
       </div>
 
-      <!-- Contenido -->
       <span class="hero-overlay"></span>
       <div class="container" data-aos="fade-up">
-        <span class="hero-badge">Template-free · 100% code</span>
-        <h1 class="mt-3 fw-bold">Projects.</h1>
-        <p class="lead mt-2">Client Work & Case Studies</p>
-        <p class="mt-2 mb-0">
+        <span class="hero-badge" data-i18n="projects.hero.badge">Template-free · 100% code</span>
+        <h1 class="mt-3 fw-bold" data-i18n="projects.hero.h1">Projects.</h1>
+        <p class="lead mt-2" data-i18n="projects.hero.lead">Client Work & Case Studies</p>
+        <p class="mt-2 mb-0" data-i18n="projects.hero.social">
           We also manage social media with AI-assisted content, video editing, and performance tracking
           across Meta / Google for measurable growth.
         </p>
       </div>
     </section>
 
-    <!-- Toolbar (filtros/búsqueda/orden) + GRID -->
+    <!-- Toolbar + GRID -->
     <section class="section1 projects">
       <div class="container">
-        <div
-          class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-3 mb-3 projects-toolbar">
-          <!-- Filtros -->
+        <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-3 mb-3 projects-toolbar">
           <ul class="nav nav-pills gap-2" id="projectsFilters">
-            <li class="nav-item"><button class="nav-link active" data-filter="all">All</button></li>
-            <li class="nav-item"><button class="nav-link" data-filter="web">Web</button></li>
-            <li class="nav-item"><button class="nav-link" data-filter="ecommerce">E-commerce</button></li>
-            <li class="nav-item"><button class="nav-link" data-filter="marketing">Marketing</button></li>
-            <li class="nav-item"><button class="nav-link" data-filter="branding">Branding</button></li>
+            <li class="nav-item"><button class="nav-link active" data-filter="all" data-i18n="projects.filter.all">All</button></li>
+            <li class="nav-item"><button class="nav-link" data-filter="web" data-i18n="projects.filter.web">Web</button></li>
+            <li class="nav-item"><button class="nav-link" data-filter="ecommerce" data-i18n="projects.filter.ecommerce">E-commerce</button></li>
+            <li class="nav-item"><button class="nav-link" data-filter="marketing" data-i18n="projects.filter.marketing">Marketing</button></li>
+            <li class="nav-item"><button class="nav-link" data-filter="branding" data-i18n="projects.filter.branding">Branding</button></li>
           </ul>
 
-          <!-- Buscador + orden -->
           <div class="d-flex gap-2 w-100 w-lg-auto">
-            <input id="projectsSearch" type="search" class="form-control" placeholder="Search projects"
-              aria-label="Search projects">
+            <input id="projectsSearch" type="search" class="form-control"
+                   placeholder="Search projects"
+                   data-i18n-attr="placeholder:projects.search.placeholder"
+                   aria-label="Search projects">
             <select id="projectsSort" class="form-select" aria-label="Sort projects">
-              <option value="az">A → Z</option>
-              <option value="za">Z → A</option>
-              <option value="new">Newest</option>
+              <option value="az"  data-i18n="projects.sort.az">A → Z</option>
+              <option value="za"  data-i18n="projects.sort.za">Z → A</option>
+              <option value="new" data-i18n="projects.sort.new">Newest</option>
               <option value="old">Oldest</option>
             </select>
           </div>
         </div>
 
-        <!-- Grid -->
         <div class="row gy-4" id="projectsGrid"><!-- inyectado por JS --></div>
-
-        <!-- (Quitado el bloque “Trusted by”) -->
 
         <!-- Modal Case Study -->
         <div class="modal fade" id="caseStudyModal" tabindex="-1" aria-hidden="true">
@@ -145,10 +143,10 @@
               </div>
               <div class="modal-footer">
                 <a id="caseStudyLive" target="_blank" rel="noopener" class="btn btn-primary d-none">
-                  <i class="bi bi-globe me-1"></i> Visit
+                  <i class="bi bi-globe me-1"></i> <span data-i18n="projects.btn.visit">Visit</span>
                 </a>
                 <a id="caseStudyGithub" target="_blank" rel="noopener" class="btn btn-outline-secondary d-none">
-                  <i class="bi bi-github me-1"></i> GitHub
+                  <i class="bi bi-github me-1"></i> <span data-i18n="projects.btn.github">GitHub</span>
                 </a>
               </div>
             </div>
@@ -157,10 +155,10 @@
       </div>
     </section>
 
-    <!-- Sección dedicada: Cuentas que manejamos -->
+    <!-- Cuentas que manejamos -->
     <section id="managed-accounts" class="section1">
       <div class="container section-title">
-        <h2>Social Accounts We Manage</h2>
+        <h2 data-i18n="projects.accounts.h2">Social Accounts We Manage</h2>
         <div><span>Instagram • TikTok • YouTube</span> <span class="description-title">+ Meta Ads Suite</span></div>
       </div>
 
@@ -173,21 +171,18 @@
               <div>
                 <h5 class="mb-1">Pet Station</h5>
                 <div class="d-flex flex-wrap gap-2 social-icons">
-                  <a href="https://instagram.com/petstationvet" target="_blank" rel="noopener"
-                    class="btn btn-sm btn-outline-dark">
+                  <a href="https://instagram.com/petstationvet" target="_blank" rel="noopener" class="btn btn-sm btn-outline-dark">
                     <i class="bi bi-instagram"></i> Instagram
                   </a>
-                  <a href="https://www.tiktok.com/@petstationvet" target="_blank" rel="noopener"
-                    class="btn btn-sm btn-outline-dark">
+                  <a href="https://www.tiktok.com/@petstationvet" target="_blank" rel="noopener" class="btn btn-sm btn-outline-dark">
                     <i class="bi bi-tiktok"></i> TikTok
                   </a>
-                  <a href="https://www.youtube.com/@petstationvet" target="_blank" rel="noopener"
-                    class="btn btn-sm btn-outline-dark">
+                  <a href="https://www.youtube.com/@petstationvet" target="_blank" rel="noopener" class="btn btn-sm btn-outline-dark">
                     <i class="bi bi-youtube"></i> YouTube
                   </a>
                   <span class="badge text-bg-light border"><i class="bi bi-meta me-1"></i>Meta Ads</span>
                 </div>
-                <small class="text-muted d-block mt-2">UGC, reels con IA, pauta local y reporting.</small>
+                <small class="text-muted d-block mt-2" data-i18n="projects.accounts.pet.note">UGC, reels con IA, pauta local y reporting.</small>
               </div>
             </div>
           </div>
@@ -199,21 +194,18 @@
               <div>
                 <h5 class="mb-1">Canbridge</h5>
                 <div class="d-flex flex-wrap gap-2 social-icons">
-                  <a href="https://instagram.com/can_bridge" target="_blank" rel="noopener"
-                    class="btn btn-sm btn-outline-dark">
+                  <a href="https://instagram.com/can_bridge" target="_blank" rel="noopener" class="btn btn-sm btn-outline-dark">
                     <i class="bi bi-instagram"></i> Instagram
                   </a>
-                  <a href="https://www.tiktok.com/@can_bridge" target="_blank" rel="noopener"
-                    class="btn btn-sm btn-outline-dark">
+                  <a href="https://www.tiktok.com/@can_bridge" target="_blank" rel="noopener" class="btn btn-sm btn-outline-dark">
                     <i class="bi bi-tiktok"></i> TikTok
                   </a>
-                  <a href="https://www.youtube.com/@can_bridge" target="_blank" rel="noopener"
-                    class="btn btn-sm btn-outline-dark">
+                  <a href="https://www.youtube.com/@can_bridge" target="_blank" rel="noopener" class="btn btn-sm btn-outline-dark">
                     <i class="bi bi-youtube"></i> YouTube
                   </a>
                   <span class="badge text-bg-light border"><i class="bi bi-meta me-1"></i>Meta Ads</span>
                 </div>
-                <small class="text-muted d-block mt-2">Brand kit, comunidad y campañas de alcance.</small>
+                <small class="text-muted d-block mt-2" data-i18n="projects.accounts.can.note">Brand kit, comunidad y campañas de alcance.</small>
               </div>
             </div>
           </div>
@@ -225,28 +217,24 @@
               <div>
                 <h5 class="mb-1">Tasca</h5>
                 <div class="d-flex flex-wrap gap-2 social-icons">
-                  <a href="https://instagram.com/tascarestaurantboston" target="_blank" rel="noopener"
-                    class="btn btn-sm btn-outline-dark">
+                  <a href="https://instagram.com/tascarestaurantboston" target="_blank" rel="noopener" class="btn btn-sm btn-outline-dark">
                     <i class="bi bi-instagram"></i> Instagram
                   </a>
-                  <a href="https://www.tiktok.com/@tascarestaurantboston" target="_blank" rel="noopener"
-                    class="btn btn-sm btn-outline-dark">
+                  <a href="https://www.tiktok.com/@tascarestaurantboston" target="_blank" rel="noopener" class="btn btn-sm btn-outline-dark">
                     <i class="bi bi-tiktok"></i> TikTok
                   </a>
-                  <a href="https://www.youtube.com/@tascarestaurantboston" target="_blank" rel="noopener"
-                    class="btn btn-sm btn-outline-dark">
+                  <a href="https://www.youtube.com/@tascarestaurantboston" target="_blank" rel="noopener" class="btn btn-sm btn-outline-dark">
                     <i class="bi bi-youtube"></i> YouTube
                   </a>
                   <span class="badge text-bg-light border"><i class="bi bi-meta me-1"></i>Meta Ads</span>
                 </div>
-                <small class="text-muted d-block mt-2">Contenido gastronómico y reservas.</small>
+                <small class="text-muted d-block mt-2" data-i18n="projects.accounts.tasca.note">Contenido gastronómico y reservas.</small>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
   </main>
 
   <!-- Footer -->
@@ -261,29 +249,25 @@
             <p><strong>Email:</strong> <span>info@marcapro.agency</span></p>
           </div>
           <div class="social-links d-flex mt-4">
-            <a href="#"><i class="bi bi-twitter-x"></i></a>
-            <a href="#"><i class="bi bi-facebook"></i></a>
-            <a href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener"><i
-                class="bi bi-instagram"></i></a>
-            <a href="#"><i class="bi bi-linkedin"></i></a>
+            <a href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a>
           </div>
         </div>
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Quick links</h4>
+          <h4 data-i18n="footer.quick">Quick links</h4>
           <ul>
-            <li><a href="../../index.html#hero">Home</a></li>
-            <li><a href="./about.html">About us</a></li>
-            <li><a href="./services.html">Services</a></li>
-            <li><a href="./projects.html">Projects</a></li>
+            <li><a href="../../index.html#hero" data-i18n="nav.home">Home</a></li>
+            <li><a href="./about.html" data-i18n="nav.about">About us</a></li>
+            <li><a href="./services.html" data-i18n="nav.services">Services</a></li>
+            <li><a href="./projects.html" data-i18n="nav.projects">Projects</a></li>
           </ul>
         </div>
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Services</h4>
+          <h4 data-i18n="footer.services">Services</h4>
           <ul>
-            <li><a href="./services.html#web">Web</a></li>
-            <li><a href="./services.html#ecommerce">E-commerce</a></li>
-            <li><a href="./services.html#growth">Growth/Ads</a></li>
-            <li><a href="./services.html#content">Content</a></li>
+            <li><a href="web-design.html">Web Design</a></li>
+            <li><a href="services.html#ecommerce">E-commerce</a></li>
+            <li><a href="services.html#growth">Growth/Ads</a></li>
+            <li><a href="services.html#content">Content</a></li>
           </ul>
         </div>
       </div>
@@ -293,10 +277,7 @@
     </div>
   </footer>
 
-  <!-- Scroll top -->
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center">
-    <i class="bi bi-arrow-up-short"></i>
-  </a>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
 
   <!-- JS -->
@@ -304,11 +285,10 @@
   <script src="../styles/aos/aos.js"></script>
   <script src="../js/main.js"></script>
 
-  <!-- Autocalcula chars/duración para el typing del hero (no toca main.js) -->
+  <!-- Autocalcula duración del typing -->
   <script>
     (function () {
-      const base = 1.8;      // s mínimos
-      const per = 0.035;    // s por carácter
+      const base = 1.8, per = 0.035;
       document.querySelectorAll('.hero-code .code-line:not(.dim)').forEach(el => {
         const n = el.textContent.length;
         el.style.setProperty('--chars', n);
@@ -317,5 +297,4 @@
     })();
   </script>
 </body>
-
 </html>
