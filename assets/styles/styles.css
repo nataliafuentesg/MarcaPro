@@ -812,7 +812,7 @@ footer .social-links a:hover{ color:var(--brand-red); }
 }
 
 /* notes visible on dark hero */
-.plans-note { font-size: .92rem; color: rgba(0, 0, 0, 0.9); }
+.plans-note { font-size: .92rem; color: rgba(255, 255, 255, 0.9); }
 
 /* Tabs para separar: Colombia / USA y Web vs Social (usa Bootstrap nav - keep pill look) */
 .plans-tabs .nav-link {
@@ -884,7 +884,6 @@ footer .social-links a:hover{ color:var(--brand-red); }
   font-size:.92rem;
 }
 
-.text-muted {
-    --bs-text-opacity: 1;
-    color: white !important;
+#billing-explain{
+  color: white !important;
 }
