@@ -711,3 +711,180 @@ footer .social-links a:hover{ color:var(--brand-red); }
   color: var(--brand-black);
   transform: translateY(-1px);
 }
+
+
+/* ===== Plans (append to styles.css) =====
+   Integración de los estilos de "plans" dentro del css principal.
+   Usa las mismas variables y mantiene consistencia con MarcaPro.
+*/
+
+/* Hero específico para la página de planes (usa el hero-clean existente) */
+.plans-hero {
+  min-height: 320px;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+  color: var(--white);
+  background: linear-gradient(160deg, var(--brand-black) 0%, var(--brand-black-2) 100%);
+}
+.plans-hero .hero-badge {
+  color: var(--brand-red);
+  background: rgba(229,9,20,0.06);
+  padding: .25rem .6rem;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+/* Billing toggle (upfront / monthly) */
+.billing-group {
+  margin-top: .75rem;
+  display:flex;
+  gap:.6rem;
+  flex-wrap:wrap;
+}
+.billing-group .billing-btn {
+  border: 1px solid rgba(17,17,17,0.06);
+  background: #fff;
+  padding: .55rem .9rem;
+  border-radius: 10px;
+  text-align: left;
+  min-width: 170px;
+  color: var(--brand-black);
+  box-shadow: 0 2px 8px rgba(10,10,10,0.04);
+}
+.billing-group .billing-btn .small { opacity:.85; color: rgba(0,0,0,.6); font-size:.85rem; }
+
+/* Estado activo del toggle */
+.billing-group .billing-btn.active,
+.billing-group .billing-btn[aria-pressed="true"] {
+  background: linear-gradient(90deg, var(--brand-red), #b40a10);
+  color: #fff;
+  border-color: rgba(229,9,20,0.95);
+  box-shadow: 0 10px 30px rgba(229,9,20,0.12);
+}
+
+/* Plan cards: mantén blanco (coherente con el sitio) */
+.plan-card {
+  border-radius: 12px;
+  padding: 1.25rem;
+  background: var(--white);
+  color: var(--brand-black);
+  border: 1px solid #e9e9ea;
+  box-shadow: 0 6px 20px rgba(12,12,12,0.04);
+}
+.plan-card .small { color: rgba(17,17,17,0.6); }
+.plan-card .plan-price {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--brand-red);
+}
+.plan-card.featured {
+  transform: translateY(-6px);
+  border: 1px solid rgba(229,9,20,0.08);
+  box-shadow: 0 18px 40px rgba(229,9,20,0.06);
+}
+
+/* Botones en plan-card */
+.plan-card .btn-outline-light {
+  color: var(--brand-red);
+  border-color: rgba(229,9,20,0.12);
+  background: transparent;
+}
+.plan-card .btn-outline-light:hover {
+  background: var(--brand-red);
+  color: #fff;
+  border-color: var(--brand-red);
+}
+.plan-card .btn-outline-dark {
+  color: #111;
+  background: #fff;
+  border-color: rgba(0,0,0,0.06);
+}
+.plan-card .btn-primary {
+  background: var(--brand-red);
+  border-color: var(--brand-red);
+}
+
+/* helper installments */
+.installment-label {
+  margin-top: .25rem;
+  color: rgba(17,17,17,0.6);
+  font-size: .9rem;
+}
+
+/* notes visible on dark hero */
+.plans-note { font-size: .92rem; color: rgba(0, 0, 0, 0.9); }
+
+/* Tabs para separar: Colombia / USA y Web vs Social (usa Bootstrap nav - keep pill look) */
+.plans-tabs .nav-link {
+  border-radius: 999px;
+  padding: .45rem .9rem;
+  font-weight:600;
+  color: var(--brand-black);
+  background: #fff;
+  border: 1px solid #efefef;
+}
+.plans-tabs .nav-link.active {
+  background: var(--brand-red);
+  color: #fff;
+  border-color: var(--brand-red);
+}
+
+/* Dark variant option (only if quieres una card destacada en oscuro) */
+.plan-card.dark-variant {
+  background: linear-gradient(180deg, var(--brand-black), var(--brand-black-2));
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.plan-card.dark-variant .plan-price { color: #fff; }
+.plan-card.dark-variant .btn-outline-light { color:#fff; border-color: rgba(255,255,255,0.18); }
+
+/* Ensure billing toggle and CTA visible in hero (if placed there) */
+.plans-hero .btn-outline-light {
+  color: #fff;
+  border-color: rgba(255,255,255,0.18);
+}
+.plans-hero .btn-outline-light:hover {
+  background: var(--brand-red);
+  color: #fff;
+  border-color: var(--brand-red);
+}
+
+/* Focus / accessibility */
+.billing-group .billing-btn:focus,
+.plan-card .btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(229,9,20,0.12);
+}
+
+/* Responsive tweaks */
+@media (max-width: 991px) {
+  .plans-hero { padding-top: 2.4rem; padding-bottom: 2.4rem; text-align: center; }
+  .billing-group .billing-btn { min-width: 0; flex: 1 1 auto; }
+}
+@media (max-width: 420px) {
+  .plan-card { padding: 1rem; }
+  .billing-group { gap: .45rem; }
+}
+
+/* Small badge style on plan cards */
+.plan-card .badge {
+  background: rgba(229,9,20,0.06);
+  color: var(--brand-red);
+  border: 1px solid rgba(229,9,20,0.08);
+}
+
+/* Optional: subtle emphasis for "upfront" vs "monthly" label inside hero CTA */
+.upfront-pill {
+  display:inline-block;
+  padding:.28rem .6rem;
+  border-radius:999px;
+  background: rgba(229,9,20,0.08);
+  color: var(--brand-red);
+  font-weight:600;
+  font-size:.92rem;
+}
+
+.text-muted {
+    --bs-text-opacity: 1;
+    color: white !important;
+}

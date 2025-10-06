@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>Plans & Pricing — MarcaPro</title>
+  <meta name="description" content="Clear pricing for Web builds, e-commerce and monthly maintenance. Options for USA (web-focused) and Colombia (web + social).">
+  <link rel="canonical" href="https://marcapro.agency/assets/pages/plans.html">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/bootstrap-icons/bootstrap-icons.css" />
+  <link rel="stylesheet" href="../styles/aos/aos.css" />
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="stylesheet" href="../styles/plans.css" />
+  <link rel="shortcut icon" href="../images/logo-marcapro-rojo.png" type="image/x-icon">
+</head>
+
+<body class="index-page">
+  <!-- Header (mismo que el resto) -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="../../index.html" class="logo d-flex align-items-center">
+        <img src="../images/logo-blanco-sin-fondo.png" alt="MarcaPro logo" class="logo-nav">
+        <h1 class="sitename">MarcaPro</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../../index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="./about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="./services.html" data-i18n="nav.services">Services</a></li>
+          <li><a href="./projects.html" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="./plans.html" class="active">Plans</a></li>
+          <li class="lang-switch">
+            <button class="btn-lang" data-lang="en">EN</button>
+            <button class="btn-lang" data-lang="es">ES</button>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list" aria-label="Toggle navigation"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- HERO -->
+    <section id="hero" class="hero-clean hero-lines plans-hero d-flex align-items-center">
+      <span class="hero-overlay"></span>
+      <div class="container" data-aos="fade-up">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <span class="hero-badge" data-i18n="plans.hero.badge">Simple pricing for real results</span>
+            <h1 class="mt-3 display-5 fw-bold" data-i18n="plans.hero.title">Plans — Web & Social</h1>
+            <p class="lead mt-2" data-i18n="plans.hero.lead">
+              Clear packages for USA (web-focused) and Colombia (web + social). Upfront, installments, or monthly maintenance.
+            </p>
+
+            <!-- Billing toggle -->
+            <div class="d-flex gap-2 align-items-start mt-3 billing-group" role="tablist" aria-label="Billing options">
+              <button type="button" class="btn billing-btn active" data-billing="upfront" aria-pressed="true">
+                <strong data-i18n="plans.billing.upfront">Pay upfront</strong>
+                <div class="small" data-i18n="plans.billing.upfront.sub">One-time implementation (discounted)</div>
+              </button>
+
+              <button type="button" class="btn billing-btn" data-billing="installments" aria-pressed="false">
+                <strong data-i18n="plans.billing.installments">4× Installments</strong>
+                <div class="small" data-i18n="plans.billing.installments.sub">Spread cost over 4 months</div>
+              </button>
+            </div>
+
+            <p id="billing-explain" class="text-muted small mt-2" aria-live="polite"></p>
+          </div>
+
+          <div class="col-lg-4 text-lg-end d-none d-lg-block">
+            <div class="market-flag">Transparent • No surprises</div>
+            <p class="mt-3 plans-note" data-i18n="plans.hero.note">All prices in USD. Ads spend is separate — we manage ad budgets and reporting.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABS -->
+    <section class="section1">
+      <div class="container">
+        <ul class="nav nav-pills mb-4 plans-tabs" id="marketTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="tab-us" data-bs-toggle="pill" data-bs-target="#market-us" type="button" role="tab" aria-controls="market-us" aria-selected="true" data-i18n="plans.tab.us">USA — Web</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab-co" data-bs-toggle="pill" data-bs-target="#market-co" type="button" role="tab" aria-controls="market-co" aria-selected="false" data-i18n="plans.tab.co">Colombia — Web & Social</button>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <!-- USA -->
+          <div class="tab-pane fade show active" id="market-us" role="tabpanel" aria-labelledby="tab-us">
+            <div class="row g-4">
+              <!-- Starter -->
+              <div class="col-md-4">
+                <div class="plan-card h-100">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="mb-0" data-i18n="plans.us.starter.title">Starter</h5>
+                    <small class="text-muted" data-i18n="plans.us.starter.sub">Static / Brochure</small>
+                  </div>
+                  <div class="mt-3 mb-3">
+                    <div class="plan-price">$<span data-price-key="us.starter.upfront">800</span></div>
+                    <div class="small text-muted" data-i18n="plans.price.implementation">Implementation</div>
+                    <div class="small mt-2" data-i18n="plans.price.maintenance">Maintenance: <strong>$<span data-price-key="us.starter.monthly">100</span>/mo</strong></div>
+                  </div>
+                  <ul class="mb-3">
+                    <li data-i18n="plans.us.starter.f1">One-page or few pages</li>
+                    <li data-i18n="plans.us.starter.f2">Responsive & SEO base</li>
+                    <li data-i18n="plans.us.starter.f3">Canonical & sitemap</li>
+                  </ul>
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-outline-dark btn-sm" href="mailto:info@marcapro.agency" data-i18n="plans.cta.email">Email</a>
+                    <a class="btn btn-outline-light btn-sm" href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener" data-i18n="plans.cta.ig">Instagram</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Growth -->
+              <div class="col-md-4">
+                <div class="plan-card h-100 featured">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="mb-0" data-i18n="plans.us.growth.title">Growth</h5>
+                    <small class="text-muted" data-i18n="plans.us.growth.sub">Multi-page + Ads-ready</small>
+                  </div>
+                  <div class="mt-3 mb-3">
+                    <div class="plan-price">$<span data-price-key="us.growth.upfront">3200</span></div>
+                    <div class="small text-muted" data-i18n="plans.price.implementation">Implementation</div>
+                    <div class="small mt-2" data-i18n="plans.price.maintenance">Maintenance: <strong>$<span data-price-key="us.growth.monthly">200</span>/mo</strong></div>
+                  </div>
+                  <ul class="mb-3">
+                    <li data-i18n="plans.us.growth.f1">Design system + CMS-ready</li>
+                    <li data-i18n="plans.us.growth.f2">Events, GA4, Meta pixels</li>
+                    <li data-i18n="plans.us.growth.f3">A/B friendly & performance</li>
+                  </ul>
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-primary btn-sm" href="mailto:info@marcapro.agency" data-i18n="plans.cta.quote">Get quote</a>
+                    <a class="btn btn-outline-light btn-sm" href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener" data-i18n="plans.cta.ig">Instagram</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- E-commerce -->
+              <div class="col-md-4">
+                <div class="plan-card h-100">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="mb-0" data-i18n="plans.us.ecom.title">E-commerce</h5>
+                    <small class="text-muted" data-i18n="plans.us.ecom.sub">Stripe, variants & orders</small>
+                  </div>
+                  <div class="mt-3 mb-3">
+                    <div class="plan-price">$<span data-price-key="us.ecom.upfront">4200</span></div>
+                    <div class="small text-muted" data-i18n="plans.price.implementation">Implementation</div>
+                    <div class="small mt-2" data-i18n="plans.price.maintenance">Maintenance: <strong>$<span data-price-key="us.ecom.monthly">400</span>/mo</strong></div>
+                  </div>
+                  <ul class="mb-3">
+                    <li data-i18n="plans.us.ecom.f1">Product variants, cart & checkout</li>
+                    <li data-i18n="plans.us.ecom.f2">Orders, webhooks, invoices</li>
+                    <li data-i18n="plans.us.ecom.f3">U.S. Stripe setup & taxes</li>
+                  </ul>
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-outline-dark btn-sm" href="mailto:info@marcapro.agency" data-i18n="plans.cta.discuss">Discuss</a>
+                    <a class="btn btn-outline-light btn-sm" href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener" data-i18n="plans.cta.ig">Instagram</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col">
+                <div class="plan-card">
+                  <strong data-i18n="plans.addon.title">Ads & Measurement (add-on)</strong>
+                  <p class="mb-0 plans-note" data-i18n="plans.addon.copy">Meta/Google ad management is billed separately (ad budgets + management fee). Ask for ROAS forecasts and recommended monthly budgets.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Colombia -->
+          <div class="tab-pane fade" id="market-co" role="tabpanel" aria-labelledby="tab-co">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="plan-card h-100">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="mb-0" data-i18n="plans.co.web.basic.title">Web — Basic</h5>
+                    <small class="text-muted" data-i18n="plans.co.web.basic.sub">Static site</small>
+                  </div>
+                  <div class="mt-3 mb-3">
+                    <div class="plan-price">$<span data-price-key="co.web.basic.upfront">350</span></div>
+                    <div class="small text-muted" data-i18n="plans.price.implementation">Implementation</div>
+                    <div class="small mt-2" data-i18n="plans.price.maintenance">Maintenance: <strong>$<span data-price-key="co.web.basic.monthly">40</span>/mo</strong></div>
+                  </div>
+                  <ul class="mb-3">
+                    <li data-i18n="plans.co.web.basic.f1">Few pages — fast delivery</li>
+                    <li data-i18n="plans.co.web.basic.f2">Basic SEO & contact CTA</li>
+                  </ul>
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-outline-dark btn-sm" href="mailto:info@marcapro.agency" data-i18n="plans.cta.email">Email</a>
+                    <a class="btn btn-outline-light btn-sm" href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener" data-i18n="plans.cta.ig">Instagram</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="plan-card h-100 featured">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="mb-0" data-i18n="plans.co.web.full.title">Web — Full</h5>
+                    <small class="text-muted" data-i18n="plans.co.web.full.sub">Backend / Integrations</small>
+                  </div>
+                  <div class="mt-3 mb-3">
+                    <div class="plan-price">$<span data-price-key="co.web.full.upfront">1200</span></div>
+                    <div class="small text-muted" data-i18n="plans.price.implementation">Implementation</div>
+                    <div class="small mt-2" data-i18n="plans.price.maintenance">Maintenance: <strong>$<span data-price-key="co.web.full.monthly">120</span>/mo</strong></div>
+                  </div>
+                  <ul class="mb-3">
+                    <li data-i18n="plans.co.web.full.f1">API integrations, auth, webhooks</li>
+                    <li data-i18n="plans.co.web.full.f2">Performance & GA4</li>
+                  </ul>
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-primary btn-sm" href="mailto:info@marcapro.agency" data-i18n="plans.cta.quote">Get quote</a>
+                    <a class="btn btn-outline-light btn-sm" href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener" data-i18n="plans.cta.ig">Instagram</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="plan-card h-100">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="mb-0" data-i18n="plans.co.web.ecom.title">E-commerce</h5>
+                    <small class="text-muted" data-i18n="plans.co.web.ecom.sub">Stripe / Payments</small>
+                  </div>
+                  <div class="mt-3 mb-3">
+                    <div class="plan-price">$<span data-price-key="co.web.ecom.upfront">1800</span></div>
+                    <div class="small text-muted" data-i18n="plans.price.implementation">Implementation</div>
+                    <div class="small mt-2" data-i18n="plans.price.maintenance">Maintenance: <strong>$<span data-price-key="co.web.ecom.monthly">220</span>/mo</strong></div>
+                  </div>
+                  <ul class="mb-3">
+                    <li data-i18n="plans.co.web.ecom.f1">Catalog & variants</li>
+                    <li data-i18n="plans.co.web.ecom.f2">Checkout & orders</li>
+                  </ul>
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-outline-dark btn-sm" href="mailto:info@marcapro.agency" data-i18n="plans.cta.discuss">Discuss</a>
+                    <a class="btn btn-outline-light btn-sm" href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener" data-i18n="plans.cta.ig">Instagram</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social plans -->
+            <div class="row mt-4">
+              <div class="col-12"><h4 class="mb-3" data-i18n="plans.social.title">Social Media — Content & Management</h4></div>
+
+              <div class="col-md-4">
+                <div class="plan-card h-100">
+                  <h5 data-i18n="plans.social.basic.title">Social — Basic (AI)</h5>
+                  <div class="mt-3 mb-2">
+                    <div class="plan-price">$<span data-price-key="co.social.ai.monthly">180</span>/mo</div>
+                    <div class="small text-muted" data-i18n="plans.social.basic.sub">12 posts / month (AI-assisted)</div>
+                  </div>
+                  <ul class="mb-3">
+                    <li data-i18n="plans.social.basic.f1">Calendar + captions</li>
+                    <li data-i18n="plans.social.basic.f2">Hashtag & simple editing</li>
+                  </ul>
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-outline-dark btn-sm" href="mailto:info@marcapro.agency" data-i18n="plans.cta.email">Email</a>
+                    <a class="btn btn-outline-light btn-sm" href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener" data-i18n="plans.cta.ig">Instagram</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="plan-card h-100">
+                  <h5 data-i18n="plans.social.monthly.title">Social — On-location (1×/mo)</h5>
+                  <div class="mt-3 mb-2">
+                    <div class="plan-price">$<span data-price-key="co.social.monthlyshoot.monthly">450</span>/mo</div>
+                    <div class="small text-muted" data-i18n="plans.social.monthly.sub">Monthly shooting in Bogotá / Chía area</div>
+                  </div>
+                  <ul class="mb-3">
+                    <li data-i18n="plans.social.monthly.f1">1 shoot per month + edits</li>
+                    <li data-i18n="plans.social.monthly.f2">Reels & short edits</li>
+                  </ul>
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-primary btn-sm" href="mailto:info@marcapro.agency" data-i18n="plans.cta.book">Book</a>
+                    <a class="btn btn-outline-light btn-sm" href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener" data-i18n="plans.cta.ig">Instagram</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="plan-card h-100">
+                  <h5 data-i18n="plans.social.weekly.title">Social — Weekly (On-location)</h5>
+                  <div class="mt-3 mb-2">
+                    <div class="plan-price">$<span data-price-key="co.social.weekly.monthly">900</span>/mo</div>
+                    <div class="small text-muted" data-i18n="plans.social.weekly.sub">Weekly shoots (Bogotá / Chía) — premium</div>
+                  </div>
+                  <ul class="mb-3">
+                    <li data-i18n="plans.social.weekly.f1">Weekly content & edit</li>
+                    <li data-i18n="plans.social.weekly.f2">Ad creative + reporting</li>
+                  </ul>
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-outline-dark btn-sm" href="mailto:info@marcapro.agency" data-i18n="plans.cta.contact">Contact</a>
+                    <a class="btn btn-outline-light btn-sm" href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener" data-i18n="plans.cta.ig">Instagram</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col">
+                <div class="plan-card">
+                  <strong data-i18n="plans.location.title">On-location shoots</strong>
+                  <p class="mb-0 plans-note" data-i18n="plans.location.copy">We operate from Bogotá / Chía. Travel beyond this area may include extra logistics fees — we'll quote per job.</p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- end CO pane -->
+        </div><!-- end tab-content -->
+
+        <!-- Custom plans CTA -->
+        <div class="row mt-5">
+          <div class="col-md-8">
+            <div class="plan-card d-flex align-items-center gap-3">
+              <div>
+                <h5 class="mb-1" data-i18n="plans.custom.title">Custom plans</h5>
+                <p class="mb-0 plans-note" data-i18n="plans.custom.copy">Need something tailored? We build combined packages (web + content + ads) — let's talk and draft a proposal with transparent billing.</p>
+              </div>
+              <div class="ms-auto">
+                <a href="mailto:info@marcapro.agency" class="btn btn-primary" data-i18n="plans.cta.talk">Talk to us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (idéntico a tus otras páginas) -->
+  <footer id="footer" class="footer dark-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="../../index.html" class="logo d-flex align-items-center"><span class="sitename">MarcaPro</span></a>
+          <div class="footer-contact pt-3">
+            <p>Bogotá, Colombia</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+57 300 685 0097</span></p>
+            <p><strong>Email:</strong> <span>info@marcapro.agency</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href="https://instagram.com/marcapro.agency" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4 data-i18n="footer.quick">Quick links</h4>
+          <ul>
+            <li><a href="../../index.html#hero" data-i18n="nav.home">Home</a></li>
+            <li><a href="./about.html" data-i18n="nav.about">About us</a></li>
+            <li><a href="./services.html" data-i18n="nav.services">Services</a></li>
+            <li><a href="./projects.html" data-i18n="nav.projects">Projects</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4 data-i18n="footer.services">Services</h4>
+          <ul>
+            <li><a href="web-design.html">Web Design</a></li>
+            <li><a href="services.html#ecommerce">E-commerce</a></li>
+            <li><a href="services.html#growth">Growth/Ads</a></li>
+            <li><a href="services.html#content">Content</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <strong class="px-1 sitename">MarcaPro</strong> All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../styles/aos/aos.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/plans.js"></script>
+</body>
+</html>
