@@ -9,7 +9,7 @@
     if (!path) return path;
     if (/^https?:\/\//.test(path) || path.startsWith("/")) return path;
     const base = location.pathname.includes("/assets/pages/") ? "../../" : "./";
-    return base + path.replace(/^\.\//, "");
+    return base + String(path).replace(/^\.\//, "");
   }
 
   function toggleScrolled() {
@@ -18,7 +18,7 @@
     if (window.scrollY > 100) document.body.classList.add("scrolled");
     else document.body.classList.remove("scrolled");
   }
-  document.addEventListener("scroll", toggleScrolled);
+  document.addEventListener("scroll", toggleScrolled, { passive: true });
   window.addEventListener("load", toggleScrolled);
 
   // Mobile nav
@@ -55,7 +55,7 @@
     });
   }
   window.addEventListener("load", toggleScrollTop);
-  document.addEventListener("scroll", toggleScrollTop);
+  document.addEventListener("scroll", toggleScrollTop, { passive: true });
 
   // AOS
   function aosInit() {
@@ -79,18 +79,22 @@
   /* =========================
      Nav activo por PATH + Scrollspy
      ========================= */
+  function normalizePath(p) {
+    return p.replace(/\/index\.html$/, "/").replace(/\/$/, "");
+  }
+
   function setActiveNavByPath() {
     const links = document.querySelectorAll("#navmenu a");
-    const here = location.pathname.replace(/\/index\.html$/, "/").replace(/\/$/, "");
+    const here = normalizePath(location.pathname);
     let matched = false;
 
     links.forEach((a) => {
       a.classList.remove("active");
       const href = a.getAttribute("href") || "";
-      if (href.startsWith("#")) return; // anchors locales
+      if (href.startsWith("#")) return;
       try {
-        const url = new URL(a.href, location.origin);
-        const path = url.pathname.replace(/\/index\.html$/, "/").replace(/\/$/, "");
+        const url = new URL(a.getAttribute("href"), location.origin);
+        const path = normalizePath(url.pathname);
         if (path === here) {
           a.classList.add("active");
           matched = true;
@@ -109,8 +113,8 @@
     const href = a.getAttribute("href") || "";
     if (href.startsWith("#")) return true;
     try {
-      const url = new URL(a.href, location.href);
-      return url.pathname === location.pathname && !!url.hash;
+      const url = new URL(href, location.href);
+      return normalizePath(url.pathname) === normalizePath(location.pathname) && !!url.hash;
     } catch {
       return false;
     }
@@ -119,10 +123,13 @@
     const pos = window.scrollY + 200;
     navmenulinks.forEach((link) => {
       if (!isSameDocumentLink(link)) return;
-      const hash = new URL(link.href, location.href).hash || link.getAttribute("href");
+      const href = link.getAttribute("href");
+      const hash = href && href.startsWith("#") ? href : new URL(href, location.href).hash;
       const sec = hash ? document.querySelector(hash) : null;
       if (!sec) return;
-      if (pos >= sec.offsetTop && pos <= sec.offsetTop + sec.offsetHeight) {
+      const top = sec.offsetTop;
+      const bottom = top + sec.offsetHeight;
+      if (pos >= top && pos <= bottom) {
         document.querySelectorAll("#navmenu a.active").forEach((l) => l.classList.remove("active"));
         link.classList.add("active");
       }
@@ -132,7 +139,7 @@
     setActiveNavByPath();
     navmenuScrollspy();
   });
-  document.addEventListener("scroll", navmenuScrollspy);
+  document.addEventListener("scroll", navmenuScrollspy, { passive: true });
 
   /* =========================
      I18N (diccionario + aplicación)
@@ -147,7 +154,7 @@
       "footer.quick": "Quick links",
       "footer.services": "Services",
 
-      // Home (hero/about/process/cta) — ya venían marcados en index.html
+      // Home
       "hero.badge": "Full-stack + Growth for modern brands",
       "hero.title": 'Build. Launch. <span class="text-primary">Scale.</span>',
       "hero.subtitle":
@@ -195,20 +202,7 @@
       "process.4.li2": "ROAS tracking",
       "process.4.li3": "Monthly sprints",
 
-      // About page (extra valores + metas)
-      "about.values.speed.h": "Speed & Clarity",
-      "about.values.speed.p": "Short cycles, clear comms, weekly deliverables.",
-      "about.values.tech.h": "Solid Tech",
-      "about.values.tech.p": "Vue 3 + Spring Boot + PostgreSQL, CI/CD, security & performance.",
-      "about.values.growth.h": "Growth Mindset",
-      "about.values.growth.p": "Meta/Google Ads, funnels, CRO and scalable content.",
-      "meta.about.title": "About — Full-stack Dev & Growth Agency | MarcaPro",
-      "meta.about.desc":
-        "Vue 3 frontends, Spring Boot backends, Stripe, CI/CD and ads that convert. Designed for speed, clarity and ROI.",
-      "meta.about.ogTitle": "About — Full-stack Dev & Growth Agency | MarcaPro",
-      "meta.about.ogDesc": "Vue 3 frontends, Spring Boot backends, Stripe, CI/CD and ads that convert.",
-
-      // Services (hero + secciones)
+      // Services
       "services.badge": "Growth & Analytics",
       "services.h1": 'Scale with <span class="text-primary">real growth</span>.',
       "services.lead": "SEO & performance, CRO, Meta/Google Ads and analytics pipelines that prove ROI.",
@@ -252,86 +246,7 @@
       "svc.growth.analytics.title": "Measurement",
       "svc.growth.analytics.desc": "GA4 dashboards, ROAS, sprints.",
 
-      // Web Design page
-      "webd.badge": "Web Design",
-      "webd.h1": "Custom Web Design — no templates.",
-      "webd.subtitle":
-        "Pixel-perfect UI, fast by default, built with Vue 3 + Spring Boot. 100% coded for your brand — not a theme.",
-      "webd.pill.custom": "100% custom code",
-      "webd.pill.redesign": "Expert redesigns",
-      "webd.pill.performance": "Performance & SEO",
-      "webd.cta.quote": "Get a quote",
-      "webd.cta.work": "See our work",
-
-      "webd.why.h2": "Why custom-built instead of templates?",
-      "webd.why.lead1": "Faster, clearer,",
-      "webd.why.lead2": "easier to scale",
-      "webd.why.point1.title": "Performance by design",
-      "webd.why.point1.desc": "No bloat. Clean components, minimal JS, Core Web Vitals in check.",
-      "webd.why.point2.title": "Brand-true UI",
-      "webd.why.point2.desc": "Layouts and components crafted for your tone, not a generic theme.",
-      "webd.why.point3.title": "SEO-ready, analytics-ready",
-      "webd.why.point3.desc": "Semantic HTML, tags, and events built-in for GA4 and Meta pixels.",
-      "webd.templates.title": "Typical template issues",
-      "webd.templates.li1": "Heavy plugins and CSS you don’t use.",
-      "webd.templates.li2": "Limited layouts; hard to match your brand.",
-      "webd.templates.li3": "Slow scores and messy SEO.",
-      "webd.templates.li4": "Costly to maintain or extend.",
-
-      "webd.redesign.h2": "Redesigns that move the needle",
-      "webd.redesign.lead1": "Audit → Wireframe → ",
-      "webd.redesign.lead2": "UI Build → Launch",
-      "webd.redesign.s1.title": "Audit",
-      "webd.redesign.s1.desc": "Analytics, heatmaps, SEO and content inventory.",
-      "webd.redesign.s2.title": "Wireframe",
-      "webd.redesign.s2.desc": "Structure, messaging, and conversion points.",
-      "webd.redesign.s3.title": "UI Build",
-      "webd.redesign.s3.desc": "Vue components + Spring Boot API, SEO & tags.",
-      "webd.redesign.s4.title": "Launch & Iterate",
-      "webd.redesign.s4.desc": "Perf/QA, pixels, A/B tests and monthly sprints.",
-
-      "webd.scope.h2": "Scope & Deliverables",
-      "webd.scope.lead1": "Everything you need",
-      "webd.scope.lead2": "for a real business site",
-      "webd.scope.landing.title": "Landing / Multi-page",
-      "webd.scope.landing.desc": "Home, About, Services, Projects, FAQ, 404.",
-      "webd.scope.ecom.title": "E-commerce",
-      "webd.scope.ecom.desc": "Variants, cart, orders, Stripe, taxes and shipping.",
-      "webd.scope.analytics.title": "SEO & Analytics",
-      "webd.scope.analytics.desc": "GA4/Tags, Meta pixels, events, sitemap & meta.",
-
-      "webd.packages.h2": "Packages",
-      "webd.packages.lead1": "Clear scope,",
-      "webd.packages.lead2": "measurable outcomes",
-      "webd.pkg.starter.title": "Starter",
-      "webd.pkg.starter.desc": "One-page or simple multi-page site.",
-      "webd.pkg.starter.li1": "Custom design — no templates",
-      "webd.pkg.starter.li2": "Responsive, fast, SEO base",
-      "webd.pkg.starter.li3": "GA4 & basic events",
-      "webd.pkg.growth.title": "Growth",
-      "webd.pkg.growth.desc": "Multi-page + blog/sections, ready for ads.",
-      "webd.pkg.growth.li1": "Design system + components",
-      "webd.pkg.growth.li2": "Events for funnels & ROAS",
-      "webd.pkg.growth.li3": "Monthly sprints (optional)",
-      "webd.pkg.custom.title": "Custom",
-      "webd.pkg.custom.desc": "E-commerce or complex features.",
-      "webd.pkg.custom.li1": "Vue 3 + Spring Boot + PG",
-      "webd.pkg.custom.li2": "Stripe, auth, webhooks",
-      "webd.pkg.custom.li3": "Integrations & dashboards",
-
-      "webd.faq.h2": "FAQ",
-      "webd.faq.lead1": "Straight answers",
-      "webd.faq.lead2": "no fluff",
-      "webd.faq.q1.title": "Do you use templates?",
-      "webd.faq.q1.desc":
-        "No. Everything is coded to your brand. That’s how we keep speed high and UX on point.",
-      "webd.faq.q2.title": "Timelines?",
-      "webd.faq.q2.desc": "Starter ~2–3 weeks. Growth ~3–6 weeks. Custom varies by scope.",
-
-      "webd.cta.title": "Ready to build or redesign?",
-      "webd.cta.copy": "Tell us goals, scope and timeline. We’ll reply within 24 hours.",
-
-      // Projects (hero + toolbar + botones + cuentas)
+      // Projects (toolbar + botones + cuentas)
       "projects.h2": "Projects",
       "projects.lead1": "Explore",
       "projects.lead2": "Client Work & Case Studies",
@@ -361,7 +276,7 @@
       "cta.title": "Have a project in mind?",
       "cta.copy": "Tell us about your product, timeline, and goals. We’ll reply within 24 hours.",
       "cta.email": "info@marcapro.agency",
-      "cta.ig": "Instagram",
+      "cta.ig": "Instagram"
     },
 
     es: {
@@ -425,20 +340,6 @@
       "process.4.li2": "Tracking de ROAS",
       "process.4.li3": "Sprints mensuales",
 
-      // About page (valores + metas)
-      "about.values.speed.h": "Velocidad y claridad",
-      "about.values.speed.p": "Procesos cortos, comunicación clara, entregas semanales.",
-      "about.values.tech.h": "Tech sólido",
-      "about.values.tech.p": "Vue 3 + Spring Boot + PostgreSQL, CI/CD, seguridad y performance.",
-      "about.values.growth.h": "Mentalidad de growth",
-      "about.values.growth.p": "Meta/Google Ads, funnels, CRO y contenido que escala.",
-      "meta.about.title": "About — Agencia de Desarrollo & Growth | MarcaPro",
-      "meta.about.desc":
-        "Front en Vue 3, back en Spring Boot, Stripe, CI/CD y anuncios que convierten. Velocidad, claridad y ROI.",
-      "meta.about.ogTitle": "About — Agencia de Desarrollo & Growth | MarcaPro",
-      "meta.about.ogDesc":
-        "Front en Vue 3, back en Spring Boot, Stripe, CI/CD y anuncios que convierten.",
-
       // Services
       "services.badge": "Crecimiento y Analítica",
       "services.h1": 'Escala con <span class="text-primary">crecimiento real</span>.',
@@ -484,95 +385,6 @@
       "svc.growth.analytics.title": "Medición",
       "svc.growth.analytics.desc": "Dashboards GA4, ROAS y sprints.",
 
-      // Web Design
-      "webd.badge": "Diseño Web",
-      "webd.h1": "Diseño web a medida — sin plantillas.",
-      "webd.subtitle":
-        "UI pixel-perfect, rápido por defecto, hecho con Vue 3 + Spring Boot. 100% código para tu marca — no un tema.",
-      "webd.pill.custom": "100% código propio",
-      "webd.pill.redesign": "Rediseños expertos",
-      "webd.pill.performance": "Performance & SEO",
-      "webd.cta.quote": "Pedir cotización",
-      "webd.cta.work": "Ver trabajos",
-
-      "webd.why.h2": "¿Por qué 100% a medida y no plantillas?",
-      "webd.why.lead1": "Más rápido, claro,",
-      "webd.why.lead2": "y escalable",
-      "webd.why.point1.title": "Performance por diseño",
-      "webd.why.point1.desc": "Sin bloat. Componentes limpios, JS mínimo y Web Vitals en verde.",
-      "webd.why.point2.title": "UI fiel a tu marca",
-      "webd.why.point2.desc": "Layouts y componentes hechos a tu tono, no a uno genérico.",
-      "webd.why.point3.title": "SEO-ready y analytics-ready",
-      "webd.why.point3.desc":
-        "HTML semántico, metatags y eventos para GA4 y píxeles de Meta.",
-      "webd.templates.title": "Problemas típicos de plantillas",
-      "webd.templates.li1": "Plugins y CSS pesados que no usas.",
-      "webd.templates.li2": "Layouts limitados; difícil calzar con tu marca.",
-      "webd.templates.li3": "Scores lentos y SEO desordenado.",
-      "webd.templates.li4": "Caro de mantener o extender.",
-
-      "webd.redesign.h2": "Rediseños que sí mueven la aguja",
-      "webd.redesign.lead1": "Auditoría → Wireframe → ",
-      "webd.redesign.lead2": "UI Build → Lanzamiento",
-      "webd.redesign.s1.title": "Auditoría",
-      "webd.redesign.s1.desc":
-        "Analytics, heatmaps, SEO e inventario de contenidos.",
-      "webd.redesign.s2.title": "Wireframe",
-      "webd.redesign.s2.desc":
-        "Estructura, mensajes y puntos de conversión.",
-      "webd.redesign.s3.title": "UI Build",
-      "webd.redesign.s3.desc":
-        "Componentes Vue + API Spring Boot, SEO & tags.",
-      "webd.redesign.s4.title": "Lanzar e iterar",
-      "webd.redesign.s4.desc":
-        "Perf/QA, píxeles, A/B tests y sprints mensuales.",
-
-      "webd.scope.h2": "Alcance & Entregables",
-      "webd.scope.lead1": "Todo lo necesario",
-      "webd.scope.lead2": "para un sitio real de negocio",
-      "webd.scope.landing.title": "Landing / Multipágina",
-      "webd.scope.landing.desc": "Home, Nosotros, Servicios, Proyectos, FAQ, 404.",
-      "webd.scope.ecom.title": "E-commerce",
-      "webd.scope.ecom.desc":
-        "Variantes, carrito, órdenes, Stripe, impuestos y envíos.",
-      "webd.scope.analytics.title": "SEO & Analytics",
-      "webd.scope.analytics.desc":
-        "GA4/Tags, píxeles de Meta, eventos, sitemap y meta.",
-
-      "webd.packages.h2": "Paquetes",
-      "webd.packages.lead1": "Alcance claro,",
-      "webd.packages.lead2": "resultados medibles",
-      "webd.pkg.starter.title": "Starter",
-      "webd.pkg.starter.desc": "One-page o multipágina simple.",
-      "webd.pkg.starter.li1": "Diseño a medida — sin plantillas",
-      "webd.pkg.starter.li2": "Responsive, rápido, SEO base",
-      "webd.pkg.starter.li3": "GA4 y eventos básicos",
-      "webd.pkg.growth.title": "Growth",
-      "webd.pkg.growth.desc":
-        "Multipágina + blog/secciones, listo para pauta.",
-      "webd.pkg.growth.li1": "Design system + componentes",
-      "webd.pkg.growth.li2": "Eventos para funnels y ROAS",
-      "webd.pkg.growth.li3": "Sprints mensuales (opcional)",
-      "webd.pkg.custom.title": "Custom",
-      "webd.pkg.custom.desc": "E-commerce o features complejos.",
-      "webd.pkg.custom.li1": "Vue 3 + Spring Boot + PG",
-      "webd.pkg.custom.li2": "Stripe, auth, webhooks",
-      "webd.pkg.custom.li3": "Integraciones y dashboards",
-
-      "webd.faq.h2": "FAQ",
-      "webd.faq.lead1": "Respuestas directas",
-      "webd.faq.lead2": "sin humo",
-      "webd.faq.q1.title": "¿Usan plantillas?",
-      "webd.faq.q1.desc":
-        "No. Todo se codifica a tu marca. Así mantenemos velocidad y UX.",
-      "webd.faq.q2.title": "¿Tiempos?",
-      "webd.faq.q2.desc":
-        "Starter ~2–3 semanas. Growth ~3–6 semanas. Custom depende del alcance.",
-
-      "webd.cta.title": "¿Listo para construir o rediseñar?",
-      "webd.cta.copy":
-        "Cuéntanos objetivos, alcance y tiempos. Respondemos en 24h.",
-
       // Projects
       "projects.h2": "Proyectos",
       "projects.lead1": "Explora",
@@ -604,9 +416,224 @@
       "cta.copy":
         "Cuéntanos sobre el producto, tiempos y objetivos. Respondemos en menos de 24 horas.",
       "cta.email": "info@marcapro.agency",
-      "cta.ig": "Instagram",
+      "cta.ig": "Instagram"
     },
   };
+
+  // === Plans: claves añadidas (sin referencias circulares) ===
+  Object.assign(I18N.en, {
+    "nav.plans": "Plans",
+    "plans.hero.badge": "Transparent pricing",
+    "plans.hero.title": "Clear plans — web, social, ads & branding",
+    "plans.hero.subtitle": "USA: web & ads · Colombia: web, social & ads · Branding: global",
+    "plans.hero.note": "Prices shown by tab (USD/COP). Ad spend not included.",
+    "plans.billing.upfrontTop": "Pay upfront",
+    "plans.billing.upfrontBottom": "Save more",
+    "plans.billing.monthlyTop": "Pay monthly",
+    "plans.billing.monthlyBottom": "Monthly",
+    "plans.tabs.usaWeb": "USA — Web",
+    "plans.tabs.usaAds": "USA — Ads",
+    "plans.tabs.colWeb": "Colombia — Web",
+    "plans.tabs.colSocial": "Colombia — Social",
+    "plans.tabs.colAds": "Colombia — Ads",
+    "plans.tabs.branding": "Global — Branding",
+    "plans.generic.plusMaintenance": "+ maintenance",
+    "plans.generic.select": "Select",
+    "plans.generic.email": "Email",
+    "plans.generic.maintenance": "Maintenance:",
+    "plans.generic.perMonth": "/mo",
+    "plans.generic.oneTime": "one-time",
+    "plans.generic.request": "Request",
+    "plans.usaWeb.starter.title": "Starter (Landing)",
+    "plans.usaWeb.starter.subtitle": "Static multi-page, SEO basics, responsive",
+    "plans.usaWeb.starter.f1": "Custom design",
+    "plans.usaWeb.starter.f2": "Responsive",
+    "plans.usaWeb.starter.f3": "On-page SEO",
+    "plans.usaWeb.growth.title": "Growth",
+    "plans.usaWeb.growth.subtitle": "Multi-page site, tracking, CRO & ad-ready",
+    "plans.usaWeb.growth.f1": "Admin / CMS",
+    "plans.usaWeb.growth.f2": "GA4 & conversion events",
+    "plans.usaWeb.growth.f3": "Basic CRO setup",
+    "plans.usaWeb.ecom.title": "E-commerce",
+    "plans.usaWeb.ecom.subtitle": "Variants, Stripe, orders & webhooks",
+    "plans.usaWeb.ecom.f1": "Variants & inventory",
+    "plans.usaWeb.ecom.f2": "Stripe integration",
+    "plans.usaWeb.ecom.f3": "Orders & webhook",
+    "plans.usaAds.setup.title": "Ads Setup (Meta + Google)",
+    "plans.usaAds.setup.subtitle": "Account audit, pixels, conversions, first campaigns",
+    "plans.usaAds.setup.f1": "Events & conversions",
+    "plans.usaAds.setup.f2": "Audiences & structure",
+    "plans.usaAds.setup.f3": "First campaigns live",
+    "plans.usaAds.mgmt.title": "Ads Management",
+    "plans.usaAds.mgmt.subtitle": "Weekly optimization & reporting",
+    "plans.usaAds.mgmt.f1": "Meta & Google",
+    "plans.usaAds.mgmt.f2": "A/B testing",
+    "plans.usaAds.mgmt.f3": "ROAS tracking",
+    "plans.colWeb.static.title": "Static Page",
+    "plans.colWeb.static.subtitle": "Informational/landing, no backend",
+    "plans.colWeb.static.f1": "3–6 sections",
+    "plans.colWeb.static.f2": "Basic SEO",
+    "plans.colWeb.static.f3": "Responsive",
+    "plans.colWeb.back.title": "Website with Backend",
+    "plans.colWeb.back.subtitle": "Admin, DB & business logic",
+    "plans.colWeb.back.f1": "Auth / admin panel",
+    "plans.colWeb.back.f2": "Integrations",
+    "plans.colWeb.back.f3": "Metrics",
+    "plans.colWeb.ecom.title": "E-commerce",
+    "plans.colWeb.ecom.subtitle": "Catalog, payments & inventory",
+    "plans.colWeb.ecom.f1": "Gateway (Stripe/PayU)",
+    "plans.colWeb.ecom.f2": "Variants + stock",
+    "plans.colWeb.ecom.f3": "Orders & webhooks",
+    "plans.colSocial.basic.title": "Basic",
+    "plans.colSocial.basic.subtitle": "8 posts/month + calendar",
+    "plans.colSocial.basic.f1": "Copywriting",
+    "plans.colSocial.basic.f2": "Templates",
+    "plans.colSocial.basic.f3": "Scheduling",
+    "plans.colSocial.pro.title": "Pro",
+    "plans.colSocial.pro.subtitle": "12–16 posts + reels",
+    "plans.colSocial.pro.f1": "Reels + editing",
+    "plans.colSocial.pro.f2": "Optimization",
+    "plans.colSocial.pro.f3": "Monthly report",
+    "plans.colSocial.full.title": "Full + Ads",
+    "plans.colSocial.full.subtitle": "20 posts + ads management",
+    "plans.colSocial.full.f1": "Meta & Google",
+    "plans.colSocial.full.f2": "Testing",
+    "plans.colSocial.full.f3": "Basic ROAS",
+    "plans.colAds.setup.title": "Ads Setup (Meta + Google)",
+    "plans.colAds.setup.subtitle": "Technical implementation and first campaigns",
+    "plans.colAds.setup.f1": "Events and conversions",
+    "plans.colAds.setup.f2": "Structure and audiences",
+    "plans.colAds.setup.f3": "First campaigns",
+    "plans.colAds.mgmt.title": "Monthly Ads Management",
+    "plans.colAds.mgmt.subtitle": "Weekly optimization and reports",
+    "plans.colAds.mgmt.f1": "Meta & Google",
+    "plans.colAds.mgmt.f2": "A/B testing",
+    "plans.colAds.mgmt.f3": "Performance report",
+    "plans.branding.basic.title": "Logo + Basic Guide",
+    "plans.branding.basic.subtitle": "2 proposals, palette, typography, applications",
+    "plans.branding.basic.f1": "Final editable logo",
+    "plans.branding.basic.f2": "Usage guide",
+    "plans.branding.basic.f3": "Basic social kit",
+    "plans.branding.full.title": "Full Rebranding",
+    "plans.branding.full.subtitle": "Story, identity and extended applications",
+    "plans.branding.full.f1": "Story & positioning",
+    "plans.branding.full.f2": "Extended brandbook",
+    "plans.branding.full.f3": "Marketing kit",
+    "plans.branding.note": "Branding is one-time. No maintenance included.",
+    "plans.addons.title": "Add-ons",
+    "plans.addons.note": "In USA and Colombia we handle Ads as an independent service (see Ads tabs). Ad spend is separate.",
+    "plans.cta.ready": "Ready to start?",
+    "plans.cta.email": "Email us",
+    "plans.cta.ig": "Instagram",
+    "plans.cta.custom": "Prefer custom? We build tailored quotes — let's talk."
+  });
+
+  Object.assign(I18N.es, {
+    "nav.plans": "Planes",
+    "plans.hero.badge": "Precios transparentes",
+    "plans.hero.title": "Planes claros — web, social, pauta y branding",
+    "plans.hero.subtitle": "USA: web y pauta · Colombia: web, social y pauta · Branding: global",
+    "plans.hero.note": "Los precios se muestran por pestaña (USD/COP). No incluye pauta.",
+    "plans.billing.upfrontTop": "Pago único",
+    "plans.billing.upfrontBottom": "Ahorras más",
+    "plans.billing.monthlyTop": "Pago mensual",
+    "plans.billing.monthlyBottom": "Mensual",
+    "plans.tabs.usaWeb": "USA — Web",
+    "plans.tabs.usaAds": "USA — Ads",
+    "plans.tabs.colWeb": "Colombia — Web",
+    "plans.tabs.colSocial": "Colombia — Social",
+    "plans.tabs.colAds": "Colombia — Ads",
+    "plans.tabs.branding": "Global — Branding",
+    "plans.generic.plusMaintenance": "+ mantenimiento",
+    "plans.generic.select": "Seleccionar",
+    "plans.generic.email": "Email",
+    "plans.generic.maintenance": "Mantenimiento:",
+    "plans.generic.perMonth": "/mes",
+    "plans.generic.oneTime": "único",
+    "plans.generic.request": "Solicitar",
+    "plans.usaWeb.starter.title": "Starter (Landing)",
+    "plans.usaWeb.starter.subtitle": "Multipágina estática, SEO básico, responsive",
+    "plans.usaWeb.starter.f1": "Diseño a medida",
+    "plans.usaWeb.starter.f2": "Responsive",
+    "plans.usaWeb.starter.f3": "SEO on-page",
+    "plans.usaWeb.growth.title": "Growth",
+    "plans.usaWeb.growth.subtitle": "Multipágina, medición, CRO y lista para pauta",
+    "plans.usaWeb.growth.f1": "Admin / CMS",
+    "plans.usaWeb.growth.f2": "GA4 y conversiones",
+    "plans.usaWeb.growth.f3": "CRO básico",
+    "plans.usaWeb.ecom.title": "E-commerce",
+    "plans.usaWeb.ecom.subtitle": "Variantes, Stripe, pedidos y webhooks",
+    "plans.usaWeb.ecom.f1": "Variantes e inventario",
+    "plans.usaWeb.ecom.f2": "Integración con Stripe",
+    "plans.usaWeb.ecom.f3": "Pedidos y webhook",
+    "plans.usaAds.setup.title": "Setup de Ads (Meta + Google)",
+    "plans.usaAds.setup.subtitle": "Auditoría, píxeles, conversiones y primeras campañas",
+    "plans.usaAds.setup.f1": "Eventos y conversiones",
+    "plans.usaAds.setup.f2": "Audiencias y estructura",
+    "plans.usaAds.setup.f3": "Primeras campañas activas",
+    "plans.usaAds.mgmt.title": "Gestión de Ads",
+    "plans.usaAds.mgmt.subtitle": "Optimización semanal y reportes",
+    "plans.usaAds.mgmt.f1": "Meta y Google",
+    "plans.usaAds.mgmt.f2": "A/B testing",
+    "plans.usaAds.mgmt.f3": "Seguimiento de ROAS",
+    "plans.colWeb.static.title": "Página Estática",
+    "plans.colWeb.static.subtitle": "Informativa/landing, sin backend",
+    "plans.colWeb.static.f1": "3–6 secciones",
+    "plans.colWeb.static.f2": "SEO básico",
+    "plans.colWeb.static.f3": "Responsive",
+    "plans.colWeb.back.title": "Web con Backend",
+    "plans.colWeb.back.subtitle": "Admin, BD y lógica de negocio",
+    "plans.colWeb.back.f1": "Autenticación / panel",
+    "plans.colWeb.back.f2": "Integraciones",
+    "plans.colWeb.back.f3": "Métricas",
+    "plans.colWeb.ecom.title": "E-commerce",
+    "plans.colWeb.ecom.subtitle": "Catálogo, pagos e inventario",
+    "plans.colWeb.ecom.f1": "Pasarela (Stripe/PayU)",
+    "plans.colWeb.ecom.f2": "Variantes + stock",
+    "plans.colWeb.ecom.f3": "Pedidos y webhooks",
+    "plans.colSocial.basic.title": "Básico",
+    "plans.colSocial.basic.subtitle": "8 piezas/mes + parrilla",
+    "plans.colSocial.basic.f1": "Copywriting",
+    "plans.colSocial.basic.f2": "Plantillas",
+    "plans.colSocial.basic.f3": "Programación",
+    "plans.colSocial.pro.title": "Pro",
+    "plans.colSocial.pro.subtitle": "12–16 piezas + reels",
+    "plans.colSocial.pro.f1": "Reels + edición",
+    "plans.colSocial.pro.f2": "Optimización",
+    "plans.colSocial.pro.f3": "Informe mensual",
+    "plans.colSocial.full.title": "Full + Ads",
+    "plans.colSocial.full.subtitle": "20 piezas + administración de pauta",
+    "plans.colSocial.full.f1": "Meta y Google",
+    "plans.colSocial.full.f2": "Testing",
+    "plans.colSocial.full.f3": "ROAS básico",
+    "plans.colAds.setup.title": "Setup de Ads (Meta + Google)",
+    "plans.colAds.setup.subtitle": "Implementación técnica y primeras campañas",
+    "plans.colAds.setup.f1": "Eventos y conversiones",
+    "plans.colAds.setup.f2": "Estructura y audiencias",
+    "plans.colAds.setup.f3": "Primeras campañas",
+    "plans.colAds.mgmt.title": "Gestión Mensual de Ads",
+    "plans.colAds.mgmt.subtitle": "Optimización semanal y reportes",
+    "plans.colAds.mgmt.f1": "Meta y Google",
+    "plans.colAds.mgmt.f2": "A/B testing",
+    "plans.colAds.mgmt.f3": "Informe de desempeño",
+    "plans.branding.basic.title": "Logo + Manual Básico",
+    "plans.branding.basic.subtitle": "2 propuestas, paleta, tipografía, aplicaciones",
+    "plans.branding.basic.f1": "Logo final editable",
+    "plans.branding.basic.f2": "Guía de uso",
+    "plans.branding.basic.f3": "Kit social básico",
+    "plans.branding.full.title": "Rebranding Completo",
+    "plans.branding.full.subtitle": "Narrativa, identidad y aplicaciones extendidas",
+    "plans.branding.full.f1": "Story y posicionamiento",
+    "plans.branding.full.f2": "Manual extendido",
+    "plans.branding.full.f3": "Kit de marketing",
+    "plans.branding.note": "Branding es cobro único. No incluye mantenimiento.",
+    "plans.addons.title": "Add-ons",
+    "plans.addons.note": "En USA y Colombia manejamos Ads como servicio independiente (ver pestañas de Ads). El gasto en pauta es aparte.",
+    "plans.cta.ready": "¿Listo para empezar?",
+    "plans.cta.email": "Escríbenos",
+    "plans.cta.ig": "Instagram",
+    "plans.cta.custom": "¿Prefieres a la medida? Armamos una cotización — conversemos."
+  });
 
   let currentLang = "en";
   function t(key) {
@@ -631,7 +658,7 @@
       if (dict[key] != null) el.innerHTML = dict[key];
     });
 
-    // Atributos: data-i18n-attr="placeholder:projects.search.placeholder;title:xyz"
+    // Atributos (placeholder, title, content, etc.)
     document.querySelectorAll("[data-i18n-attr]").forEach((el) => {
       const map = el.getAttribute("data-i18n-attr") || "";
       map.split(";").forEach((pair) => {
@@ -639,8 +666,7 @@
         if (!attr || !key) return;
         if (dict[key] != null) {
           if (attr.toLowerCase() === "content") {
-            // metas/title
-            el.setAttribute(attr, dict[key]);
+            el.setAttribute(attr, dict[key]); // <meta>
           } else if (attr.toLowerCase() === "title" && el.tagName === "TITLE") {
             el.textContent = dict[key];
             document.title = dict[key];
@@ -653,12 +679,19 @@
 
     // Botones de idioma activos
     document.querySelectorAll(".btn-lang").forEach((b) => {
-      b.classList.toggle("active", b.getAttribute("data-lang") === currentLang);
-      b.setAttribute("aria-pressed", b.classList.contains("active") ? "true" : "false");
+      const active = b.getAttribute("data-lang") === currentLang;
+      b.classList.toggle("active", active);
+      b.setAttribute("aria-pressed", active ? "true" : "false");
     });
 
-    // Re-render dinámico de Proyectos si existe el grid (para traducir botones)
+    // Re-render dinámico de páginas que dependen de i18n
     rerenderProjectsIfNeeded();
+    // hook para la página de planes (si existe plans.js escuchará este evento)
+    try {
+      window.dispatchEvent(new CustomEvent("i18n:changed", { detail: { lang: currentLang, t } }));
+      // compat: si plans.js expone una función global opcional
+      if (typeof window.rerenderPlans === "function") window.rerenderPlans();
+    } catch {}
 
     localStorage.setItem("lang", currentLang);
   }
@@ -792,19 +825,17 @@
           <button class="btn btn-sm btn-outline-dark" data-case="${p.id}">
             <i class="bi bi-journal-text me-1"></i> ${t("projects.btn.case")}
           </button>
-          ${
-            p.live
-              ? `<a class="btn btn-sm btn-primary" href="${p.live}" target="_blank" rel="noopener">
-                   <i class="bi bi-globe me-1"></i> ${t("projects.btn.visit")}
-                 </a>`
-              : ""
+          ${p.live
+            ? `<a class="btn btn-sm btn-primary" href="${p.live}" target="_blank" rel="noopener">
+                 <i class="bi bi-globe me-1"></i> ${t("projects.btn.visit")}
+               </a>`
+            : ""
           }
-          ${
-            p.github
-              ? `<a class="btn btn-sm btn-outline-secondary" href="${p.github}" target="_blank" rel="noopener">
-                   <i class="bi bi-github me-1"></i> ${t("projects.btn.github")}
-                 </a>`
-              : ""
+          ${p.github
+            ? `<a class="btn btn-sm btn-outline-secondary" href="${p.github}" target="_blank" rel="noopener">
+                 <i class="bi bi-github me-1"></i> ${t("projects.btn.github")}
+               </a>`
+            : ""
           }
         </div>`;
     }
@@ -872,7 +903,6 @@
           .map((t_) => `<span class="badge rounded-pill text-bg-light border">${t_}</span>`)
           .join("");
       }
-      // Bootstrap Modal
       if (window.bootstrap?.Modal) new bootstrap.Modal(modalEl).show();
     }
 
@@ -929,105 +959,98 @@
   function rerenderProjectsIfNeeded() {
     const grid = document.getElementById("projectsGrid");
     if (!grid) return;
-    // Fuerza un re-render con la lista actual visible (tomamos el filtro activo si existe)
     const activeBtn = document.querySelector("#projectsFilters .nav-link.active");
     if (!activeBtn) return initProjects();
     const f = activeBtn.getAttribute("data-filter");
     const list = f === "all" ? PROJECTS : PROJECTS.filter((p) => p.type === f);
-    // Reconstruye con etiquetas traducidas
-    const evt = new Event("change");
+
+    // Si hay controles de búsqueda/orden, disparamos sus eventos para que reconstruyan
     const searchInput = document.getElementById("projectsSearch");
     const sortSelect = document.getElementById("projectsSort");
-    if (searchInput) searchInput.dispatchEvent(evt);
-    if (sortSelect) sortSelect.dispatchEvent(evt);
-    // Si no hay search/sort, renderizamos directo
-    if (!searchInput && !sortSelect) {
-      // pequeña función local para render rápido
-      grid.innerHTML = "";
-      const frag = document.createDocumentFragment();
-      list.forEach((p) => {
-        const col = document.createElement("div");
-        col.className = "col-sm-6 col-lg-4";
-        col.innerHTML = `
-          <div class="project-card h-100">
-            <img class="project-thumb"
-                 src="${resolveAsset(p.img)}"
-                 alt="${p.title} — ${p.sector}"
-                 loading="lazy" decoding="async" width="640" height="400">
-            <div class="project-body">
-              <h5 class="project-title">${p.title}</h5>
-              <div class="small text-muted">${p.sector}</div>
-              <div class="project-tags mt-1">
-                ${p.tags.slice(0, 3).map((t_) => `<span class="project-tag">${t_}</span>`).join("")}
-              </div>
-              <div class="project-actions">
-                <button class="btn btn-sm btn-outline-dark" data-case="${p.id}">
-                  <i class="bi bi-journal-text me-1"></i> ${t("projects.btn.case")}
-                </button>
-                ${
-                  p.live
-                    ? `<a class="btn btn-sm btn-primary" href="${p.live}" target="_blank" rel="noopener">
-                         <i class="bi bi-globe me-1"></i> ${t("projects.btn.visit")}
-                       </a>`
-                    : ""
-                }
-                ${
-                  p.github
-                    ? `<a class="btn btn-sm btn-outline-secondary" href="${p.github}" target="_blank" rel="noopener">
-                         <i class="bi bi-github me-1"></i> ${t("projects.btn.github")}
-                       </a>`
-                    : ""
-                }
-              </div>
-            </div>
-          </div>`;
-        frag.appendChild(col);
-      });
-      grid.appendChild(frag);
-      grid.querySelectorAll("[data-case]").forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          const id = Number(e.currentTarget.getAttribute("data-case"));
-          const item = PROJECTS.find((x) => x.id === id);
-          if (item) {
-            const modalEl = document.getElementById("caseStudyModal");
-            if (modalEl) {
-              modalEl.querySelector("#caseStudyTitle").textContent = item.title;
-              modalEl.querySelector("#caseStudyChallenge").textContent = item.challenge;
-              modalEl.querySelector("#caseStudySolutions").innerHTML = item.solutions.map((s) => `<li>${s}</li>`).join("");
-              const res = modalEl.querySelector("#caseStudyResults");
-              res.textContent = item.results;
-              res.classList.toggle("d-none", !item.results);
-              const live = modalEl.querySelector("#caseStudyLive");
-              const git = modalEl.querySelector("#caseStudyGithub");
-              if (live) {
-                if (item.live) {
-                  live.classList.remove("d-none");
-                  live.href = item.live;
-                } else live.classList.add("d-none");
-              }
-              if (git) {
-                if (item.github) {
-                  git.classList.remove("d-none");
-                  git.href = item.github;
-                } else git.classList.add("d-none");
-              }
-              if (window.bootstrap?.Modal) new bootstrap.Modal(modalEl).show();
-            }
-          }
-        });
-      });
+    if (searchInput || sortSelect) {
+      const evt = new Event("change");
+      if (searchInput) searchInput.dispatchEvent(evt);
+      if (sortSelect) sortSelect.dispatchEvent(evt);
+      return;
     }
+
+    // Si no hay controles, renderizamos directo
+    grid.innerHTML = "";
+    const frag = document.createDocumentFragment();
+    list.forEach((p) => {
+      const col = document.createElement("div");
+      col.className = "col-sm-6 col-lg-4";
+      col.innerHTML = `
+        <div class="project-card h-100">
+          <img class="project-thumb"
+               src="${resolveAsset(p.img)}"
+               alt="${p.title} — ${p.sector}"
+               loading="lazy" decoding="async" width="640" height="400">
+          <div class="project-body">
+            <h5 class="project-title">${p.title}</h5>
+            <div class="small text-muted">${p.sector}</div>
+            <div class="project-tags mt-1">
+              ${p.tags.slice(0, 3).map((t_) => `<span class="project-tag">${t_}</span>`).join("")}
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-sm btn-outline-dark" data-case="${p.id}">
+                <i class="bi bi-journal-text me-1"></i> ${t("projects.btn.case")}
+              </button>
+              ${p.live
+                ? `<a class="btn btn-sm btn-primary" href="${p.live}" target="_blank" rel="noopener">
+                     <i class="bi bi-globe me-1"></i> ${t("projects.btn.visit")}
+                   </a>`
+                : ""
+              }
+              ${p.github
+                ? `<a class="btn btn-sm btn-outline-secondary" href="${p.github}" target="_blank" rel="noopener">
+                     <i class="bi bi-github me-1"></i> ${t("projects.btn.github")}
+                   </a>`
+                : ""
+              }
+            </div>
+          </div>
+        </div>`;
+      frag.appendChild(col);
+    });
+    grid.appendChild(frag);
+    grid.querySelectorAll("[data-case]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const id = Number(e.currentTarget.getAttribute("data-case"));
+        const item = PROJECTS.find((x) => x.id === id);
+        if (!item) return;
+        const modalEl = document.getElementById("caseStudyModal");
+        if (!modalEl) return;
+        modalEl.querySelector("#caseStudyTitle").textContent = item.title;
+        modalEl.querySelector("#caseStudyChallenge").textContent = item.challenge;
+        modalEl.querySelector("#caseStudySolutions").innerHTML = item.solutions.map((s) => `<li>${s}</li>`).join("");
+        const res = modalEl.querySelector("#caseStudyResults");
+        res.textContent = item.results;
+        res.classList.toggle("d-none", !item.results);
+        const live = modalEl.querySelector("#caseStudyLive");
+        const git = modalEl.querySelector("#caseStudyGithub");
+        if (live) {
+          if (item.live) { live.classList.remove("d-none"); live.href = item.live; }
+          else live.classList.add("d-none");
+        }
+        if (git) {
+          if (item.github) { git.classList.remove("d-none"); git.href = item.github; }
+          else git.classList.add("d-none");
+        }
+        if (window.bootstrap?.Modal) new bootstrap.Modal(modalEl).show();
+      });
+    });
   }
 
   // Init después de carga
   window.addEventListener("load", () => {
     wireLangButtons();
-    // Idioma guardado o inferido del navegador
     const saved = localStorage.getItem("lang");
     const inferred = ((navigator.language || "").toLowerCase().startsWith("es")) ? "es" : "en";
     applyI18n(saved || inferred);
-
-    // Projects
     initProjects();
   });
+
+  // Exponer util por si otros scripts lo necesitan (opcional)
+  window.__i18n = { t, applyI18n, get lang() { return currentLang; } };
 })();

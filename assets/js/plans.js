@@ -1,369 +1,325 @@
-/* plans.js
- - Renders prices (data-price-key)
- - Billing toggle (upfront / installments) saved in localStorage 'billing'
- - Local i18n for this page (applies data-i18n attributes here) and integrates with global main.js if available
- - Load after main.js
-*/
+/* assets/js/plans.js */
 (function () {
   "use strict";
 
-  /* =========================
-     PRICE CATALOG
-     ========================= */
-  const PRICES = {
-    us: {
-      starter: { upfront: 800, monthly: 100, installments: 4, installmentUnit: 300 },
-      growth:  { upfront: 3200, monthly: 200, installments: 4, installmentUnit: 800 },
-      ecom:    { upfront: 4200, monthly: 400, installments: 4, installmentUnit: 1050 }
-    },
-    co: {
-      web: {
-        basic: { upfront: 350, monthly: 40, installments: 4, installmentUnit: 100 },
-        full:  { upfront: 1200, monthly: 120, installments: 4, installmentUnit: 300 },
-        ecom:  { upfront: 1800, monthly: 220, installments: 4, installmentUnit: 450 }
-      },
-      social: {
-        ai: { monthly: 180 },
-        monthlyshoot: { monthly: 450 },
-        weekly: { monthly: 900 }
-      }
-    }
+  // ===== Helpers =====
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+  const I = () => (window.__i18n || { t: (k) => k, lang: "en" });
+  const t = (k) => I().t(k);
+
+  const state = {
+    billing: "monthly", // 'monthly' | 'upfront'
+    tab: "usaWeb",
   };
 
-  function fmt(n) { return (typeof n === 'number') ? n.toLocaleString('en-US', { minimumFractionDigits: 0 }) : n; }
-
-  /* RENDER PRICES into elements with data-price-key */
-  function renderPrices(billing) {
-    billing = billing || localStorage.getItem('billing') || 'upfront';
-
-    document.querySelectorAll('[data-price-key]').forEach(el => {
-      const key = el.getAttribute('data-price-key');
-      if (!key) return;
-      const parts = key.split('.');
-      try {
-        if (parts[0] === 'us') {
-          const plan = PRICES.us[parts[1]];
-          if (!plan) return;
-          if (parts[2] === 'monthly') el.textContent = fmt(plan.monthly);
-          else if (parts[2] === 'upfront') {
-            if (billing === 'installments') {
-              el.textContent = fmt(plan.installmentUnit);
-              el.setAttribute('data-display', `${plan.installments}×${fmt(plan.installmentUnit)}`);
-            } else {
-              el.textContent = fmt(plan.upfront);
-              el.removeAttribute('data-display');
-            }
-          }
-        } else if (parts[0] === 'co') {
-          if (parts[1] === 'web') {
-            const plan = PRICES.co.web[parts[2]];
-            if (!plan) return;
-            if (parts[3] === 'monthly') el.textContent = fmt(plan.monthly);
-            else if (parts[3] === 'upfront') {
-              if (billing === 'installments') {
-                el.textContent = fmt(plan.installmentUnit);
-                el.setAttribute('data-display', `${plan.installments}×${fmt(plan.installmentUnit)}`);
-              } else {
-                el.textContent = fmt(plan.upfront);
-                el.removeAttribute('data-display');
-              }
-            }
-          } else if (parts[1] === 'social') {
-            const plan = PRICES.co.social[parts[2]];
-            if (!plan) return;
-            if (parts[3] === 'monthly') el.textContent = fmt(plan.monthly);
-          }
-        }
-      } catch (e) { /* ignore */ }
-    });
-
-    // add/remove helper labels for installments
-    document.querySelectorAll('[data-price-key]').forEach(el => {
-      const d = el.getAttribute('data-display');
-      const container = el.closest('.plan-card') || el.parentElement;
-      if (!container) return;
-      let helper = container.querySelector('.installment-label');
-      if (d) {
-        if (!helper) {
-          helper = document.createElement('div');
-          helper.className = 'small text-muted installment-label';
-          container.appendChild(helper);
-        }
-        helper.textContent = `${d} — installments`;
-      } else {
-        if (helper) helper.remove();
-      }
-    });
-
-    // billing explanation text
-    const explain = document.getElementById('billing-explain');
-    if (explain) {
-      if (billing === 'installments') {
-        explain.textContent = `Example: Starter ${PRICES.us.starter.installments}×$${fmt(PRICES.us.starter.installmentUnit)} (then $${fmt(PRICES.us.starter.monthly)}/mo maintenance).`;
-      } else {
-        explain.textContent = 'Pay upfront to reduce implementation cost; maintenance still applies monthly.';
-      }
-    }
-
-    document.documentElement.setAttribute('data-billing', billing);
-  }
-
-  /* INIT billing toggle buttons */
-  function initBillingButtons() {
-    const btns = Array.from(document.querySelectorAll('.billing-btn'));
-    if (!btns.length) return;
-    btns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const mode = btn.getAttribute('data-billing') || 'upfront';
-        localStorage.setItem('billing', mode);
-        btns.forEach(b => {
-          const on = b === btn;
-          b.classList.toggle('active', on);
-          b.setAttribute('aria-pressed', on ? 'true' : 'false');
-        });
-        renderPrices(mode);
-      });
-    });
-    const saved = localStorage.getItem('billing') || 'upfront';
-    btns.forEach(b => {
-      const on = b.getAttribute('data-billing') === saved;
-      b.classList.toggle('active', on);
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
-    });
-    renderPrices(saved);
-  }
-
-  /* =========================
-     LOCAL I18N (page-level)
-     ========================= */
-  const PLANS_I18N = {
-    en: {
-      'plans.hero.badge':'Simple pricing for real results',
-      'plans.hero.title':'Plans — Web & Social',
-      'plans.hero.lead':'Clear packages for USA (web-focused) and Colombia (web + social). Upfront, installments, or monthly maintenance.',
-      'plans.hero.note':'All prices in USD. Ads spend is separate — we manage ad budgets and reporting.',
-      'plans.billing.upfront':'Pay upfront',
-      'plans.billing.upfront.sub':'One-time implementation (discounted)',
-      'plans.billing.installments':'4× Installments',
-      'plans.billing.installments.sub':'Spread cost over 4 months',
-      'plans.tab.us':'USA — Web',
-      'plans.tab.co':'Colombia — Web & Social',
-      'plans.price.implementation':'Implementation',
-      'plans.price.maintenance':'Maintenance:',
-      'plans.cta.email':'Email',
-      'plans.cta.ig':'Instagram',
-      'plans.cta.quote':'Get quote',
-      'plans.cta.discuss':'Discuss',
-      'plans.cta.book':'Book',
-      'plans.cta.contact':'Contact',
-      'plans.addon.title':'Ads & Measurement (add-on)',
-      'plans.addon.copy':'Meta/Google ad management is billed separately (ad budgets + management fee). Ask for ROAS forecasts and recommended monthly budgets.',
-      'plans.social.title':'Social Media — Content & Management',
-      'plans.location.title':'On-location shoots',
-      'plans.location.copy':'We operate from Bogotá / Chía. Travel beyond this area may include extra logistics fees — we\'ll quote per job.',
-      'plans.custom.title':'Custom plans',
-      'plans.custom.copy':'Need something tailored? We build combined packages (web + content + ads) — let\'s talk and draft a proposal with transparent billing.',
-      'plans.cta.talk':'Talk to us',
-
-      /* US plans */
-      'plans.us.starter.title':'Starter',
-      'plans.us.starter.sub':'Static / Brochure',
-      'plans.us.starter.f1':'One-page or few pages',
-      'plans.us.starter.f2':'Responsive & SEO base',
-      'plans.us.starter.f3':'Canonical & sitemap',
-
-      'plans.us.growth.title':'Growth',
-      'plans.us.growth.sub':'Multi-page + Ads-ready',
-      'plans.us.growth.f1':'Design system + CMS-ready',
-      'plans.us.growth.f2':'Events, GA4, Meta pixels',
-      'plans.us.growth.f3':'A/B friendly & performance',
-
-      'plans.us.ecom.title':'E-commerce',
-      'plans.us.ecom.sub':'Stripe, variants & orders',
-      'plans.us.ecom.f1':'Product variants, cart & checkout',
-      'plans.us.ecom.f2':'Orders, webhooks, invoices',
-      'plans.us.ecom.f3':'U.S. Stripe setup & taxes',
-
-      /* CO web */
-      'plans.co.web.basic.title':'Web — Basic',
-      'plans.co.web.basic.sub':'Static site',
-      'plans.co.web.basic.f1':'Few pages — fast delivery',
-      'plans.co.web.basic.f2':'Basic SEO & contact CTA',
-
-      'plans.co.web.full.title':'Web — Full',
-      'plans.co.web.full.sub':'Backend / Integrations',
-      'plans.co.web.full.f1':'API integrations, auth, webhooks',
-      'plans.co.web.full.f2':'Performance & GA4',
-
-      'plans.co.web.ecom.title':'E-commerce',
-      'plans.co.web.ecom.sub':'Stripe / Payments',
-      'plans.co.web.ecom.f1':'Catalog & variants',
-      'plans.co.web.ecom.f2':'Checkout & orders',
-
-      /* Social */
-      'plans.social.basic.title':'Social — Basic (AI)',
-      'plans.social.basic.sub':'12 posts / month (AI-assisted)',
-      'plans.social.basic.f1':'Calendar + captions',
-      'plans.social.basic.f2':'Hashtag & simple editing',
-
-      'plans.social.monthly.title':'Social — On-location (1×/mo)',
-      'plans.social.monthly.sub':'Monthly shooting in Bogotá / Chía area',
-      'plans.social.monthly.f1':'1 shoot per month + edits',
-      'plans.social.monthly.f2':'Reels & short edits',
-
-      'plans.social.weekly.title':'Social — Weekly (On-location)',
-      'plans.social.weekly.sub':'Weekly shoots (Bogotá / Chía) — premium',
-      'plans.social.weekly.f1':'Weekly content & edit',
-      'plans.social.weekly.f2':'Ad creative + reporting'
-    },
-
-    es: {
-      'plans.hero.badge':'Precios claros para resultados reales',
-      'plans.hero.title':'Planes — Web & Social',
-      'plans.hero.lead':'Paquetes claros para EE. UU. (enfocado en web) y Colombia (web + redes). Pago al contado, cuotas o mantenimiento mensual.',
-      'plans.hero.note':'Precios en USD. La pauta (ads) se factura aparte — gestionamos presupuestos e informes.',
-      'plans.billing.upfront':'Pagar al contado',
-      'plans.billing.upfront.sub':'Implementación única (descuento)',
-      'plans.billing.installments':'4× Cuotas',
-      'plans.billing.installments.sub':'Divide el costo en 4 meses',
-      'plans.tab.us':'EE. UU. — Web',
-      'plans.tab.co':'Colombia — Web y Redes',
-      'plans.price.implementation':'Implementación',
-      'plans.price.maintenance':'Mantenimiento:',
-      'plans.cta.email':'Email',
-      'plans.cta.ig':'Instagram',
-      'plans.cta.quote':'Pedir cotización',
-      'plans.cta.discuss':'Hablar',
-      'plans.cta.book':'Reservar',
-      'plans.cta.contact':'Contactar',
-      'plans.addon.title':'Pauta & Medición (add-on)',
-      'plans.addon.copy':'La gestión de anuncios (Meta/Google) se factura aparte (presupuesto de anuncios + fee de gestión). Pregunta por proyecciones de ROAS y presupuestos recomendados.',
-      'plans.social.title':'Redes — Contenido y Gestión',
-      'plans.location.title':'Grabaciones en sitio',
-      'plans.location.copy':'Operamos desde Bogotá / Chía. Desplazamientos fuera de la zona pueden tener costes extra — cotizamos por trabajo.',
-      'plans.custom.title':'Planes personalizados',
-      'plans.custom.copy':'¿Necesitas algo a medida? Armamos paquetes combinados (web + contenido + ads) — hablemos y presentamos una propuesta con facturación transparente.',
-      'plans.cta.talk':'Hablemos',
-
-      /* US plans (español simple) */
-      'plans.us.starter.title':'Starter',
-      'plans.us.starter.sub':'Estático / Folleto',
-      'plans.us.starter.f1':'Una página o pocas páginas',
-      'plans.us.starter.f2':'Responsive y SEO básico',
-      'plans.us.starter.f3':'Canonical & sitemap',
-
-      'plans.us.growth.title':'Growth',
-      'plans.us.growth.sub':'Multipágina + listo para ads',
-      'plans.us.growth.f1':'Design system + preparado para CMS',
-      'plans.us.growth.f2':'Eventos, GA4, píxeles Meta',
-      'plans.us.growth.f3':'A/B ready & performance',
-
-      'plans.us.ecom.title':'E-commerce',
-      'plans.us.ecom.sub':'Stripe, variantes & órdenes',
-      'plans.us.ecom.f1':'Variantes de producto, carrito y checkout',
-      'plans.us.ecom.f2':'Órdenes, webhooks, facturación',
-      'plans.us.ecom.f3':'Setup Stripe EE. UU. & impuestos',
-
-      /* CO web */
-      'plans.co.web.basic.title':'Web — Básica',
-      'plans.co.web.basic.sub':'Sitio estático',
-      'plans.co.web.basic.f1':'Pocas páginas — entrega rápida',
-      'plans.co.web.basic.f2':'SEO básico & CTA de contacto',
-
-      'plans.co.web.full.title':'Web — Completa',
-      'plans.co.web.full.sub':'Backend / Integraciones',
-      'plans.co.web.full.f1':'Integraciones API, auth, webhooks',
-      'plans.co.web.full.f2':'Performance & GA4',
-
-      'plans.co.web.ecom.title':'E-commerce',
-      'plans.co.web.ecom.sub':'Stripe / Pagos',
-      'plans.co.web.ecom.f1':'Catálogo & variantes',
-      'plans.co.web.ecom.f2':'Checkout & órdenes',
-
-      /* Social */
-      'plans.social.basic.title':'Social — Básico (IA)',
-      'plans.social.basic.sub':'12 posts / mes (IA asistida)',
-      'plans.social.basic.f1':'Calendario + captions',
-      'plans.social.basic.f2':'Hashtags y edición básica',
-
-      'plans.social.monthly.title':'Social — En sitio (1×/mes)',
-      'plans.social.monthly.sub':'Grabación mensual en Bogotá / Chía',
-      'plans.social.monthly.f1':'1 grabación al mes + ediciones',
-      'plans.social.monthly.f2':'Reels y cortes cortos',
-
-      'plans.social.weekly.title':'Social — Semanal (En sitio)',
-      'plans.social.weekly.sub':'Grabaciones semanales — premium',
-      'plans.social.weekly.f1':'Contenido semanal + edición',
-      'plans.social.weekly.f2':'Creativos para ads + reporting'
-    }
+  const fmt = {
+    USD: (n) =>
+      new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(n),
+    COP: (n) =>
+      new Intl.NumberFormat("es-CO", {
+        style: "currency",
+        currency: "COP",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(n),
   };
 
-  /* Apply local translations for elements with data-i18n (and data-i18n-attr if used) */
-  function applyLocalI18n(lang = 'en') {
-    const dict = PLANS_I18N[lang] || PLANS_I18N.en;
-    document.documentElement.setAttribute('lang', lang);
+  // ===== Reglas de negocio =====
+  // Mínimo mantenimiento por moneda
+  const MIN_MAINT = { USD: 100, COP: 100000 };
 
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (dict[key] != null) el.textContent = dict[key];
+  // ===== Data con onboarding mensual =====
+  // monthly: { intro: { months, price }, maint: number }  (en USD/COP según tab)
+  // upfront: number | null
+  // maintenance visible: usa "maint" y respeta mínimo por moneda
+  const PLANS = {
+    usaWeb: {
+      currency: "USD",
+      items: [
+        {
+          key: "plans.usaWeb.starter",
+          price: {
+            monthly: { intro: { months: 4, price: 200 }, maint: 100 },
+            upfront: 1200,
+          },
+          features: ["f1", "f2", "f3"],
+        },
+        {
+          key: "plans.usaWeb.growth",
+          price: {
+            monthly: { intro: { months: 4, price: 320 }, maint: 140 },
+            upfront: 2600,
+          },
+          features: ["f1", "f2", "f3"],
+        },
+        {
+          key: "plans.usaWeb.ecom",
+          price: {
+            monthly: { intro: { months: 4, price: 520 }, maint: 180 },
+            upfront: 4200,
+          },
+          features: ["f1", "f2", "f3"],
+        },
+      ],
+    },
+
+    usaAds: {
+      currency: "USD",
+      items: [
+        {
+          key: "plans.usaAds.setup",
+          price: { monthly: null, upfront: 600 }, // one-time
+          features: ["f1", "f2", "f3"],
+        },
+        {
+          key: "plans.usaAds.mgmt",
+          price: { monthly: { intro: { months: 3, price: 550 }, maint: 350 }, upfront: null },
+          features: ["f1", "f2", "f3"],
+        },
+      ],
+    },
+
+    colWeb: {
+      currency: "COP",
+      items: [
+        {
+          key: "plans.colWeb.static",
+          price: {
+            monthly: { intro: { months: 4, price: 420000 }, maint: 100000 },
+            upfront: 1900000,
+          },
+          features: ["f1", "f2", "f3"],
+        },
+        {
+          key: "plans.colWeb.back",
+          price: {
+            monthly: { intro: { months: 4, price: 780000 }, maint: 160000 },
+            upfront: 3600000,
+          },
+          features: ["f1", "f2", "f3"],
+        },
+        {
+          key: "plans.colWeb.ecom",
+          price: {
+            monthly: { intro: { months: 4, price: 1080000 }, maint: 220000 },
+            upfront: 5200000,
+          },
+          features: ["f1", "f2", "f3"],
+        },
+      ],
+    },
+
+    colSocial: {
+      currency: "COP",
+      items: [
+        {
+          key: "plans.colSocial.basic",
+          price: { monthly: { intro: { months: 3, price: 950000 }, maint: 650000 }, upfront: null },
+          features: ["f1", "f2", "f3"],
+        },
+        {
+          key: "plans.colSocial.pro",
+          price: { monthly: { intro: { months: 3, price: 1350000 }, maint: 900000 }, upfront: null },
+          features: ["f1", "f2", "f3"],
+        },
+        {
+          key: "plans.colSocial.full",
+          price: { monthly: { intro: { months: 3, price: 1950000 }, maint: 1350000 }, upfront: null },
+          features: ["f1", "f2", "f3"],
+        },
+      ],
+    },
+
+    colAds: {
+      currency: "COP",
+      items: [
+        {
+          key: "plans.colAds.setup",
+          price: { monthly: null, upfront: 900000 }, // one-time
+          features: ["f1", "f2", "f3"],
+        },
+        {
+          key: "plans.colAds.mgmt",
+          price: { monthly: { intro: { months: 3, price: 1400000 }, maint: 1000000 }, upfront: null },
+          features: ["f1", "f2", "f3"],
+        },
+      ],
+    },
+
+    branding: {
+      currency: "USD",
+      items: [
+        {
+          key: "plans.branding.basic",
+          price: { monthly: null, upfront: 680 },
+          features: ["f1", "f2", "f3"],
+        },
+        {
+          key: "plans.branding.full",
+          price: { monthly: null, upfront: 1800 },
+          features: ["f1", "f2", "f3"],
+        },
+      ],
+      noteKey: "plans.branding.note",
+    },
+  };
+
+  // ===== UI wiring =====
+  const grid = $("#plansGrid");
+  if (!grid) return;
+
+  function setBilling(b) {
+    state.billing = b;
+    const btnUpfront = $("#btnUpfront");
+    const btnMonthly = $("#btnMonthly");
+    if (btnUpfront && btnMonthly) {
+      const isUp = b === "upfront";
+      btnUpfront.classList.toggle("btn-primary", isUp);
+      btnUpfront.classList.toggle("btn-outline-primary", !isUp);
+      btnUpfront.setAttribute("aria-pressed", isUp ? "true" : "false");
+
+      btnMonthly.classList.toggle("btn-primary", !isUp);
+      btnMonthly.classList.toggle("btn-outline-primary", isUp);
+      btnMonthly.setAttribute("aria-pressed", !isUp ? "true" : "false");
+    }
+    render();
+  }
+
+  function setTab(tab) {
+    state.tab = tab;
+    $$("#plansTabs .nav-link").forEach((b) => {
+      b.classList.toggle("active", b.getAttribute("data-tab") === tab);
     });
+    render();
+  }
 
-    // smaller subset: attributes e.g. placeholder (not used heavily here, but ready)
-    document.querySelectorAll('[data-i18n-attr]').forEach(el => {
-      const spec = el.getAttribute('data-i18n-attr'); // format "attr:key"
-      // allow multiple pair comma separated attr:key
-      spec.split(',').forEach(pair => {
-        const [attr, k] = pair.split(':').map(s => s && s.trim());
-        if (attr && k && (dict[k] != null)) el.setAttribute(attr, dict[k]);
-      });
-    });
+  function priceMonthlyBlock(m, currency) {
+    // Aplica mínimo de mantenimiento por moneda
+    const minMaint = MIN_MAINT[currency] || 0;
+    const maint = Math.max(m.maint || 0, minMaint);
 
-    // set .btn-lang active state
-    document.querySelectorAll('.btn-lang').forEach(b => {
-      const is = b.getAttribute('data-lang') === lang;
-      b.classList.toggle('active', is);
-      b.setAttribute('aria-pressed', is ? 'true' : 'false');
-    });
+    const perMonth = t("plans.generic.perMonth");
 
-    // attempt to call global main applyI18n if exposed (keeps site consistent)
-    try {
-      if (typeof window.applyI18n === 'function') {
-        window.applyI18n(lang);
-      } else {
-        // also dispatch a generic event in case main.js listens
-        window.dispatchEvent(new CustomEvent('i18n:changed', { detail: { lang } }));
+    // “Primeros N meses: $X/mes”
+    const introLine =
+      m.intro && m.intro.months && m.intro.price
+        ? `<div><strong>${fmt[currency](m.intro.price)}</strong> ${perMonth} <span class="opacity-75">(${t("plans.billing.monthlyTop")} ${m.intro.months})</span></div>`
+        : "";
+
+    // “Luego: $Y/mes”
+    const thenLine = `<div>${t("plans.generic.maintenance")} <strong>${fmt[currency](maint)}</strong> ${perMonth}</div>`;
+
+    return `
+      <div class="plan-price plan-price--stack">
+        ${introLine}
+        ${thenLine}
+      </div>`;
+  }
+
+  function priceBlock(p, currency) {
+    const oneTime = t("plans.generic.oneTime");
+    if (state.billing === "upfront") {
+      if (p.upfront) {
+        return `<div class="plan-price">
+          <span class="plan-amount">${fmt[currency](p.upfront)}</span>
+          <span class="plan-per">${oneTime}</span>
+        </div>`;
       }
-    } catch (e) { /* noop */ }
+      // si no hay upfront pero sí mensual, muestra el mensual (intro+maint)
+      if (p.monthly) return priceMonthlyBlock(p.monthly, currency);
+      return `<div class="plan-price"><span class="plan-amount">${t("plans.generic.request")}</span></div>`;
+    }
 
-    localStorage.setItem('lang', lang);
+    // Monthly
+    if (p.monthly) return priceMonthlyBlock(p.monthly, currency);
+    // si no hay mensual, cae a one-time
+    if (p.upfront) {
+      return `<div class="plan-price">
+        <span class="plan-amount">${fmt[currency](p.upfront)}</span>
+        <span class="plan-per">${oneTime}</span>
+      </div>`;
+    }
+    return `<div class="plan-price"><span class="plan-amount">${t("plans.generic.request")}</span></div>`;
   }
 
-  /* Bind language buttons (local) */
-  function initLangButtons() {
-    const btns = Array.from(document.querySelectorAll('.btn-lang'));
-    if (!btns.length) return;
-    btns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const lang = btn.getAttribute('data-lang') || 'en';
-        applyLocalI18n(lang);
-      });
-    });
+  function render() {
+    const lang = I().lang || "en";
+    const tab = PLANS[state.tab];
+    if (!tab) return (grid.innerHTML = "");
 
-    // initialize from localStorage (or default en)
-    const saved = localStorage.getItem('lang') || 'en';
-    applyLocalI18n(saved);
+    const cards = tab.items
+      .map((item) => {
+        const title = t(`${item.key}.title`);
+        const subtitle = t(`${item.key}.subtitle`);
+        const f1 = t(`${item.key}.${item.features[0]}`);
+        const f2 = t(`${item.key}.${item.features[1]}`);
+        const f3 = t(`${item.key}.${item.features[2]}`);
+
+        const priceHtml = priceBlock(item.price, tab.currency);
+
+        const ctaTxt = t("plans.generic.email");
+        const href = "mailto:info@marcapro.agency";
+
+        return `
+          <div class="col-md-6 col-lg-4">
+            <article class="plan-card h-100">
+              <div class="plan-card-body">
+                <header class="mb-2">
+                  <h5 class="plan-title">${title}</h5>
+                  <div class="plan-subtitle small text-muted">${subtitle}</div>
+                </header>
+
+                ${priceHtml}
+
+                <ul class="plan-features mt-3">
+                  <li>${f1}</li>
+                  <li>${f2}</li>
+                  <li>${f3}</li>
+                </ul>
+
+                <div class="mt-3 d-grid">
+                  <a class="btn btn-primary" href="${href}">
+                    <i class="bi bi-envelope me-1"></i>${ctaTxt}
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        `;
+      })
+      .join("");
+
+    const note =
+      state.tab === "branding" && tab.noteKey
+        ? `<div class="col-12"><div class="alert alert-light border mt-2">${t(tab.noteKey)}</div></div>`
+        : "";
+
+    grid.innerHTML = cards + note;
   }
 
-  /* Keep prices updated if localStorage changed in another tab */
-  window.addEventListener('storage', (ev) => {
-    if (ev.key === 'billing') renderPrices(ev.newValue);
-    if (ev.key === 'lang') applyLocalI18n(ev.newValue);
+  // ===== Listeners =====
+  $$("#plansTabs .nav-link").forEach((btn) => {
+    btn.addEventListener("click", () => setTab(btn.getAttribute("data-tab")));
   });
 
-  /* Init on load */
-  window.addEventListener('load', () => {
-    initBillingButtons();
-    initLangButtons();
-  });
+  const up = $("#btnUpfront");
+  const mo = $("#btnMonthly");
+  if (up) up.addEventListener("click", () => setBilling("upfront"));
+  if (mo) mo.addEventListener("click", () => setBilling("monthly"));
 
+  window.addEventListener("i18n:changed", () => render());
+
+  // ===== First paint =====
+  setBilling("monthly");
+  const activeTabBtn = $("#plansTabs .nav-link.active");
+  setTab(activeTabBtn ? activeTabBtn.getAttribute("data-tab") : "usaWeb");
+
+  // Exponer por si el main quiere forzar re-render
+  window.rerenderPlans = render;
 })();
