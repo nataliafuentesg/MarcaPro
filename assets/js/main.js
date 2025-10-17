@@ -99,7 +99,7 @@
           a.classList.add("active");
           matched = true;
         }
-      } catch (_) {}
+      } catch (_) { }
     });
 
     if (!matched) {
@@ -525,7 +525,11 @@
     "plans.cta.ready": "Ready to start?",
     "plans.cta.email": "Email us",
     "plans.cta.ig": "Instagram",
-    "plans.cta.custom": "Prefer custom? We build tailored quotes — let's talk."
+    "plans.cta.custom": "Prefer custom? We build tailored quotes — let's talk.",
+    "plans.pricing.includes": "includes implementation + maintenance",
+    "plans.pricing.after": "then",
+    "plans.pricing.varies": "Maintenance varies by scope (static, backend, e-commerce).",
+
   });
 
   Object.assign(I18N.es, {
@@ -632,7 +636,11 @@
     "plans.cta.ready": "¿Listo para empezar?",
     "plans.cta.email": "Escríbenos",
     "plans.cta.ig": "Instagram",
-    "plans.cta.custom": "¿Prefieres a la medida? Armamos una cotización — conversemos."
+    "plans.cta.custom": "¿Prefieres a la medida? Armamos una cotización — conversemos.",
+    "plans.pricing.includes": "incluye implementación + mantenimiento",
+    "plans.pricing.after": "luego",
+    "plans.pricing.varies": "El mantenimiento varía según el alcance (estático, backend, e-commerce).",
+
   });
 
   let currentLang = "en";
@@ -691,7 +699,7 @@
       window.dispatchEvent(new CustomEvent("i18n:changed", { detail: { lang: currentLang, t } }));
       // compat: si plans.js expone una función global opcional
       if (typeof window.rerenderPlans === "function") window.rerenderPlans();
-    } catch {}
+    } catch { }
 
     localStorage.setItem("lang", currentLang);
   }
@@ -826,17 +834,17 @@
             <i class="bi bi-journal-text me-1"></i> ${t("projects.btn.case")}
           </button>
           ${p.live
-            ? `<a class="btn btn-sm btn-primary" href="${p.live}" target="_blank" rel="noopener">
+          ? `<a class="btn btn-sm btn-primary" href="${p.live}" target="_blank" rel="noopener">
                  <i class="bi bi-globe me-1"></i> ${t("projects.btn.visit")}
                </a>`
-            : ""
-          }
+          : ""
+        }
           ${p.github
-            ? `<a class="btn btn-sm btn-outline-secondary" href="${p.github}" target="_blank" rel="noopener">
+          ? `<a class="btn btn-sm btn-outline-secondary" href="${p.github}" target="_blank" rel="noopener">
                  <i class="bi bi-github me-1"></i> ${t("projects.btn.github")}
                </a>`
-            : ""
-          }
+          : ""
+        }
         </div>`;
     }
 
@@ -997,17 +1005,17 @@
                 <i class="bi bi-journal-text me-1"></i> ${t("projects.btn.case")}
               </button>
               ${p.live
-                ? `<a class="btn btn-sm btn-primary" href="${p.live}" target="_blank" rel="noopener">
+          ? `<a class="btn btn-sm btn-primary" href="${p.live}" target="_blank" rel="noopener">
                      <i class="bi bi-globe me-1"></i> ${t("projects.btn.visit")}
                    </a>`
-                : ""
-              }
+          : ""
+        }
               ${p.github
-                ? `<a class="btn btn-sm btn-outline-secondary" href="${p.github}" target="_blank" rel="noopener">
+          ? `<a class="btn btn-sm btn-outline-secondary" href="${p.github}" target="_blank" rel="noopener">
                      <i class="bi bi-github me-1"></i> ${t("projects.btn.github")}
                    </a>`
-                : ""
-              }
+          : ""
+        }
             </div>
           </div>
         </div>`;

@@ -8,10 +8,7 @@
   const I = () => (window.__i18n || { t: (k) => k, lang: "en" });
   const t = (k) => I().t(k);
 
-  const state = {
-    billing: "monthly", // 'monthly' | 'upfront'
-    tab: "usaWeb",
-  };
+  const state = { billing: "monthly", tab: "usaWeb" };
 
   const fmt = {
     USD: (n) =>
@@ -30,40 +27,28 @@
       }).format(n),
   };
 
-  // ===== Reglas de negocio =====
-  // Mínimo mantenimiento por moneda
-  const MIN_MAINT = { USD: 100, COP: 100000 };
-
-  // ===== Data con onboarding mensual =====
-  // monthly: { intro: { months, price }, maint: number }  (en USD/COP según tab)
-  // upfront: number | null
-  // maintenance visible: usa "maint" y respeta mínimo por moneda
+  // ===== Data (mantenimiento varía por plan) =====
+  // price.monthly = { intro: { months, price }, maint }
+  //   - intro.price = total mensual durante intro (implementación prorrateada + mantenimiento)
+  //   - maint = mantenimiento fijo después del intro (varía por plan)
+  // price.upfront = costo único de implementación (si aplica). Siempre mostramos mantenimiento aparte si existe monthly.
   const PLANS = {
     usaWeb: {
       currency: "USD",
       items: [
         {
           key: "plans.usaWeb.starter",
-          price: {
-            monthly: { intro: { months: 4, price: 200 }, maint: 100 },
-            upfront: 1200,
-          },
+          price: { monthly: { intro: { months: 6, price: 300 }, maint: 100 }, upfront: 1600 },
           features: ["f1", "f2", "f3"],
         },
         {
           key: "plans.usaWeb.growth",
-          price: {
-            monthly: { intro: { months: 4, price: 320 }, maint: 140 },
-            upfront: 2600,
-          },
+          price: { monthly: { intro: { months: 6, price: 700 }, maint: 240 }, upfront: 3600 },
           features: ["f1", "f2", "f3"],
         },
         {
           key: "plans.usaWeb.ecom",
-          price: {
-            monthly: { intro: { months: 4, price: 520 }, maint: 180 },
-            upfront: 4200,
-          },
+          price: { monthly: { intro: { months: 6, price: 900 }, maint: 500 }, upfront: 4200 },
           features: ["f1", "f2", "f3"],
         },
       ],
@@ -74,7 +59,7 @@
       items: [
         {
           key: "plans.usaAds.setup",
-          price: { monthly: null, upfront: 600 }, // one-time
+          price: { monthly: null, upfront: 600 }, // Solo implementación
           features: ["f1", "f2", "f3"],
         },
         {
@@ -90,26 +75,17 @@
       items: [
         {
           key: "plans.colWeb.static",
-          price: {
-            monthly: { intro: { months: 4, price: 420000 }, maint: 100000 },
-            upfront: 1900000,
-          },
+          price: { monthly: { intro: { months: 4, price: 420000 }, maint: 100000 }, upfront: 1900000 },
           features: ["f1", "f2", "f3"],
         },
         {
           key: "plans.colWeb.back",
-          price: {
-            monthly: { intro: { months: 4, price: 780000 }, maint: 160000 },
-            upfront: 3600000,
-          },
+          price: { monthly: { intro: { months: 4, price: 780000 }, maint: 200000 }, upfront: 3600000 },
           features: ["f1", "f2", "f3"],
         },
         {
           key: "plans.colWeb.ecom",
-          price: {
-            monthly: { intro: { months: 4, price: 1080000 }, maint: 220000 },
-            upfront: 5200000,
-          },
+          price: { monthly: { intro: { months: 4, price: 1080000 }, maint: 420000 }, upfront: 5200000 },
           features: ["f1", "f2", "f3"],
         },
       ],
@@ -141,7 +117,7 @@
       items: [
         {
           key: "plans.colAds.setup",
-          price: { monthly: null, upfront: 900000 }, // one-time
+          price: { monthly: null, upfront: 900000 }, // Solo implementación
           features: ["f1", "f2", "f3"],
         },
         {
@@ -155,22 +131,14 @@
     branding: {
       currency: "USD",
       items: [
-        {
-          key: "plans.branding.basic",
-          price: { monthly: null, upfront: 680 },
-          features: ["f1", "f2", "f3"],
-        },
-        {
-          key: "plans.branding.full",
-          price: { monthly: null, upfront: 1800 },
-          features: ["f1", "f2", "f3"],
-        },
+        { key: "plans.branding.basic", price: { monthly: null, upfront: 680 }, features: ["f1", "f2", "f3"] },
+        { key: "plans.branding.full", price: { monthly: null, upfront: 1800 }, features: ["f1", "f2", "f3"] },
       ],
       noteKey: "plans.branding.note",
     },
   };
 
-  // ===== UI wiring =====
+  // ===== UI =====
   const grid = $("#plansGrid");
   if (!grid) return;
 
@@ -183,7 +151,6 @@
       btnUpfront.classList.toggle("btn-primary", isUp);
       btnUpfront.classList.toggle("btn-outline-primary", !isUp);
       btnUpfront.setAttribute("aria-pressed", isUp ? "true" : "false");
-
       btnMonthly.classList.toggle("btn-primary", !isUp);
       btnMonthly.classList.toggle("btn-outline-primary", isUp);
       btnMonthly.setAttribute("aria-pressed", !isUp ? "true" : "false");
@@ -193,63 +160,59 @@
 
   function setTab(tab) {
     state.tab = tab;
-    $$("#plansTabs .nav-link").forEach((b) => {
-      b.classList.toggle("active", b.getAttribute("data-tab") === tab);
-    });
+    $$("#plansTabs .nav-link").forEach((b) => b.classList.toggle("active", b.getAttribute("data-tab") === tab));
     render();
   }
 
   function priceMonthlyBlock(m, currency) {
-    // Aplica mínimo de mantenimiento por moneda
-    const minMaint = MIN_MAINT[currency] || 0;
-    const maint = Math.max(m.maint || 0, minMaint);
-
+    if (!m) return "";
     const perMonth = t("plans.generic.perMonth");
+    const introMonths = m.intro?.months || 0;
+    const introPrice = m.intro?.price || 0;
+    const maint = m.maint ?? 0;
 
-    // “Primeros N meses: $X/mes”
-    const introLine =
-      m.intro && m.intro.months && m.intro.price
-        ? `<div><strong>${fmt[currency](m.intro.price)}</strong> ${perMonth} <span class="opacity-75">(${t("plans.billing.monthlyTop")} ${m.intro.months})</span></div>`
-        : "";
+    const introLine = introMonths
+      ? `<div><strong>${fmt[currency](introPrice)}</strong> ${perMonth} × ${introMonths} <small class="opacity-75">— ${t("plans.pricing.includes")}</small></div>`
+      : "";
 
-    // “Luego: $Y/mes”
-    const thenLine = `<div>${t("plans.generic.maintenance")} <strong>${fmt[currency](maint)}</strong> ${perMonth}</div>`;
+    const thenLine = `<div><span class="opacity-75">${t("plans.pricing.after")}</span> ${t("plans.generic.maintenance")} <strong>${fmt[currency](maint)}</strong> ${perMonth}</div>`;
 
-    return `
-      <div class="plan-price plan-price--stack">
-        ${introLine}
-        ${thenLine}
-      </div>`;
+    return `<div class="plan-price plan-price--stack">${introLine}${thenLine}</div>`;
   }
 
-  function priceBlock(p, currency) {
-    const oneTime = t("plans.generic.oneTime");
-    if (state.billing === "upfront") {
-      if (p.upfront) {
+  function priceUpfrontBlock(p, currency) {
+    const perMonth = t("plans.generic.perMonth");
+    const hasMaint = p.monthly && typeof p.monthly.maint === "number";
+    const implLine =
+      typeof p.upfront === "number"
+        ? `<div><span class="opacity-75">${t("plans.billing.upfrontTop")}:</span> <strong>${fmt[currency](p.upfront)}</strong> <span class="opacity-75">${t("plans.generic.oneTime")}</span></div>`
+        : "";
+
+    const maintLine = hasMaint
+      ? `<div>${t("plans.generic.maintenance")} <strong>${fmt[currency](p.monthly.maint)}</strong> ${perMonth} <span class="opacity-75">— ${t("plans.pricing.after")}</span></div>`
+      : "";
+
+    const html = implLine + maintLine;
+    return `<div class="plan-price plan-price--stack">${html || `<span class="plan-amount">${t("plans.generic.request")}</span>`}</div>`;
+  }
+
+  function priceBlock(price, currency) {
+    if (state.billing === "monthly") {
+      if (price.monthly) return priceMonthlyBlock(price.monthly, currency);
+      // Sin mensual → mostramos implementación si hay
+      if (typeof price.upfront === "number") {
         return `<div class="plan-price">
-          <span class="plan-amount">${fmt[currency](p.upfront)}</span>
-          <span class="plan-per">${oneTime}</span>
+          <span class="plan-amount">${fmt[currency](price.upfront)}</span>
+          <span class="plan-per">${t("plans.generic.oneTime")}</span>
         </div>`;
       }
-      // si no hay upfront pero sí mensual, muestra el mensual (intro+maint)
-      if (p.monthly) return priceMonthlyBlock(p.monthly, currency);
       return `<div class="plan-price"><span class="plan-amount">${t("plans.generic.request")}</span></div>`;
     }
-
-    // Monthly
-    if (p.monthly) return priceMonthlyBlock(p.monthly, currency);
-    // si no hay mensual, cae a one-time
-    if (p.upfront) {
-      return `<div class="plan-price">
-        <span class="plan-amount">${fmt[currency](p.upfront)}</span>
-        <span class="plan-per">${oneTime}</span>
-      </div>`;
-    }
-    return `<div class="plan-price"><span class="plan-amount">${t("plans.generic.request")}</span></div>`;
+    // Upfront
+    return priceUpfrontBlock(price, currency);
   }
 
   function render() {
-    const lang = I().lang || "en";
     const tab = PLANS[state.tab];
     if (!tab) return (grid.innerHTML = "");
 
@@ -295,12 +258,14 @@
       })
       .join("");
 
-    const note =
+    const brandingNote =
       state.tab === "branding" && tab.noteKey
         ? `<div class="col-12"><div class="alert alert-light border mt-2">${t(tab.noteKey)}</div></div>`
         : "";
 
-    grid.innerHTML = cards + note;
+    const scopeNote = `<div class="col-12"><div class="small text-muted mt-1">${t("plans.pricing.varies")}</div></div>`;
+
+    grid.innerHTML = cards + brandingNote + scopeNote;
   }
 
   // ===== Listeners =====
@@ -308,10 +273,8 @@
     btn.addEventListener("click", () => setTab(btn.getAttribute("data-tab")));
   });
 
-  const up = $("#btnUpfront");
-  const mo = $("#btnMonthly");
-  if (up) up.addEventListener("click", () => setBilling("upfront"));
-  if (mo) mo.addEventListener("click", () => setBilling("monthly"));
+  $("#btnUpfront")?.addEventListener("click", () => setBilling("upfront"));
+  $("#btnMonthly")?.addEventListener("click", () => setBilling("monthly"));
 
   window.addEventListener("i18n:changed", () => render());
 
@@ -320,6 +283,6 @@
   const activeTabBtn = $("#plansTabs .nav-link.active");
   setTab(activeTabBtn ? activeTabBtn.getAttribute("data-tab") : "usaWeb");
 
-  // Exponer por si el main quiere forzar re-render
+  // Exponer para re-render externo si lo necesitas
   window.rerenderPlans = render;
 })();

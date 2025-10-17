@@ -802,3 +802,4 @@ footer .social-links a:hover{ color:var(--brand-red); }
 .plan-card li{ margin:.15rem 0; color: var(--bs-body-color); }
 .plan-card .bi{ vertical-align:-.1em; }
 
+.plan-price--stack { display: grid; gap: .15rem; }
