@@ -801,7 +801,7 @@
       type: "ecommerce",
       sector: "E-commerce — Sportswear",
       img: "assets/images/valkha.png",
-      live: "https://valkha.netlify.app/",
+      live: "https://valkha-front.netlify.app/",
       github: null,
       tags: ["Vue 3", "Spring Boot", "Stripe", "PostgreSQL", "Netlify/Railway"],
       challenge:
