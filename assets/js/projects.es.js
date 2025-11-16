@@ -107,7 +107,7 @@
       subtitle: 'Página institucional para empresa de operaciones',
       categories: ['web', 'branding'],
       year: 2022,
-      thumb: '/assets/images/projects/corporate-cover.jpg',
+      thumb: '/assets/images/B2B-Template.png',
       description: 'Página corporativa a medida para comunicar servicios, experiencia y mapa de operaciones de la empresa.',
       challenge: 'Presentar los servicios y la cobertura geográfica de una empresa de operaciones de forma clara, sin usar plantillas genéricas.',
       solutions: [
@@ -118,7 +118,7 @@
       ],
       results: 'Mejor presentación institucional y comunicación clara del alcance operativo de la empresa.',
       tags: ['Página corporativa', 'Mapa de operaciones', 'SEO on-page'],
-      liveUrl: null,
+      liveUrl: 'https://corporate-template.pages.dev/',
       githubUrl: null
     }
   ];

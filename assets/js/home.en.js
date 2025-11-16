@@ -98,9 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
       subtitle: 'Equipment / events company',
       year: 2022,
       categories: ['web', 'branding'],
-      thumbnail: '/assets/images/projects/corporate-cover.jpg',
+      thumbnail: '/assets/images/B2B-Template.png',
       tags: ['Landing', 'Catalog', 'B2B'],
-      liveUrl: '#',
+      liveUrl: 'https://corporate-template.pages.dev/',
       githubUrl: '',
       challenge: 'Design a clear corporate page to present B2B services, products and operating areas.',
       solutions: [

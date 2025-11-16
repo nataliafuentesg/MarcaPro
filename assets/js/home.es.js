@@ -98,9 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
       subtitle: 'Empresa de dotaciones / eventos',
       year: 2022,
       categories: ['web', 'branding'],
-      thumbnail: '/assets/images/projects/corporate-cover.jpg',
+      thumbnail: '/assets/images/B2B-Template.png',
       tags: ['Landing', 'Catálogo', 'B2B'],
-      liveUrl: '#',
+      liveUrl: 'https://corporate-template.pages.dev/',
       githubUrl: '',
       challenge: 'Diseñar una página corporativa clara para presentar servicios B2B, productos y zonas de operación.',
       solutions: [

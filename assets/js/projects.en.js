@@ -107,7 +107,7 @@
       subtitle: 'Institutional page for an operations company',
       categories: ['web', 'branding'],
       year: 2022,
-      thumb: '/assets/images/projects/corporate-cover.jpg',
+      thumb: '/assets/images/B2B-Template.png',
       description: 'Tailor-made corporate page to communicate services, track record and operations map.',
       challenge: 'Present services and geographic coverage in a clear way, avoiding generic templates.',
       solutions: [
@@ -118,8 +118,8 @@
       ],
       results: 'Stronger institutional presence and clearer communication of the company’s operational reach.',
       tags: ['Corporate site', 'Operations map', 'SEO on-page'],
-      liveUrl: null,
-      githubUrl: null
+      liveUrl: 'https://corporate-template.pages.dev/',
+      githubUrl: 'https://github.com/nataliafuentesg/eventex'
     }
   ];
 
