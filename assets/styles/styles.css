@@ -41,6 +41,11 @@ img, svg, video { max-width: 100%; height: auto; }
   overflow-x: clip;
 }
 
+/* Secciones con fondo claro reutilizable */
+.light-background {
+  background-color: var(--gray-light);
+}
+
 /* ===========================
    Header / Nav
    =========================== */
@@ -1074,6 +1079,7 @@ footer .social-links a:hover{ color:var(--brand-red); }
   border-color: #d1d5db;
   color: #111111;
 }
+
 /* ===== HERO Plans — barras de precios (USA / COL / E-commerce) ===== */
 
 .hero-plans {
@@ -1194,5 +1200,128 @@ footer .social-links a:hover{ color:var(--brand-red); }
     animation: none !important;
     transform: scaleY(1) !important;
     opacity: 1 !important;
+  }
+}
+
+/* ===========================
+   Dark mode suave (según sistema)
+   =========================== */
+
+@media (prefers-color-scheme: dark) {
+  /* Fondo de la página más oscuro, textos base claros */
+  body {
+    background-color: #050608;
+    color: #f9fafb;
+  }
+
+  /* Títulos principales */
+  h2, h3, h4 {
+    color: #f9fafb;
+  }
+  .section-title .description-title {
+    color: #f9fafb;
+  }
+
+  /* Secciones de contenido: gris oscuro pero legible */
+  .section1,
+  .light-background {
+    background-color: #111111;
+    color: #f9fafb;
+  }
+
+  /* Textos dentro de secciones (incluye muted) */
+  .section1 p,
+  .section1 li,
+  .section1 small,
+  .section1 .text-muted {
+    color: #e5e7eb !important;
+  }
+
+  /* Cards */
+  .icon-box,
+  .features-item,
+  .process-step,
+  .project-card,
+  .social-card,
+  .plan-card {
+    background-color: #18181b;
+    border-color: #27272f;
+    color: #f9fafb;
+  }
+
+  .features-item h3,
+  .icon-box h3,
+  .process-step h5,
+  .plan-card small {
+    color: #f9fafb !important;
+  }
+
+  .project-tag {
+    background-color: #27272f;
+    border-color: #3f3f46;
+    color: #f9fafb;
+  }
+
+  /* CTA & footer un poco más oscuros aún */
+  .cta-strip,
+  footer.footer {
+    background-color: #000000;
+  }
+
+  footer.footer a {
+    color: #d4d4d8;
+  }
+  footer.footer a:hover {
+    color: var(--brand-red);
+  }
+}
+
+/* ===== Fix dark mode para botones y hovers en cards ===== */
+@media (prefers-color-scheme: dark) {
+
+  /* 1. Botones dentro de project cards (View case / Visit site / etc.) */
+  .project-card .btn,
+  .project-actions .btn,
+  #caseStudyModal .btn {
+    border-color: #f9fafb;
+    color: #f9fafb;
+    background-color: transparent;
+  }
+
+  .project-card .btn:hover,
+  .project-actions .btn:hover,
+  #caseStudyModal .btn:hover {
+    background-color: #f9fafb;
+    color: #000000;
+  }
+
+  /* Si alguno de esos botones es primary, mantenemos el rojo MarcaPro */
+  .project-card .btn.btn-primary,
+  #caseStudyModal .btn.btn-primary {
+    background-color: var(--brand-red);
+    border-color: var(--brand-red);
+    color: #ffffff;
+  }
+
+  .project-card .btn.btn-primary:hover,
+  #caseStudyModal .btn.btn-primary:hover {
+    background-color: #b20710;
+    border-color: #b20710;
+    color: #ffffff;
+  }
+
+  /* 2. Evitar que las cards se vuelvan demasiado claras en hover */
+  .project-card:hover,
+  .social-card:hover,
+  .process-step:hover,
+  .icon-box:hover {
+    background-color: #202023; /* un poquito más claro que el fondo, pero sigue siendo oscuro */
+    box-shadow: 0 14px 36px rgba(0,0,0,.7);
+    border-color: #3f3f46;
+  }
+
+  /* Features: que en hover no se vuelvan blanco lavado */
+  .features-item:hover {
+    background-color: #202023;
   }
 }
