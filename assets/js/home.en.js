@@ -3,10 +3,31 @@
 document.addEventListener('DOMContentLoaded', () => {
   const projects = [
     {
+      id: 'lcs',
+      name: 'Luis Carlos Segura',
+      subtitle: 'Political campaign website',
+      year: 2025,
+      categories: ['web'],
+      thumbnail: '/assets/images/luis-carlos-segura.png',
+      tags: ['Vue 3', 'Spring Boot', 'PostgreSQL', 'Newsletter API', 'Cloudflare/Hetzner'],
+      liveUrl: 'https://luiscarlossegura.com',
+      githubUrl: '',
+      challenge: 'Build a fast, modern website for a public figure with strong SEO, newsletter tools, and a clean UX.',
+      solutions: [
+        'Vue 3 frontend with modular sections, animations and mobile-first UX.',
+        'Custom Spring Boot backend for newsletter, forms and secure API endpoints.',
+        'Full SEO implementation: Open Graph, meta tags, sitemap and structured data.',
+        'Deployment using Cloudflare (frontend) and Hetzner (backend) with SSL and CI/CD.',
+      ],
+      results: 'A professional, fast-loading website that improves visibility, captures leads and supports communication with the community.',
+    },
+
+
+    {
       id: 'valkha',
       name: 'Valkha',
       subtitle: 'Fashion e-commerce',
-      year: 2024,
+      year: 2025,
       categories: ['ecommerce', 'web'],
       thumbnail: '/assets/images/valkha.png',
       tags: ['Vue 3', 'Spring Boot', 'Stripe', 'E-commerce'],
@@ -24,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'tasca',
       name: 'Tasca',
       subtitle: 'Tapas restaurant — Boston',
-      year: 2024,
+      year: 2025,
       categories: ['web', 'marketing', 'branding'],
       thumbnail: '/assets/images/tasca.png',
       tags: ['Web', 'Growth', 'Meta Ads', 'GA4'],
@@ -42,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'pintxo',
       name: 'Pintxo Pincho',
       subtitle: 'Tapas & wine bar — Woburn',
-      year: 2024,
+      year: 2025,
       categories: ['web', 'marketing', 'branding'],
       thumbnail: '/assets/images/pintxo.png',
       tags: ['Web', 'Branding', 'Launch', 'Meta Ads'],
@@ -96,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'corporate-site',
       name: 'Corporate B2B site',
       subtitle: 'Equipment / events company',
-      year: 2022,
+      year: 2025,
       categories: ['web', 'branding'],
       thumbnail: '/assets/images/B2B-Template.png',
       tags: ['Landing', 'Catalog', 'B2B'],
@@ -112,16 +133,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  const gridEl   = document.getElementById('projectsGrid');
+  const gridEl = document.getElementById('projectsGrid');
   const filtersEl = document.getElementById('projectsFilters');
   const searchEl = document.getElementById('projectsSearch'); // optional
-  const sortEl   = document.getElementById('projectsSort');   // optional
+  const sortEl = document.getElementById('projectsSort');   // optional
 
   if (!gridEl) return;
 
   let currentFilter = 'all';
   let currentSearch = '';
-  let currentSort   = 'new';
+  let currentSort = 'new';
 
   function applyFilters() {
     let list = [...projects];
@@ -194,10 +215,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 View case
               </button>
               ${p.liveUrl && p.liveUrl !== '#'
-                ? `<a href="${p.liveUrl}" target="_blank" rel="noopener" class="btn btn-light btn-sm">
+          ? `<a href="${p.liveUrl}" target="_blank" rel="noopener" class="btn btn-light btn-sm">
                      <i class="bi bi-globe me-1"></i>View site
                    </a>`
-                : ''}
+          : ''}
             </div>
           </div>
         </article>
@@ -213,14 +234,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalEl = document.getElementById('caseStudyModal');
     if (!modalEl || typeof bootstrap === 'undefined') return;
 
-    const bsModal    = bootstrap.Modal.getOrCreateInstance(modalEl);
-    const titleEl    = modalEl.querySelector('#caseStudyTitle');
-    const challengeEl= modalEl.querySelector('#caseStudyChallenge');
-    const solutionsEl= modalEl.querySelector('#caseStudySolutions');
-    const resultsEl  = modalEl.querySelector('#caseStudyResults');
-    const tagsWrap   = modalEl.querySelector('#caseStudyTags');
-    const liveBtn    = modalEl.querySelector('#caseStudyLive');
-    const githubBtn  = modalEl.querySelector('#caseStudyGithub');
+    const bsModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    const titleEl = modalEl.querySelector('#caseStudyTitle');
+    const challengeEl = modalEl.querySelector('#caseStudyChallenge');
+    const solutionsEl = modalEl.querySelector('#caseStudySolutions');
+    const resultsEl = modalEl.querySelector('#caseStudyResults');
+    const tagsWrap = modalEl.querySelector('#caseStudyTags');
+    const liveBtn = modalEl.querySelector('#caseStudyLive');
+    const githubBtn = modalEl.querySelector('#caseStudyGithub');
 
     function onCaseStudyClick(evt) {
       const id = evt.currentTarget.getAttribute('data-id');

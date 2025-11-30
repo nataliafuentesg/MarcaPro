@@ -1325,3 +1325,51 @@ footer .social-links a:hover{ color:var(--brand-red); }
     background-color: #202023;
   }
 }
+
+/* ===== Fix dark mode para el modal de "View case" ===== */
+@media (prefers-color-scheme: dark) {
+
+  /* Fondo y bordes del modal en oscuro */
+  #caseStudyModal .modal-content {
+    background-color: #111111;
+    color: #f9fafb;
+    border-color: #27272f;
+  }
+
+  #caseStudyModal .modal-header,
+  #caseStudyModal .modal-footer {
+    border-color: #27272f;
+  }
+
+  /* Títulos y texto dentro del modal */
+  #caseStudyModal .modal-title,
+  #caseStudyModal p,
+  #caseStudyModal li {
+    color: #f9fafb;
+  }
+
+  #caseStudyModal .text-muted {
+    color: #e5e7eb !important;
+  }
+
+  /* Links de texto normales dentro del modal */
+  #caseStudyModal a:not(.btn) {
+    color: var(--brand-red);
+  }
+
+  #caseStudyModal a:not(.btn):hover {
+    color: #ff4b56;
+  }
+
+  /* Botón de cerrar (la X) visible en fondo oscuro */
+  #caseStudyModal .btn-close {
+    filter: invert(1) grayscale(100%);
+  }
+
+  /* Alert de resultados (verde) adaptado a fondo oscuro */
+  #caseStudyResults {
+    background: #052e16;
+    border-color: #16a34a;
+    color: #bbf7d0;
+  }
+}

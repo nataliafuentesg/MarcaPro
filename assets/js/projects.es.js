@@ -2,6 +2,26 @@
 (function () {
   const projects = [
     {
+      id: 'lcs',
+      name: 'Luis Carlos Segura',
+      subtitle: 'Página web — campaña política',
+      year: 2024,
+      categories: ['web'],
+      thumb: '/assets/images/luis-carlos-segura.png',
+      tags: ['Vue 3', 'Spring Boot', 'PostgreSQL', 'API Newsletter', 'Cloudflare/Hetzner'],
+      liveUrl: 'https://luiscarlossegura.com',
+      githubUrl: '',
+      challenge: 'Crear una página web moderna, rápida y clara para un líder público, con SEO sólido e integración de newsletter.',
+      solutions: [
+        'Frontend en Vue 3 con diseño modular, animaciones y UX responsive.',
+        'Backend en Spring Boot para newsletter, formularios y endpoints seguros.',
+        'SEO completo: Open Graph, meta tags, sitemap, schema y carga optimizada.',
+        'Deploy en Cloudflare (frontend) y Hetzner (backend) con SSL y CI/CD.'
+      ],
+      results: 'Un sitio profesional y rápido que mejora la visibilidad, facilita la comunicación y capta leads de manera efectiva.',
+    },
+
+    {
       id: 'tasca',
       name: 'Tasca Restaurant',
       subtitle: 'Restaurante de tapas en Boston',

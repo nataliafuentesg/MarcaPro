@@ -3,6 +3,26 @@
 document.addEventListener('DOMContentLoaded', () => {
   const projects = [
     {
+      id: 'lcs',
+      name: 'Luis Carlos Segura',
+      subtitle: 'Página web — campaña política',
+      year: 2024,
+      categories: ['web'],
+      thumbnail: '/assets/images/luis-carlos-segura.png',
+      tags: ['Vue 3', 'Spring Boot', 'PostgreSQL', 'API Newsletter', 'Cloudflare/Hetzner'],
+      liveUrl: 'https://luiscarlossegura.com',
+      githubUrl: '',
+      challenge: 'Crear una página web moderna, rápida y clara para un líder público, con SEO sólido e integración de newsletter.',
+      solutions: [
+        'Frontend en Vue 3 con diseño modular, animaciones y UX responsive.',
+        'Backend en Spring Boot para newsletter, formularios y control seguro de endpoints.',
+        'SEO completo: Open Graph, meta tags, sitemap, schema y carga rápida.',
+        'Deploy en Cloudflare (frontend) y Hetzner (backend) con SSL y CI/CD.',
+      ],
+      results: 'Un sitio profesional y rápido que mejora la visibilidad, facilita la comunicación y capta leads de manera efectiva.',
+    },
+
+    {
       id: 'valkha',
       name: 'Valkha',
       subtitle: 'E-commerce de moda',
@@ -112,16 +132,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  const gridEl   = document.getElementById('projectsGrid');
+  const gridEl = document.getElementById('projectsGrid');
   const filtersEl = document.getElementById('projectsFilters');
   const searchEl = document.getElementById('projectsSearch'); // puede no existir en home
-  const sortEl   = document.getElementById('projectsSort');   // idem
+  const sortEl = document.getElementById('projectsSort');   // idem
 
   if (!gridEl) return;
 
   let currentFilter = 'all';
   let currentSearch = '';
-  let currentSort   = 'new';
+  let currentSort = 'new';
 
   function applyFilters() {
     let list = [...projects];
@@ -194,10 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 Ver caso
               </button>
               ${p.liveUrl && p.liveUrl !== '#'
-                ? `<a href="${p.liveUrl}" target="_blank" rel="noopener" class="btn btn-light btn-sm">
+          ? `<a href="${p.liveUrl}" target="_blank" rel="noopener" class="btn btn-light btn-sm">
                      <i class="bi bi-globe me-1"></i>Ver sitio
                    </a>`
-                : ''}
+          : ''}
             </div>
           </div>
         </article>
@@ -213,14 +233,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalEl = document.getElementById('caseStudyModal');
     if (!modalEl || typeof bootstrap === 'undefined') return;
 
-    const bsModal    = bootstrap.Modal.getOrCreateInstance(modalEl);
-    const titleEl    = modalEl.querySelector('#caseStudyTitle');
-    const challengeEl= modalEl.querySelector('#caseStudyChallenge');
-    const solutionsEl= modalEl.querySelector('#caseStudySolutions');
-    const resultsEl  = modalEl.querySelector('#caseStudyResults');
-    const tagsWrap   = modalEl.querySelector('#caseStudyTags');
-    const liveBtn    = modalEl.querySelector('#caseStudyLive');
-    const githubBtn  = modalEl.querySelector('#caseStudyGithub');
+    const bsModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    const titleEl = modalEl.querySelector('#caseStudyTitle');
+    const challengeEl = modalEl.querySelector('#caseStudyChallenge');
+    const solutionsEl = modalEl.querySelector('#caseStudySolutions');
+    const resultsEl = modalEl.querySelector('#caseStudyResults');
+    const tagsWrap = modalEl.querySelector('#caseStudyTags');
+    const liveBtn = modalEl.querySelector('#caseStudyLive');
+    const githubBtn = modalEl.querySelector('#caseStudyGithub');
 
     function onCaseStudyClick(evt) {
       const id = evt.currentTarget.getAttribute('data-id');
