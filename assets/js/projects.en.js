@@ -2,12 +2,52 @@
 (function () {
   const projects = [
     {
+      id: 'cushion',
+      name: 'Cushion',
+      subtitle: 'Emerald jewelry e-commerce',
+      year: 2026,
+      categories: ['web', 'ecommerce', 'branding'],
+      thumb: '/assets/images/cushion.png', 
+      description: 'Exclusive jewelry store with a high-end shopping experience and personalized WhatsApp sales channel.',
+      challenge: 'Create a luxury digital experience for emeralds where customers can customize pieces and coordinate purchases without a traditional payment gateway.',
+      solutions: [
+        'Vite + Vue 3 frontend optimized for high-resolution jewelry photography.',
+        'Custom Spring Boot backend for product and inventory management.',
+        'Direct WhatsApp integration for personalized sales, sizing, and shipping coordination.',
+        'Fast deployment using Cloudflare for the frontend and Hetzner for the API.'
+      ],
+      results: 'A premium-feel store that bridges the gap between digital browsing and personalized luxury consultation.',
+      tags: ['Vite', 'Vue 3', 'Spring Boot', 'WhatsApp Commerce', 'Cloudflare'],
+      liveUrl: 'https://esmeraldas-cushion-ecommerce.pages.dev/', 
+      githubUrl: null
+    },
+    {
+      id: 'petstation',
+      name: 'Pet Station',
+      subtitle: 'Pet store & health management',
+      categories: ['web', 'ecommerce'],
+      year: 2026,
+      thumb: '/assets/images/pet-station.png',
+      description: 'E-commerce with personalized pet profiles and targeted product filtering.',
+      challenge: 'Build a shopping experience where users can manage their pets and find products specific to their breed, age, or needs.',
+      solutions: [
+        'User dashboard for pet profile management (breed, weight, age).',
+        'Advanced filtering system that recommends products based on the selected pet.',
+        'Shopping cart that redirects to WhatsApp for order finalization and local delivery.',
+        'Robust Spring Boot backend for user data and pet history management.'
+      ],
+      results: 'Improved user engagement through personalization and a simplified checkout process via social messaging.',
+      tags: ['Vue 3', 'Spring Boot', 'Pet Management', 'WhatsApp Sales', 'Hetzner'],
+      liveUrl: 'https://pet-station-frontend.pages.dev/',
+      githubUrl: null
+    },
+    {
       id: 'lcs',
       name: 'Luis Carlos Segura',
       subtitle: 'Political campaign website',
       year: 2025,
       categories: ['web'],
-      thumb: '/assets/images/luis-carlos-segura.png',
+      thumb: '/assets/images/luis-carlos-segura-rubiano.png',
       tags: ['Vue 3', 'Spring Boot', 'PostgreSQL', 'Newsletter API', 'Cloudflare/Hetzner'],
       liveUrl: 'https://luiscarlossegura.com',
       githubUrl: '',

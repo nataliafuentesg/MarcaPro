@@ -2,12 +2,52 @@
 (function () {
   const projects = [
     {
+      id: 'cushion',
+      name: 'Cushion',
+      subtitle: 'E-commerce de esmeraldas de lujo',
+      year: 2026,
+      categories: ['web', 'ecommerce', 'branding'],
+      thumb: '/assets/images/cushion.png',
+      description: 'Tienda exclusiva de joyas con experiencia de compra premium y canal de venta personalizado por WhatsApp.',
+      challenge: 'Crear una experiencia digital de lujo para esmeraldas donde los clientes puedan personalizar piezas y coordinar compras sin pasarela de pago tradicional.',
+      solutions: [
+        'Frontend en Vite + Vue 3 optimizado para fotografía de alta resolución.',
+        'Backend en Spring Boot para la gestión de productos, inventario y personalización.',
+        'Integración directa con WhatsApp para cierre de ventas, tallaje y logística.',
+        'Despliegue de alto rendimiento en Cloudflare (Front) y Hetzner (Back).'
+      ],
+      results: 'Una tienda con estética premium que conecta el catálogo digital con una asesoría de lujo personalizada.',
+      tags: ['Vite', 'Vue 3', 'Spring Boot', 'WhatsApp Commerce', 'Hetzner'],
+      liveUrl: 'https://esmeraldas-cushion-ecommerce.pages.dev/',
+      githubUrl: null
+    },
+    {
+      id: 'petstation',
+      name: 'Pet Station',
+      subtitle: 'Pet shop y gestión de mascotas',
+      categories: ['web', 'ecommerce'],
+      year: 2026,
+      thumb: '/assets/images/petstation.png',
+      description: 'E-commerce con perfiles de mascotas y filtrado inteligente de productos.',
+      challenge: 'Construir una experiencia de compra donde los usuarios gestionen sus mascotas y el sitio filtre productos específicos para ellas.',
+      solutions: [
+        'Panel de usuario para perfiles de mascotas (raza, edad, historial).',
+        'Sistema de filtrado dinámico que recomienda productos según la mascota seleccionada.',
+        'Carrito de compras integrado con redirección a WhatsApp para coordinar envíos.',
+        'Backend robusto en Spring Boot para la gestión de usuarios y datos de mascotas.'
+      ],
+      results: 'Aumento en la retención de usuarios gracias a la personalización y un flujo de compra ágil vía chat.',
+      tags: ['Vue 3', 'Spring Boot', 'Mascotas', 'Venta por WhatsApp', 'Cloudflare'],
+      liveUrl: 'https://pet-station-frontend.pages.dev/',
+      githubUrl: null
+    },
+    {
       id: 'lcs',
       name: 'Luis Carlos Segura',
       subtitle: 'Página web — campaña política',
       year: 2024,
       categories: ['web'],
-      thumb: '/assets/images/luis-carlos-segura.png',
+      thumb: '/assets/images/luis-carlos-segura-rubiano.png',
       tags: ['Vue 3', 'Spring Boot', 'PostgreSQL', 'API Newsletter', 'Cloudflare/Hetzner'],
       liveUrl: 'https://luiscarlossegura.com',
       githubUrl: '',
