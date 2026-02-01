@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       subtitle: 'E-commerce & Pet Health',
       year: 2026,
       categories: ['ecommerce', 'web'],
-      thumbnail: '/assets/images/pet-station.png',
+      thumbnail: '/assets/images/Pet-Station.png',
       tags: ['Vue 3', 'Spring Boot', 'User Dashboard', 'WhatsApp'],
       liveUrl: 'https://pet-station-frontend.pages.dev/',
       githubUrl: '',

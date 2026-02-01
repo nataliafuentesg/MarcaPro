@@ -27,7 +27,7 @@
       subtitle: 'Pet shop y gestión de mascotas',
       categories: ['web', 'ecommerce'],
       year: 2026,
-      thumb: '/assets/images/petstation.png',
+      thumb: '/assets/images/Pet-Station.png',
       description: 'E-commerce con perfiles de mascotas y filtrado inteligente de productos.',
       challenge: 'Construir una experiencia de compra donde los usuarios gestionen sus mascotas y el sitio filtre productos específicos para ellas.',
       solutions: [

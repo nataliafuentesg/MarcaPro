@@ -27,7 +27,7 @@
       subtitle: 'Pet store & health management',
       categories: ['web', 'ecommerce'],
       year: 2026,
-      thumb: '/assets/images/pet-station.png',
+      thumb: '/assets/images/Pet-Station.png',
       description: 'E-commerce with personalized pet profiles and targeted product filtering.',
       challenge: 'Build a shopping experience where users can manage their pets and find products specific to their breed, age, or needs.',
       solutions: [
