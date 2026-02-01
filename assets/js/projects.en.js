@@ -67,7 +67,7 @@
       subtitle: 'Tapas restaurant in Boston',
       categories: ['web', 'ecommerce', 'marketing', 'branding'],
       year: 2025,
-      thumb: '/assets/images/tasca.png',
+      thumb: '/assets/images/tasca-web.png',
       description: 'Full website with backend to manage offers, menu and wine list, plus social media and ads management.',
       challenge: 'Modernize the digital presence of a traditional restaurant, integrating external bookings, updated menu and seasonal offers without templates.',
       solutions: [
@@ -87,7 +87,7 @@
       subtitle: 'Tapas bar & wine',
       categories: ['web', 'ecommerce', 'marketing', 'branding'],
       year: 2025,
-      thumb: '/assets/images/pintxo.png',
+      thumb: '/assets/images/pintxo-web.png',
       description: 'Full website with backend for menu, drinks and offers, plus social media and ads campaigns.',
       challenge: 'Launch a new tapas concept with a clear identity, mobile-first site and the ability to communicate promotions dynamically.',
       solutions: [

@@ -67,7 +67,7 @@
       subtitle: 'Restaurante de tapas en Boston',
       categories: ['web', 'ecommerce', 'marketing', 'branding'],
       year: 2024,
-      thumb: '/assets/images/tasca.png',
+      thumb: '/assets/images/tasca-web.png',
       description: 'Sitio web completo con backend para gestión de ofertas, menú y lista de vinos, más manejo de redes sociales y pauta.',
       challenge: 'Modernizar la presencia digital de un restaurante tradicional, integrando reservas externas, menú actualizado y campañas de temporada sin depender de plantillas.',
       solutions: [
@@ -87,7 +87,7 @@
       subtitle: 'Tapas bar & wine',
       categories: ['web', 'ecommerce', 'marketing', 'branding'],
       year: 2024,
-      thumb: '/assets/images/pintxo.png',
+      thumb: '/assets/images/pintxo-web.png',
       description: 'Página web completa con backend para menú, bebidas y ofertas, más campañas de redes y anuncios.',
       challenge: 'Lanzar un nuevo concepto de tapas con identidad clara, sitio optimizado para móviles y capacidad de comunicar promociones de forma dinámica.',
       solutions: [
